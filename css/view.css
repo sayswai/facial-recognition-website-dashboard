@@ -1,1 +1,96 @@
 /*TODO add custom css here as needed*/
+body {
+  background-color: #F7A8FC;
+}
+
+
+/* NAVBAR CSS START */
+.navbar-toggleable-md {
+  background-color: white;
+  border-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  transition: 0.5s;
+  font-family: TODO;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+.navbar-toggleable-md .navbar-brand {
+  font-family: TODO;
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: #52FDA8;
+}
+.navbar-toggleable-md .navbar-brand:hover,
+.navbar-toggleable-md .navbar-brand:focus {
+  color: #52FDA8;
+}
+.navbar-toggleable-md .navbar-toggler {
+  font-size: 12px;
+  color: #222222;
+  padding: 8px 10px;
+}
+.navbar-toggleable-md .navbar-nav > li > a {
+  font-family: TODO;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+.navbar-toggleable-md .navbar-nav > li > a,
+.navbar-toggleable-md .navbar-nav > li > a:focus {
+  color: #222222;
+}
+.navbar-toggleable-md .navbar-nav > li > a:hover,
+.navbar-toggleable-md .navbar-nav > li > a:focus:hover {
+  color: #52FDA8;
+}
+.navbar-toggleable-md .navbar-nav > li.active > a,
+.navbar-toggleable-md .navbar-nav > li.active > a:focus {
+  color: #52FDA8 !important;
+  background-color: transparent;
+}
+.navbar-toggleable-md .navbar-nav > li.active > a:hover,
+.navbar-toggleable-md .navbar-nav > li.active > a:focus:hover {
+  background-color: transparent;
+}
+@media(min-width: 768px){
+  .navbar-toggleable-md {
+    background-color: transparent;
+    border-color: transparent;
+  }
+  .navbar-toggleable-md .navbar-brand {
+    color: rgba(255,255,255,0.75);
+  }
+  .navbar-toggleable-md .navbar-brand:hover,
+  .navbar-toggleable-md .navbar-brand:focus {
+    color: white;
+  }
+  .navbar-toggleable-md .navbar-nav > li > a,
+  .navbar-toggleable-md .navbar-nav > li > a:focus {
+    color: #222222;
+  }
+  .navbar-toggleable-md .navbar-nav > li > a:hover,
+  .navbar-toggleable-md .navbar-nav > li > a:focus:hover {
+    color: rgba(255,255,255,0.75);
+  }
+  .navbar-toggleable-md.affix {
+    background-color: white;
+    border-color: rgba(0, 0, 0, 0.5);
+  }
+  .navbar-toggleable-md.affix .navbar-brand {
+    color: #222222;
+  }
+  .navbar-toggleable-md.affix .navbar-brand:hover,
+  .navbar-toggleable-md.affix .navbar-brand:focus {
+    color: #52FDA8;
+  }
+  .navbar-toggleable-md.affix .navbar-nav > li > a,
+  .navbar-toggleable-md.affix .navbar-nav > li > a:focus {
+    color: #222222;
+  }
+  .navbar-toggleable-md.affix .navbar-nav > li > a:hover,
+  .navbar-toggleable-md.affix .navbar-nav > li > a:focus:hover {
+    color: #52FDA8;
+  }
+}
+/* NAVBAR CSS END */
