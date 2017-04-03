@@ -1,6 +1,6 @@
 /*TODO add custom css here as needed*/
 body {
-  background-color: #F7A8FC;
+  background-color: #191919;
 }
 
 
@@ -19,11 +19,11 @@ body {
   font-family: TODO;
   font-weight: 300;
   letter-spacing: 1px;
-  color: #52FDA8;
+  color: #DF3D82;
 }
 .navbar-toggleable-md .navbar-brand:hover,
 .navbar-toggleable-md .navbar-brand:focus {
-  color: #52FDA8;
+  color: #DF3D82;
 }
 .navbar-toggleable-md .navbar-toggler {
   font-size: 12px;
@@ -42,11 +42,11 @@ body {
 }
 .navbar-toggleable-md .navbar-nav > li > a:hover,
 .navbar-toggleable-md .navbar-nav > li > a:focus:hover {
-  color: #52FDA8;
+  color: #DF3D82;
 }
 .navbar-toggleable-md .navbar-nav > li.active > a,
 .navbar-toggleable-md .navbar-nav > li.active > a:focus {
-  color: #52FDA8 !important;
+  color: #DF3D82 !important;
   background-color: transparent;
 }
 .navbar-toggleable-md .navbar-nav > li.active > a:hover,
@@ -82,7 +82,7 @@ body {
   }
   .navbar-toggleable-md.affix .navbar-brand:hover,
   .navbar-toggleable-md.affix .navbar-brand:focus {
-    color: #52FDA8;
+    color: #DF3D82;
   }
   .navbar-toggleable-md.affix .navbar-nav > li > a,
   .navbar-toggleable-md.affix .navbar-nav > li > a:focus {
@@ -90,7 +90,7 @@ body {
   }
   .navbar-toggleable-md.affix .navbar-nav > li > a:hover,
   .navbar-toggleable-md.affix .navbar-nav > li > a:focus:hover {
-    color: #52FDA8;
+    color: #DF3D82;
   }
 }
 /* NAVBAR CSS END */
