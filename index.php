@@ -33,13 +33,13 @@
     <!-- Header -->
 
     <!-- Login Form -->
-      <div id="logForm" class="modal fade" role="dialog" aria-labelledby="logFormId">
+      <div id="logForm" class="modal fade" role="dialog">
         <div class="modal-dialogue">
 
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-              <h1 class="modal-title" id="logFormID">Log In</h1>
+              <button type="button" class="close" data-dismiss="modal">x</button>
+              <h1 class="modal-title">Log In</h1>
             </div>
             <div class="modal-body">
               <form class="form-horizontal">
@@ -66,7 +66,7 @@
             </div>
             <div class="modal-footer">
               <div class="col-sm-offset-2 col-sm-10">
-                <button type="button" class="btn btn-default close" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-default">Submit</button>
               </div>
             </div>
