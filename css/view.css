@@ -94,3 +94,10 @@ body {
   }
 }
 /* NAVBAR CSS END */
+
+/* LOGFORM CSS START */
+.logForm {
+  background-color: white;
+  display: none;
+}
+/* LOGFORM CSS END */

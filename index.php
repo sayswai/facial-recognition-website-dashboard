@@ -26,11 +26,41 @@
     <![endif]-->
   </head>
   <body>
+    <!-- Navbar -->
     <div id="nav"></div> <!-- For TODO see navbar.html -->
 
 
     <!-- Header -->
 
+    <!-- Login Form -->
+    <div class="logForm">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-2" for="user">Username:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="user" placeholder="Enter Username">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2" for="pw">Password:</label>
+          <div class="col-sm-10">
+            <input type="password" class="form-control" id="pw" placeholder="Enter Password">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label><input type="checkbox"> Keep me logged in</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
 
 
     <!-- jQuery -->
