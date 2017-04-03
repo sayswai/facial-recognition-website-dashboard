@@ -18,6 +18,18 @@
     <!-- Custom CSS -->
     <link href="css/view.css" rel="stylesheet">
 
+    <!-- jQuery -->
+    <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Javascript Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- Custom js -->
+    <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -74,17 +86,5 @@
 
         </div>
       </div>
-
-    <!-- jQuery -->
-    <script src="lib/jquery/jquery-3.1.1.min.js"></script>
-
-    <!-- Bootstrap js -->
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Javascript Plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-    <!-- Custom js -->
-    <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
   </body>
 </html>
