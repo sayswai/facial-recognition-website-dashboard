@@ -5,7 +5,4 @@
   $('#logForm').on('shown.bs.modal', function() {
     $('#logForm').focus();
   });
-  $('.close').click(function() {
-    $('#logForm').toggle();
-  });
 })(jQuery);
