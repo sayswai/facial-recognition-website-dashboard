@@ -94,3 +94,9 @@ body {
   }
 }
 /* NAVBAR CSS END */
+
+/* LOGFORM CSS START */
+.logForm {
+  display: none;
+}
+/* LOGFORM CSS END */
