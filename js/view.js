@@ -3,6 +3,6 @@
 
   $('#nav').load("html/navbar.html"); //Loads common navbar html
   $('#logForm').on('shown.bs.modal', function() {
-    $('logForm').focus()
+    $('#logForm').focus()
   });
 })(jQuery);
