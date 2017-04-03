@@ -33,35 +33,44 @@
     <!-- Header -->
 
     <!-- Login Form -->
-    <div class="logForm">
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-2" for="user">Username:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="user" placeholder="Enter Username">
+    <div class="modal fade" id="logForm">
+      <div class="modal-dialogue">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h1 class="modal-title">Log In</h1>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-2" for="user">Username:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="user" placeholder="Enter Username">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2" for="pw">Password:</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="pw" placeholder="Enter Password">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <label><input type="checkbox"> Keep me logged in</label>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <div class="col-sm-offset-2 col-sm-10">
+              <a href="#" data-dismiss="modal" class="button">Close</a>
+              <button type="submit" class="btn btn-default">Submit</button>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-sm-2" for="pw">Password:</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="pw" placeholder="Enter Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-              <label><input type="checkbox"> Keep me logged in</label>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Submit</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
-
 
     <!-- jQuery -->
     <script src="lib/jquery/jquery-3.1.1.min.js"></script>
