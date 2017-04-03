@@ -33,12 +33,12 @@
     <!-- Header -->
 
     <!-- Login Form -->
-    <div class="modal fade" id="logForm">
+    <div class="modal fade" id="logForm" role="dialog" aria-labelledby="logFormId">
       <div class="modal-dialogue">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-            <h1 class="modal-title">Log In</h1>
+            <h1 class="modal-title" id="logFormID">Log In</h1>
           </div>
           <div class="modal-body">
             <form class="form-horizontal">
