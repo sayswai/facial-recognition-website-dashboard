@@ -15,43 +15,59 @@
  *
  */
 
-
 include 'db_connect.php';
+//Database Connection to Postgresql.
 $conn1 = connect_db("postgres", "1", "CS160");
 
+if($conn1)
+{
+    echo "The connection is valid.";
+    echo ":)";
+}
+else{
+    echo "The connection is invalid.";
+}
 
+if(isset($_POST["insert"]))
+{
+    $username=$_POST["username"];
+    $password=$_POST["password"];
+    $firstname=$_POST["firstname"];
+    $lastname=$_POST["lastname"];
+    $ip=$_POST["ip"];
+
+
+    $query="INSERT INTO users (username,password,firstname,lastname,ip) VALUES ('".$username."', '".$password."', '".$firstname."','".$lastname."','".$ip."')";
+    $psql = pg_query($query); //executes the query!
+
+    //check if connection is there.
+    if($psql)
+    {
+        printf("The following was inserted into the CS160_Database: %s, %s, %s, %s, %s", $username, $password, $firstname, $lastname, $ip);
+    }
+    else{
+        $errormsg = pg_last_error();
+        echo "We have faced an error: ".$errormsg;
+        exit();
+    }
+}
+pg_close($conn1);
 ?>
 
 <h1>New User Registration</h1>
 <h2>Welcome! Please sign up below!</h2>
-<form>
+<form action = "user.php" method="post">
 
-    <div class = "user-div>
-        <label for="username">Username:</label>
-        <input type="text" class="user-div" id="username">
-    </div>
-
-    <div class = "fname-div>
-        <label for="fname">First Name:</label>
-    <input type="text" class="fname-div" id="fname">
-    </div>
-
-    <div class = "lname-div>
-        <label for="lname">Last Name:</label>
-    <input type="text" class="lname-div" id="lname">
-    </div>
-
-
-    <div class = "pass-div">
-        <label for="pass">Password:</label>
-        <input type="password" class="pass-div" id="pass">
-    </div>
-
-    <button type="submit" class="regbutt">Register!</button>
+    Username: <input type="text" name="username" size="20" maxlength="50">
+    <BR>
+    First Name: <input type="text" name="firstname" size="20" maxlength="50">
+    <BR>
+    Last Name: <input type="text" name="lastname" size="20" maxlength="50">
+    <br>
+    Password: <input type="password" name="password" size="20" maxlength="128">
+    <br>
+    IP (lol): <input type="text" name="ip" size="20" maxlength="128">
+    <br>
+    <input type="submit" name="insert"></input>
 </form>
-
-</form>
-
-
-
 
