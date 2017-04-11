@@ -18,6 +18,7 @@
     <!-- Custom CSS -->
     <link href="css/view.css" rel="stylesheet">
 
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -32,47 +33,18 @@
 
     <!-- Header -->
 
-    <!-- Login Form -->
-    <div class="logForm">
-      <form class="form-horizontal">
-        <div class="form-group">
-          <label class="col-sm-2" for="user">Username:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="user" placeholder="Enter Username">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2" for="pw">Password:</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="pw" placeholder="Enter Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <div class="checkbox">
-              <label><input type="checkbox"> Keep me logged in</label>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-default">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
 
 
-    <!-- jQuery -->
-    <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+      <!-- jQuery -->
+      <script src="lib/jquery/jquery-3.1.1.min.js"></script>
 
-    <!-- Bootstrap js -->
-    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+      <!-- Bootstrap js -->
+      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-    <!-- Javascript Plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+      <!-- Javascript Plugin -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-    <!-- Custom js -->
-    <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
+      <!-- Custom js -->
+      <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
   </body>
 </html>
