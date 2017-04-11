@@ -38,11 +38,12 @@ if(isset($_POST["insert"]))
 
 
     $query="INSERT INTO users (username,password,firstname,lastname,ip) VALUES ('".$username."', '".$password."', '".$firstname."','".$lastname."','".$ip."')";
-    $psql = pg_query($query);
+    $psql = pg_query($query); //executes the query!
 
     //check if connection is there.
     if($psql)
     {
+
         printf("The following was inserted into the CS160_Database: %s, %s, %s, %s, %s", $username, $password, $firstname, $lastname, $ip);
     }
     else{
