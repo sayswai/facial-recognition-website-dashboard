@@ -15,5 +15,4 @@
         $connection = pg_connect("dbname=$dbname host=$dbhost port=$dbport user=$dbusername password=$dbpassword") or die('Connection failed');
         return $connection;
     }
-
 ?>
