@@ -9,18 +9,14 @@
  * Connect to local DB
  */
 
-$dbusername = "postgres";
-$dbpassword = "Heispostgres27";
-$dbhost = "localhost";
-$dbport = "5432";
-$dbname = "CS160";
+function connect_db($dbusername, $dbpassword, $dbname, $dbhost = "localhost", $dbport = "5432")
+{
+    //Connection variable above
+    $connection = pg_connect("dbname=$dbname host=$dbhost port=$dbport user=$dbusername password=$dbpassword") or die('Connection failed');
+    return $connection;
+}
 
 
-
-//Connection variable above
-$connection = pg_connect("dbname=$dbname host=$dbhost port=$dbport user=$dbusername password=$dbpassword");
-echo pg_host($connection);
-echo pg_dbname($connection);
-
-
+$db = connect_db("postgres", "Heispostgres27", "CS160");
+echo pg_host($db);
 ?>
