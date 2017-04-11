@@ -43,7 +43,6 @@ if(isset($_POST["insert"]))
     //check if connection is there.
     if($psql)
     {
-
         printf("The following was inserted into the CS160_Database: %s, %s, %s, %s, %s", $username, $password, $firstname, $lastname, $ip);
     }
     else{
