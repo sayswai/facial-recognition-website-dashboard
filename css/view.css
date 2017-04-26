@@ -3,7 +3,6 @@ body {
   background-color: #191919;
 }
 
-
 /* NAVBAR CSS START */
 .navbar-toggleable-md {
   background-color: white;
@@ -94,10 +93,3 @@ body {
   }
 }
 /* NAVBAR CSS END */
-
-/* LOGFORM CSS START */
-.logForm {
-  background-color: white;
-  display: none;
-}
-/* LOGFORM CSS END */
