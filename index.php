@@ -56,7 +56,7 @@
     </nav>
 
     <!-- Login Form -->
-      <div id="logForm" class="modal fade">
+      <div class="modal" id="logForm">
         <div class="modal-dialogue" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -138,7 +138,7 @@
 
       <!-- jQuery -->
       <script src="lib/jquery/jquery-3.1.1.min.js"></script>
-      
+
       <!-- Javascript Plugin -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 

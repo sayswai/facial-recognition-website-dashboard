@@ -94,7 +94,22 @@ body {
 }
 /* NAVBAR END */
 
-/* SIGNUP FORM */
+/* MODAL START */
+#logform {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  outline: 0;
+}
+/* MODAL END */
+
+/* SIGNUP FORM START */
 #signupForm {
   display: none;
 }
+/* SIGNUP FORM END */
