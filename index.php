@@ -138,12 +138,12 @@
 
       <!-- jQuery -->
       <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+      
+      <!-- Javascript Plugin -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
       <!-- Bootstrap js -->
       <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-
-      <!-- Javascript Plugin -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
       <!-- Custom js -->
       <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
