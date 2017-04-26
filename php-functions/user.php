@@ -28,8 +28,13 @@ else{
     echo "The connection is invalid.";
 }
 
+//fetch IP
+
+
+
+
 if(isset($_POST["insert"]))
-{
+{//passing onto
     $username=$_POST["username"];
     $password=$_POST["password"];
     $firstname=$_POST["firstname"];
@@ -44,6 +49,8 @@ if(isset($_POST["insert"]))
     if($psql)
     {
         printf("The following was inserted into the CS160_Database: %s, %s, %s, %s, %s", $username, $password, $firstname, $lastname, $ip);
+        print(" ");
+        print("Thank you, you have been registered, please sign in!");
     }
     else{
         $errormsg = pg_last_error();
@@ -68,6 +75,8 @@ pg_close($conn1);
     <br>
     IP (lol): <input type="text" name="ip" size="20" maxlength="128">
     <br>
+    <br>
     <input type="submit" name="insert"></input>
+
 </form>
 
