@@ -40,9 +40,10 @@ if(isset($_POST["insert"]))
     $firstname=$_POST["firstname"];
     $lastname=$_POST["lastname"];
     $ip=$_POST["ip"];
+    $encrypt = 'BitchImBadANDBoujieWhipUpTheDopeWithAnUZI';
+    $encryptedpass = crypt($password,$encrypt);
 
-
-    $query="INSERT INTO users (username,password,firstname,lastname,ip) VALUES ('".$username."', '".$password."', '".$firstname."','".$lastname."','".$ip."')";
+    $query="INSERT INTO users (username,password,firstname,lastname,ip) VALUES ('".$username."', '".$encryptedpass."', '".$firstname."','".$lastname."','".$ip."')";
     $psql = pg_query($query); //executes the query!
 
     //check if connection is there.
