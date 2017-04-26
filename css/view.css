@@ -3,7 +3,7 @@ body {
   background-color: #191919;
 }
 
-/* NAVBAR CSS START */
+/* NAVBAR START */
 .navbar-toggleable-md {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.5);
@@ -92,4 +92,9 @@ body {
     color: #DF3D82;
   }
 }
-/* NAVBAR CSS END */
+/* NAVBAR END */
+
+/* SIGNUP FORM */
+#signupForm {
+  display: none;
+}
