@@ -87,49 +87,67 @@
                 <button type="submit" class="btn btn-default col-sm-offset-2">Submit</button>
               </form>
             </div>
+            <div class="modal-footer">
+              <p>Need an account?</p>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#signForm" data-dismiss="modal">Sign Up</button>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Signup Form -->
-      <form id="signupForm" class="form-horizontal" style="display: hidden;">
-        <div class="form-group">
-          <label class="col-sm-2" for="fname">First Name:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+      <div class="modal" id="signForm">
+        <div class="modal-dialogue" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title">Sign Up</h1>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+              <form id="signupForm" class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-2" for="fname">First Name:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2" for="lname">Last Name:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2" for="email">Email Address:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="email" placeholder="Enter Email Address">
+                  </div>
+                </div> <!-- Including to prevent spamming new accounts -->
+                <div class="form-group">
+                  <label class="col-sm-2" for="uname">Username:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="uname" placeholder="Enter Desired Username">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2" for="pas">Password:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pas" placeholder="Enter Desired Password">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2" for="pasc">Confirm Password:</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pasc" placeholder="Retype Above Password">
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="form-group">
-          <label class="col-sm-2" for="lname">Last Name:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2" for="email">Email Address:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="email" placeholder="Enter Email Address">
-          </div>
-        </div> <!-- Including to prevent spamming new accounts -->
-        <div class="form-group">
-          <label class="col-sm-2" for="uname">Username:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="uname" placeholder="Enter Desired Username">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2" for="pas">Password:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="pas" placeholder="Enter Desired Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2" for="pasc">Confirm Password:</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" id="pasc" placeholder="Retype Above Password">
-          </div>
-        </div>
-      </form>
+      </div>
+
+
 
 
     <!-- Header -->
