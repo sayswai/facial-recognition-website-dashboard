@@ -3,7 +3,7 @@ body {
   background-color: #191919;
 }
 
-/* NAVBAR CSS START */
+/* NAVBAR START */
 .navbar-toggleable-md {
   background-color: white;
   border-color: rgba(0, 0, 0, 0.5);
@@ -92,4 +92,17 @@ body {
     color: #DF3D82;
   }
 }
-/* NAVBAR CSS END */
+/* NAVBAR END */
+
+/* MODAL START */
+#logForm, #signForm {
+  width: 500;
+  height: 600;
+  margin-top: 50;
+  margin-left: auto;
+  margin-right: auto;
+}
+#signForm {
+  height: auto;
+}
+/* MODAL END */
