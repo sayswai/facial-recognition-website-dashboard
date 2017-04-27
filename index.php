@@ -104,7 +104,7 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-              <form id="signupForm" class="form-horizontal">
+              <form class="form-horizontal">
                 <div class="form-group">
                   <label class="col-sm-2" for="fname">First Name:</label>
                   <div class="col-sm-10">
