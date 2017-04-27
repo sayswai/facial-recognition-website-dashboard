@@ -95,11 +95,14 @@ body {
 /* NAVBAR END */
 
 /* MODAL START */
-#logform {
+#logForm, #signForm {
   width: 500;
   height: 600;
   margin-top: 50;
   margin-left: auto;
   margin-right: auto;
+}
+#signForm {
+  height: auto;
 }
 /* MODAL END */

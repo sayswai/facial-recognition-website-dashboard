@@ -141,6 +141,7 @@
                     <input type="text" class="form-control" id="pasc" placeholder="Retype Above Password">
                   </div>
                 </div>
+                <button type="submit" class="btn btn-default col-sm-offset-2">Submit</button>
               </form>
             </div>
           </div>
