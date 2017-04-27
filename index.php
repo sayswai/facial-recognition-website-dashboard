@@ -118,12 +118,6 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2" for="email">Email Address:</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="email" placeholder="Enter Email Address">
-                  </div>
-                </div> <!-- Including to prevent spamming new accounts -->
-                <div class="form-group">
                   <label class="col-sm-2" for="uname">Username:</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="uname" placeholder="Enter Desired Username">
