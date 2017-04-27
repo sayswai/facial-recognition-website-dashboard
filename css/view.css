@@ -2,6 +2,9 @@
 body {
   background-color: #191919;
 }
+.white-text {
+  color: white;
+}
 
 /* NAVBAR START */
 .navbar-toggleable-md {

@@ -128,10 +128,10 @@
 
         <!-- Upload Form -->
         <div class="container">
-          <h2>File Upload</h2>
-          <p>Select your video: </p>
+          <h2 class="white-text">File Upload</h2>
+          <p class="white-text">Select your video: </p>
           <br>
-          <span class="btn btn-default btn-file">
+          <span class="btn btn-primary btn-file white-text">
             Browse <input type="file">
           </span>
           <br>
