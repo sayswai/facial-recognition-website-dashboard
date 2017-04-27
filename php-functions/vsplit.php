@@ -16,4 +16,3 @@
  * ----/detected_frames*/
 
 
-function
