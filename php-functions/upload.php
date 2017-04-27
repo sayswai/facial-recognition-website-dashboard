@@ -1,4 +1,6 @@
 <?php
+include 'db_connect.php';
+
 /**
  * Created by PhpStorm.
  * User: Wai
@@ -10,26 +12,29 @@
 
 
 /* Global Variables*/
-$vtypes = array("mp4", "mpg", "mov", "m4a", "3gp", "3g2", "mj2");
-$metaOutput = "mov,mp4,m4a,3gp,3g2,mj2";
-$upload_dir = $_SERVER['DOCUMENT_ROOT'].'/uploads/raw_upload/';
+#$V_TYPES = array("mp4", "mpg", "mov", "m4a", "3gp", "3g2", "mj2");
+$V_TYPES = array("mp4", "mpg", "mov", "mpeg", "avi", "wmv");
+$META_OUTPUT = array("mov,mp4,m4a,3gp,3g2,mj2", "mpeg", "avi", "asf");
+                        # "mov, mp4.."   "mpg, mpeg", "avi", "wmv"
+$UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'].'/uploads/raw_upload/';
+$VID_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/';
 $MAX_FILE_SIZE = 500000000; // in bytes
 
 
 /*Functions*/
 /**
- * ExtensionName = extName
+ * ExtensionName check
  * Validates whether the inputted file extension is any of the acceptable one listed in $vtypes using filename
  * @param $x inputted filename
  * @return bool true if file is any of the extensions listed in $vtypes
  */
-    function extName($x) {
-        global $vtypes;
-        if (in_array(pathinfo($x, PATHINFO_EXTENSION), $vtypes)){ //simple name extension check, if this fails, no reason to continue
-            return true;
-        }
-        return false;
+function extName($x) {
+    global $V_TYPES;
+    if (in_array(pathinfo($x, PATHINFO_EXTENSION), $V_TYPES)){ //simple name extension check, if this fails, no reason to continue
+        return true;
     }
+    return false;
+}
 
 
 /**
@@ -38,99 +43,140 @@ $MAX_FILE_SIZE = 500000000; // in bytes
  * vid, uid, framecount, width, height, fps
  * @return true if ffprobe returns a true video else false
  */
-    function metaCheck($x) {
-        /*ffprobe $x 2>&1 | grep -oP "Input #0, \K.*(?=, from)"
-        * output: mov,mp4,m4a,3gp,3g2,mj2
-        */
-        global $metaOutput;
-        $compr = trim(shell_exec('ffprobe "'.$x.'" 2>&1 | grep -oP "Input #0, \K.*(?=, from)"'));
-        if (strcmp($compr, $metaOutput) == 0)
-        {
-            return true;
-        }
-        return false;
+function metaCheck($x) {
+    global $META_OUTPUT;
+    $compr = trim(shell_exec('ffprobe "'.$x.'" 2>&1 | grep -oP "Input #0, \K.*(?=, from)"'));
+    if (in_array($compr, $META_OUTPUT))
+    {
+        return true;
     }
+    return false;
+}
 
 /**
  * @param $filename
  * @param $filedir
  */
-    function metaExtract($filename, $filedir) {
-        //TODO fetch user information from session and store information accordingly to user's ID
-        shell_exec('ffprobe "'.$filename.'" 2>&1 | grep -oP "Input #0, \K.*(?=, from)"');
-        echo shell_exec('echo $?');
-        return true;
-    }
+function metaExtract($filename, $filedir) {
 
-/**
- * WIll checl $upload_dir to see if the file exists already
- * @param $x filename
- * @return bool true if file exists, else false
- */
-    function exists($x) {
-        #global $upload_dir;
-        #if(file_exists($upload_dir . $x)){
-        if (file_exists($x)) {
-            return true;
+    /*
+     * vid
+     * uid
+     * framecount integer
+     * width integer
+     * height integer
+     * fps integer
+     */
+    global $VID_DIR;
+    $output = json_decode(shell_exec('ffprobe -v quiet -print_format json -show_format -show_streams "'.$filedir.'" '), true);
+
+    $framecount = $output["streams"]["0"]["nb_frames"];
+    if ($framecount == ''){
+        $framecount = shell_exec('ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of default=nokey=1:noprint_wrappers=1 "'.$filedir.'"');
+    }
+    $width = $output["streams"]["0"]["width"];
+    $height = $output["streams"]["0"]["height"];
+    $fps = (int)$output["streams"]["0"]["avg_frame_rate"];
+    if ($fps > 100)  {
+        $fps = (int)(trim(shell_exec('ffprobe "'.$filedir.'"  2>&1 | grep -oP "s, \K.*(?=fps,)"')));
+    }
+    $vtitle = $filename;
+    $duration = $output["format"]["duration"];
+    $size = $output["format"]["size"];
+    $time = time();
+
+    $vid = crc32("V:" . $vtitle . "D:" . $duration . "S" . $size . "T" . $time);
+    $uid = 123124; //TODO this needs to change to fetch the user id from sessions
+
+    //TODO insert $vid into user's list of videos
+    $query = "INSERT INTO videos (vtitle, vid, uid, framecount, width, height, fps, time_upload) VALUES ('".$vtitle."', $vid, $uid, $framecount, $width, $height, $fps, $time)"; //TODO needs to be tested on umy server
+    $result = pg_query($query);
+    pg_close($connection);
+
+    /*Finalize
+    -Create folder: /root/vids/(vid)/
+    -move uploaded video and renames it to "main": /root/vids/(vid)/main.mp4
+    */
+    if ($result) {
+        $newdir = $VID_DIR.$vid;
+        $exten = pathinfo($filedir, PATHINFO_EXTENSION);
+        shell_exec('mkdir "'.$newdir.'" && mv "'.$filedir.'" "'.$newdir.'"/main."'.$exten.'"');
+        if (shell_exec('echo $?') != 0){
+            return false;
         }
-        return false;
     }
 
+    return result;
+
+}
 
 
 /*Post*/
-    /**Upload**/
-    if( isset($_POST["submit"]) ) {
-        $filename = basename($_FILES["userUpload"]["name"]);
-        $filedir = $upload_dir . $filename;
+/**Upload**/
+if( isset($_POST["submit"]) ) {
+    $filename = basename($_FILES["userUpload"]["name"]);
+    $filedir = $UPLOAD_DIR . $filename;
 
-        /**File name extension check**/
-        if (extName($filedir)){ // Checks for appropriate Format
-            echo "file extension passed" . PHP_EOL;
-            /**File size check**/
-            if ($_FILES["userUpload"]["size"] < $MAX_FILE_SIZE) { // checks file size, set file size in bytes
-                echo "file size passed" . PHP_EOL;
-                /**Uploading**/
-                //TODO webserver's apache settings limit file size uploads to 2M, find a way to change this
-                if (move_uploaded_file($_FILES["userUpload"]["tmp_name"], $filedir)) {
-                    echo "file uploaded passed" . PHP_EOL;
-                    /**Meta data check**/
-                    if(metaCheck($filedir)) { //Check file video integrity
-                        /**Extract meta data and store to DB**/
-                        if(metaExtract($filename, $filedir)) {
-                            echo $filename . " successfully uploaded";
-                        }else{
-                            echo "Something went wrong";
-                        }
+    /**File name extension check**/
+    if (extName($filedir)){ // Checks for appropriate Format
+        echo "file extension passed <br>";
+        /**File size check**/
+        if ($_FILES["userUpload"]["size"] < $MAX_FILE_SIZE) { // checks file size, set file size in bytes
+            echo "file size passed <br>";
+            /**Uploading**/
+            //TODO webserver's apache settings limit file size uploads to 2M, find a way to change this
+            if (move_uploaded_file($_FILES["userUpload"]["tmp_name"], $filedir)) {
+                echo "file uploaded passed <br>";
+                /**Meta data check**/
+                if(metaCheck($filedir)) { //Check file video integrity
+                    /**Extract meta data and store to DB**/
+                    if(metaExtract($filename, $filedir)) {
+                        echo $filename . " successfully uploaded";
                     }else{
-                        echo "Good try trying to disguise this file as a video format...";
                         unlink($filedir);
+                        echo "Something went wrong saving to DB, upload failed.";
                     }
                 }else{
-                    echo "Upload failed";
+                    unlink($filedir);
+                    echo "Changing the file extension in the filename won't work here. Try it once more and you'll be banned.";
+                    //TODO add danger points to user's dB input every time they try doing this, ban them on the 3rd attempt
+
                 }
             }else{
-                echo "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB";
+                echo "Something went wrong with the upload.";
             }
         }else{
-            echo "Invalid Format; Accepted Formats: <br>";
-            foreach ($vtypes as $formats){
-                echo "." . $formats . " ";
-            }
-
+            echo "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB. Cannot upload file.";
         }
+    }else{
+        echo "Invalid Format; Accepted Formats: <br>";
+        foreach ($V_TYPES as $formats){
+            echo "." . $formats . " ";
+        }
+
     }
+    echo "<br>";
+
+
+}
 
 
 
 
 
 
-    //To get metadata we should use: ffprobe input.mp4
+//To get metadata we should use: ffprobe input.mp4
 
 ?>
 
 <body>
+<br>
+Accepted formats: <?php
+foreach ($V_TYPES as $formats){
+    echo "." . $formats . " ";
+}
+?><br>
+Do not try disguisng your file as a video format, you'll gain a strike.<br><br>
 <form method="post" enctype="multipart/form-data">
     Select file to upload:
     <input type="file" name="userUpload" id="userUpload"/>
