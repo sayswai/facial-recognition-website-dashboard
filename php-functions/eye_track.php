@@ -13,5 +13,27 @@ include 'metadata.php';
 
 //insertDummyVideo();
 
-echo getFPS(1);
-echo 'test';
+$splitImgDirectory = "../vids/fakeVideo21!3/split_frames";
+
+// Eye Track command usage ./bin/eyeLike <img>
+$eyeTrackCommand = "../eyeLike/bin/eyeLike";
+
+function eyeTrack($splitImgDirectory)
+{
+    global $eyeTrackCommand;
+
+    $splitImagesArray = scandir($splitImgDirectory);
+
+    for($splitImgCount = 2; $splitImgCount < sizeof($splitImagesArray); $splitImgCount++){
+        //Call eye track command here
+
+        exec($eyeTrackCommand . " " . $splitImagesArray[$splitImgCount]);
+        //print_r($eyeTrackCommand . " " . $splitImagesArray[$splitImgCount]."<br>");
+
+    }
+
+}
+
+
+eyeTrack($splitImgDirectory);
+
