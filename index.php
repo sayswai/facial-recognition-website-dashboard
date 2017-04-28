@@ -128,6 +128,7 @@
 
         <!-- Upload Form -->
         <div class="container">
+        <form class="form-horizontal" role="form" method="post" action="#">
           <h2 class="white-text">File Upload</h2>
           <p class="white-text">Select your video: </p>
           <br>
@@ -136,7 +137,8 @@
           </span>
           <br>
           <button type="submit" class="btn btn-default">Submit</button>
-        </div>
+        </form>
+      </div>
 
 
 
