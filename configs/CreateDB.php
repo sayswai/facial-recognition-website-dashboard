@@ -9,6 +9,7 @@
 include '../php-functions/db_connect.php';
 include 'Config.php';
 
+pg_query("CREATE DATABASE IF NOT EXISTS CS160");
 
 //Database Connection to Postgresql.
 $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);

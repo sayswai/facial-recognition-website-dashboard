@@ -2,7 +2,7 @@
 
 include 'db_connect.php';
 //Database Connection to Postgresql.
-$conn1 = connect_db("postgres", "1", "CS160");
+$conn1 = connect_db("postgres", "toor", "CS160");
 
 if($conn1)
 {
