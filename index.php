@@ -64,7 +64,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" role="form" method="post" action="#">
                   <div class="form-group">
                     <label for="user">Username:</label>
                       <input type="text" class="form-control" id="user" placeholder="Enter Username">
@@ -98,7 +98,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
               </div>
               <div class="modal-body">
-                <form class="form-horizontal">
+                <form class="form-horizontal" role="form" method="post" action="#">
                   <div class="form-group">
                     <label for="fname">First Name:</label>
                       <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
@@ -126,6 +126,19 @@
           </div>
         </div>
 
+        <!-- Upload Form -->
+        <div class="container">
+        <form class="form-horizontal" role="form" method="post" action="#">
+          <h2 class="white-text">File Upload</h2>
+          <p class="white-text">Select your video: </p>
+          <br>
+          <span class="btn btn-primary btn-file white-text">
+            Browse <input type="file">
+          </span>
+          <br>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+      </div>
 
 
 
