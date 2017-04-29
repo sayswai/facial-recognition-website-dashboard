@@ -43,7 +43,7 @@
               <a class="nav-link" href="#">Videos</a>
             </li>
             <li class="nav-item disabled"> <!-- Not yet finished, therefor disabled for now. Add link to scroll to, and auto-scroll functionality -->
-              <a class="nav-link" href="#">Upload</a>
+                <a class="nav-link" data-toggle="modal" data-target="#uploadForm">Upload</a>
             </li>
             <!--<li class="nav-item disabled"> NOT IMPLEMENTED AND NEEDS FURTHER DESIGN WORK; NEED METHOD FOR DETERMING USER LOGIN STATUS, AND TOGGLE VIIBILITY WHEN LOGGED IN (OFF FOR NEW USERS< ON FOR LOGGED IN USERS)
               <a class="nav-link" href="#">Profile</a>
@@ -57,7 +57,7 @@
 
       <!-- Login Form -->
         <div class="modal" id="logForm">
-          <div class="modal-dialogue" role="document">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title">Log In</h1>
@@ -91,7 +91,7 @@
 
         <!-- Signup Form -->
         <div class="modal" id="signForm">
-          <div class="modal-dialogue" role="document">
+          <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h1 class="modal-title">Sign Up</h1>
@@ -127,17 +127,29 @@
         </div>
 
         <!-- Upload Form -->
-        <div class="container">
-        <form class="form-horizontal" role="form" method="post" action="#">
-          <h2 class="white-text">File Upload</h2>
-          <p class="white-text">Select your video: </p>
-          <br>
-          <span class="btn btn-primary btn-file white-text">
-            Browse <input type="file">
-          </span>
-          <br>
-          <button type="submit" class="btn btn-default">Submit</button>
-        </form>
+      <div class="modal" id="uploadForm">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title">File Upload</h1>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                      <form class="form-horizontal" role="form" method="post" action="php-functions/upload.php" enctype="multipart/form-data">
+                          <h2 class="white-text">File Upload</h2>
+                          <p class="white-text">Select your video: </p>
+                          <br>
+                            <span class="btn btn-primary btn-file white-text">
+                                Browse <input type="file" name="userUpload" id="userUpload"/>
+                            </span>
+                          <br>
+                          <button type="submit" class="btn btn-default" name="submit">Upload</button>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                  </div>
+              </div>
+          </div>
       </div>
 
 
