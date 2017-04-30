@@ -1,5 +1,6 @@
 <?php
 include 'db_connect.php';
+include 'vsplit.php';
 
 /**
  * Created by PhpStorm.
@@ -18,7 +19,7 @@ $META_OUTPUT = array("mov,mp4,m4a,3gp,3g2,mj2", "mpeg", "avi", "asf");
                         # "mov, mp4.."   "mpg, mpeg", "avi", "wmv"
 $UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'].'/uploads/raw_upload/';
 $VID_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/';
-$MAX_FILE_SIZE = 500000000; // in bytes
+$MAX_FILE_SIZE = 250000000; // in bytes
 
 
 /*Functions*/
@@ -88,21 +89,11 @@ function metaExtract($filename, $filedir) {
     $vid = crc32("V:" . $vtitle . "D:" . $duration . "S" . $size . "T" . $time);
     $uid = 123124; //TODO this needs to change to fetch the user id from sessions
 
-    //TODO insert $vid into user's list of videos
-    $connection = connect_db('postgres', '1', 'CS160');
-    $query = "INSERT INTO videos (vtitle, vid, uid, framecount, width, height, fps, time_upload) VALUES ('".$vtitle."', $vid, $uid, $framecount, $width, $height, $fps, $time)"; //TODO needs to be tested on umy server
-    $result = pg_query($query);
-    pg_close($connection);
-    if (!$result){
-        return false;
-    }
-
     /*Finalize
     -Create folder: /root/vids/(vid)/
     -move uploaded video and renames it to "main": /root/vids/(vid)/main.mp4
+    -save info in db
     */
-
-
     $newdir = $VID_DIR.$vid;
     $exten = pathinfo($filedir, PATHINFO_EXTENSION);
 
@@ -111,15 +102,26 @@ function metaExtract($filename, $filedir) {
         return false;
     }
 
+    //TODO insert $vid into user's list of videos
+    $connection = connect_db('postgres', '1', 'CS160');
+    $query = "INSERT INTO videos (vtitle, vid, uid, framecount, width, height, fps, time_upload) VALUES ('".$vtitle."', $vid, $uid, $framecount, $width, $height, $fps, $time)"; //TODO needs to be tested on umy server
+    $result = pg_query($query);
+    pg_close($connection);
+    if (!$result){
+        //if db query fails, everything fails; remove created directory
+        shell_exec('rm -rf "' .$newdir.'"');
+        return false;
+    }
 
+    vsplit($vid, $fps);
     return true;
-
 }
+
 
 
 /*Post*/
 /**Upload**/
-if(isset($_POST["submit"]) ) {
+if(isset($_POST["submit"])) {
     $filename = basename($_FILES["userUpload"]["name"]);
     $filedir = $UPLOAD_DIR . $filename;
 
@@ -165,6 +167,7 @@ if(isset($_POST["submit"]) ) {
     }
     echo "<br>";
     ?>
+
     <script lang="javascript">
 
         setTimeout(function () {
