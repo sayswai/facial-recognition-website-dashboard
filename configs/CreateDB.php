@@ -9,7 +9,6 @@
 include '../php-functions/db_connect.php';
 include 'Config.php';
 
-pg_query("CREATE DATABASE IF NOT EXISTS CS160");
 
 //Database Connection to Postgresql.
 $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
@@ -37,10 +36,13 @@ $sqlList = [
     )',
 
     'CREATE TABLE IF NOT EXISTS Eye (
-      vID bigserial,
-      rightEye POINT,
-      leftEye POINT,
-      PRIMARY KEY (vID)
+      vID INT NOT NULL,
+      frameNum INT NOT NULL,
+      rightPupilX INT,
+      rightPupilY INT,
+      leftPupilX INT,
+      leftPupilY INT,
+      PRIMARY KEY (vID, frameNum)
     )',
 
     'CREATE TABLE IF NOT EXISTS OpenFace (

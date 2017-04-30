@@ -196,7 +196,7 @@ void findEyes(cv::Mat frame_gray, cv::Rect face) {
 	Write pupil coordinates
 */
 
-	printf("%i %i %i %i", rightPupil.x, rightPupil.y, leftPupil.x, leftPupil.y);
+	printf("%i,%i,%i,%i", rightPupil.x, rightPupil.y, leftPupil.x, leftPupil.y);
 
 /*  //-- Find Eye Corners
   if (kEnableEyeCorner) {

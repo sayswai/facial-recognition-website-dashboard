@@ -49,3 +49,13 @@ function getFrameCount($videoID)
     $myarray = pg_fetch_all($results)[0];
     return $myarray['frameCount'];
 }
+
+/*
+ * Insert coordinate into DB
+ */
+function insertEyeCoordinate($videoID, $frameNum, $rightX, $rightY, $leftX, $leftY){
+	global $conn1;
+	pg_prepare($conn1, "insert_eyeCoordinate", 'INSERT INTO Eye (vid, framenum, rightpupilx, rightpupily, leftpupilx, leftpupily) VALUES ($1, $2, $3, $4, $5, $6)');
+    	pg_execute($conn1, "insert_eyeCoordinate", array($videoID, $frameNum, $rightX, $rightY, $leftX, $leftY));
+
+}

@@ -89,44 +89,47 @@ function metaExtract($filename, $filedir) {
     $uid = 123124; //TODO this needs to change to fetch the user id from sessions
 
     //TODO insert $vid into user's list of videos
+    $connection = connect_db('postgres', '1', 'CS160');
     $query = "INSERT INTO videos (vtitle, vid, uid, framecount, width, height, fps, time_upload) VALUES ('".$vtitle."', $vid, $uid, $framecount, $width, $height, $fps, $time)"; //TODO needs to be tested on umy server
     $result = pg_query($query);
     pg_close($connection);
+    if (!$result){
+        return false;
+    }
 
     /*Finalize
     -Create folder: /root/vids/(vid)/
     -move uploaded video and renames it to "main": /root/vids/(vid)/main.mp4
     */
-    if ($result) {
-        $newdir = $VID_DIR.$vid;
-        $exten = pathinfo($filedir, PATHINFO_EXTENSION);
-        shell_exec('mkdir "'.$newdir.'" && mv "'.$filedir.'" "'.$newdir.'"/main."'.$exten.'"');
-        if (shell_exec('echo $?') != 0){
-            return false;
-        }
+
+
+    $newdir = $VID_DIR.$vid;
+    $exten = pathinfo($filedir, PATHINFO_EXTENSION);
+
+    shell_exec('mkdir "'.$newdir.'" && mv "'.$filedir.'" "'.$newdir.'"/main."'.$exten.'"');
+    if (shell_exec('echo $?') != 0){
+        return false;
     }
 
-    return result;
+
+    return true;
 
 }
 
 
 /*Post*/
 /**Upload**/
-if( isset($_POST["submit"]) ) {
+if(isset($_POST["submit"]) ) {
     $filename = basename($_FILES["userUpload"]["name"]);
     $filedir = $UPLOAD_DIR . $filename;
 
     /**File name extension check**/
     if (extName($filedir)){ // Checks for appropriate Format
-        echo "file extension passed <br>";
         /**File size check**/
         if ($_FILES["userUpload"]["size"] < $MAX_FILE_SIZE) { // checks file size, set file size in bytes
-            echo "file size passed <br>";
             /**Uploading**/
             //TODO webserver's apache settings limit file size uploads to 2M, find a way to change this
             if (move_uploaded_file($_FILES["userUpload"]["tmp_name"], $filedir)) {
-                echo "file uploaded passed <br>";
                 /**Meta data check**/
                 if(metaCheck($filedir)) { //Check file video integrity
                     /**Extract meta data and store to DB**/
@@ -134,30 +137,54 @@ if( isset($_POST["submit"]) ) {
                         echo $filename . " successfully uploaded";
                     }else{
                         unlink($filedir);
-                        echo "Something went wrong saving to DB, upload failed.";
+                        #echo "Something went wrong saving to DB, upload failed.";
+                        error_log("db update for video upload failed");
                     }
                 }else{
                     unlink($filedir);
                     echo "Changing the file extension in the filename won't work here. Try it once more and you'll be banned.";
+                    error_log("user disguised item as movie and tried to upload");
                     //TODO add danger points to user's dB input every time they try doing this, ban them on the 3rd attempt
 
                 }
             }else{
-                echo "Something went wrong with the upload.";
+                echo "Something went wrong with the upload, please try again.";
+                error_log("Upload failed, apache related");
             }
         }else{
             echo "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB. Cannot upload file.";
+            error_log("user's file size exceeded limitations");
         }
     }else{
         echo "Invalid Format; Accepted Formats: <br>";
         foreach ($V_TYPES as $formats){
             echo "." . $formats . " ";
         }
+        error_log("user uploaded non-video flie");
 
     }
     echo "<br>";
+    ?>
+    <script lang="javascript">
 
+        setTimeout(function () {
+            document.getElementById("output").innerHTML = "Redirecting..";
+        }, 1500);
 
+        setTimeout(function(){
+            window.location.href = "/index.php";
+        }, 2000);
+    </script>
+    <p id = "output"></p>
+    </div>
+    <?php
+
+}else{
+    ?>
+    <script lang="javascript">
+        window.location.href = "/index.php";
+    </script>
+    <?php
 }
 
 
@@ -170,11 +197,14 @@ if( isset($_POST["submit"]) ) {
 ?>
 
 <body>
+<!--
 <br>
-Accepted formats: <?php
+Accepted formats:
+<?php/*
 foreach ($V_TYPES as $formats){
     echo "." . $formats . " ";
 }
+*/
 ?><br>
 Do not try disguisng your file as a video format, you'll gain a strike.<br><br>
 <form method="post" enctype="multipart/form-data">
@@ -182,4 +212,5 @@ Do not try disguisng your file as a video format, you'll gain a strike.<br><br>
     <input type="file" name="userUpload" id="userUpload"/>
     <input type="submit" name="submit" value="Upload Image"/>
 </form>
+-->
 </body>
