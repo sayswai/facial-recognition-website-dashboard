@@ -1,19 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: BlackLabel
- * Date: 4/10/2017
- * Time: 3:59 PM
- * User Form + Functions
- * Username
- *
- * FirstName
- * LastName
- *
- * Password
- *
- *
- */
 
 include 'db_connect.php';
 //Database Connection to Postgresql.
@@ -30,15 +15,12 @@ else{
 
 //fetch IP
 
-
-
-
 if(isset($_POST["insert"]))
 {//passing onto
-    $username=$_POST["username"];
-    $password=$_POST["password"];
-    $firstname=$_POST["firstname"];
-    $lastname=$_POST["lastname"];
+    $username=$_POST["uname"];
+    $password=$_POST["pas"];
+    $firstname=$_POST["fname"];
+    $lastname=$_POST["lname"];
     $ip=$_POST["ip"];
     $encrypt = 'BitchImBadANDBoujieWhipUpTheDopeWithAnUZI';
     $encryptedpass = crypt($password,$encrypt);
@@ -49,8 +31,7 @@ if(isset($_POST["insert"]))
     //check if connection is there.
     if($psql)
     {
-        printf("The following was inserted into the CS160_Database: %s, %s, %s, %s, %s", $username, $password, $firstname, $lastname, $ip);
-        print(" ");
+        print("");
         print("Thank you, you have been registered, please sign in!");
     }
     else{
@@ -62,22 +43,6 @@ if(isset($_POST["insert"]))
 pg_close($conn1);
 ?>
 
-<h1>New User Registration</h1>
-<h2>Welcome! Please sign up below!</h2>
-<form action = "user.php" method="post">
 
-    Username: <input type="text" name="username" size="20" maxlength="50">
-    <BR>
-    First Name: <input type="text" name="firstname" size="20" maxlength="50">
-    <BR>
-    Last Name: <input type="text" name="lastname" size="20" maxlength="50">
-    <br>
-    Password: <input type="password" name="password" size="20" maxlength="128">
-    <br>
-    IP (lol): <input type="text" name="ip" size="20" maxlength="128">
-    <br>
-    <br>
-    <input type="submit" name="insert"></input>
 
-</form>
 
