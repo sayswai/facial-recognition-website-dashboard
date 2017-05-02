@@ -56,75 +56,75 @@
       </nav>
 
       <!-- Login Form -->
-        <div class="modal" id="logForm">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title">Log In</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body">
-                <form class="form-horizontal" role="form" method="post" action="#">
-                  <div class="form-group">
-                    <label for="user">Username:</label>
-                      <input type="text" class="form-control" id="user" placeholder="Enter Username">
+      <div class="modal" id="logForm">
+          <div class="modal-dialogue" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title">Log In</h1>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
-                  <div class="form-group">
-                    <label for="pw">Password:</label>
-                      <input type="password" class="form-control" id="pw" placeholder="Enter Password">
+                  <div class="modal-body">
+                      <form class="form-horizontal" role="form" method="post" action="php-functions/login.php">
+                          <div class="form-group">
+                              <label for="userr">Username:</label>
+                              <input type="text" class="form-control" name="userr" placeholder="Enter Username">
+                          </div>
+                          <div class="form-group">
+                              <label for="passs">Password:</label>
+                              <input type="password" class="form-control" name="passs" placeholder="Enter Password">
+                          </div>
+                          <div class="form-group">
+                              <div class="checkbox">
+                                  <label><input type="checkbox"> Keep me logged in</label>
+                              </div>
+                          </div>
+                          <input type="submit" class="btn btn-default col-sm-offset-2"></input>
+                      </form>
                   </div>
-                  <div class="form-group">
-                      <div class="checkbox">
-                        <label><input type="checkbox"> Keep me logged in</label>
-                      </div>
+                  <div class="modal-footer">
+                      <p>Need an account?</p>
+                      <button class="btn btn-primary" data-toggle="modal" data-target="#signForm" data-dismiss="modal">Sign Up</button>
                   </div>
-                  <button type="submit" class="btn btn-default col-sm-offset-2">Submit</button>
-                </form>
               </div>
-              <div class="modal-footer">
-                <p>Need an account?</p>
-                <button class="btn btn-primary" data-toggle="modal" data-target="#signForm" data-dismiss="modal">Sign Up</button>
-              </div>
-            </div>
           </div>
-        </div>
+      </div>
 
-        <!-- Signup Form -->
-        <div class="modal" id="signForm">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title">Sign Up</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <!-- Signup Form -->
+      <div class="modal" id="signForm">
+          <div class="modal-dialogue" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h1 class="modal-title">Sign Up</h1>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                      <form class="form-horizontal" role="form" method="post" action="php-functions/user.php">
+                          <div class="form-group">
+                              <label for="fname">First Name:</label>
+                              <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
+                          </div>
+                          <div class="form-group">
+                              <label for="lname">Last Name:</label>
+                              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+                          </div>
+                          <div class="form-group">
+                              <label for="uname">Username:</label>
+                              <input type="text" class="form-control" name="uname" placeholder="Enter Desired Username">
+                          </div>
+                          <div class="form-group">
+                              <label for="pas">Password:</label>
+                              <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password">
+                          </div>
+                          <div class="form-group">
+                              <label for="ip">Test IP:</label>
+                              <input type="text" class="form-control" name="ip" placeholder="Test IP">
+                          </div>
+                          <input type="submit" name="insert" class="btn btn-default col-sm-offset-2"></input>
+                      </form>
+                  </div>
               </div>
-              <div class="modal-body">
-                <form class="form-horizontal" role="form" method="post" action="#">
-                  <div class="form-group">
-                    <label for="fname">First Name:</label>
-                      <input type="text" class="form-control" id="fname" placeholder="Enter First Name">
-                  </div>
-                  <div class="form-group">
-                    <label for="lname">Last Name:</label>
-                      <input type="text" class="form-control" id="lname" placeholder="Enter Last Name">
-                  </div>
-                  <div class="form-group">
-                    <label for="uname">Username:</label>
-                      <input type="text" class="form-control" id="uname" placeholder="Enter Desired Username">
-                  </div>
-                  <div class="form-group">
-                    <label for="pas">Password:</label>
-                      <input type="text" class="form-control" id="pas" placeholder="Enter Desired Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="pasc">Confirm Password:</label>
-                      <input type="text" class="form-control" id="pasc" placeholder="Retype Above Password">
-                  </div>
-                  <button type="submit" class="btn btn-default col-sm-offset-2">Submit</button>
-                </form>
-              </div>
-            </div>
           </div>
-        </div>
+      </div>
 
         <!-- Upload Form -->
       <div class="modal" id="uploadForm">
