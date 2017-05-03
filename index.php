@@ -153,14 +153,14 @@
       </div>
       <!-- Main View -->
         <div class="row">
-          <div class="col" id="instructions">
-            <h2 class="text-center text-white">Upload Instructions</h2><br>
+          <div class="col text-white" id="instructions">
+            <h2 class="text-center">Upload Instructions</h2><br>
             <ol>
               <li>Click "Login or Sign Up" to login or create an account</li>
               <li>Click "Upload", then "Browse" to select your video</li>
               <li>Wait for your video to finish processing!</li>
             </ol>
-            <p>To check on your video's progress, find it in the list to the right</p>
+            <p class="text-center">To check on your video's progress, find it in the list to the right</p>
           </div>
           <div class="col-6" id="videos">
             <div class="row">
