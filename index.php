@@ -152,10 +152,9 @@
           </div>
       </div>
       <!-- Main View -->
-      <div class="container">
         <div class="row">
           <div class="col" id="instructions">
-            <h2 class="text-center">Download Instructions</h2><br>
+            <h2 class="text-center text-white">Upload Instructions</h2><br>
             <ol>
               <li>Click "Login or Sign Up" to login or create an account</li>
               <li>Click "Upload", then "Browse" to select your video</li>
@@ -180,7 +179,6 @@
 
           </div>
         </div>
-      </div>
 
 
         <!-- jQuery -->
