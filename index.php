@@ -136,10 +136,10 @@
                   </div>
                   <div class="modal-body">
                       <form class="form-horizontal" role="form" method="post" action="php-functions/upload.php" enctype="multipart/form-data">
-                          <h2 class="white-text">File Upload</h2>
-                          <p class="white-text">Select your video: </p>
+                          <h2 class="text-white">File Upload</h2>
+                          <p class="text-white">Select your video: </p>
                           <br>
-                            <span class="btn btn-primary btn-file white-text">
+                            <span class="btn btn-primary btn-file text-white">
                                 Browse <input type="file" name="userUpload" id="userUpload"/>
                             </span>
                           <br>
@@ -151,11 +151,36 @@
               </div>
           </div>
       </div>
+      <!-- Main View -->
+      <div class="container">
+        <div class="row">
+          <div class="col" id="instructions">
+            <h2 class="text-center">Download Instructions</h2><br>
+            <ol>
+              <li>Click "Login or Sign Up" to login or create an account</li>
+              <li>Click "Upload", then "Browse" to select your video</li>
+              <li>Wait for your video to finish processing!</li>
+            </ol>
+            <p>To check on your video's progress, find it in the list to the right</p>
+          </div>
+          <div class="col-6" id="videos">
+            <div class="row">
+              <div class="col" id="videos-left">
 
+              </div>
+              <div class="col" id="videos-center">
 
+              </div>
+              <div class="col" id="videos-right">
 
-      <!-- Header -->
+              </div>
+            </div>
+          </div>
+          <div class="col" id="blank">
 
+          </div>
+        </div>
+      </div>
 
 
         <!-- jQuery -->

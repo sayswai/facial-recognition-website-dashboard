@@ -2,8 +2,11 @@
 body {
   background-color: #191919;
 }
-.white-text {
+.text-white {
   color: white;
+}
+.text-center {
+  text-align: center;
 }
 
 /* NAVBAR START */
