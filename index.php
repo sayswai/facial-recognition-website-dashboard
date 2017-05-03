@@ -143,7 +143,7 @@
                                   <li>Click "Upload", then "Browse" to select your video</li>
                                   <li>Wait for your video to finish processing!</li>
                               </ol>
-                              <p class="text-center">To check on your video's progress, find it in the list to the right</p>
+                              <p class="text-center">To check on your video's progress, find it in the queue</p>
                           </div>
                           <p>Select your video: </p>
                           <br>

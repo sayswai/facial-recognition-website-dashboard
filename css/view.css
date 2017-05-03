@@ -102,7 +102,7 @@ body {
 
 /* MODAL START */
 #logForm, #signForm {
-  width: 500;
+  width: 600;
   height: 600;
   margin-top: 50;
   margin-left: auto;
