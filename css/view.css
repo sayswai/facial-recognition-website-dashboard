@@ -11,7 +11,7 @@ body {
 
 /* NAVBAR START */
 .navbar-toggleable-md {
-  background-color: white;
+  background-color: #222222;
   border-color: rgba(0, 0, 0, 0.5);
   -webkit-transition: all 0.5s;
   -moz-transition: all 0.5s;
