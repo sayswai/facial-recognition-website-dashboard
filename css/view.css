@@ -32,7 +32,7 @@ body {
 }
 .navbar-toggleable-md .navbar-toggler {
   font-size: 12px;
-  color: #222222;
+  color: #DF3D82;
   padding: 8px 10px;
 }
 .navbar-toggleable-md .navbar-nav > li > a {
@@ -43,7 +43,7 @@ body {
 }
 .navbar-toggleable-md .navbar-nav > li > a,
 .navbar-toggleable-md .navbar-nav > li > a:focus {
-  color: #222222;
+  color: #DF3D82;
 }
 .navbar-toggleable-md .navbar-nav > li > a:hover,
 .navbar-toggleable-md .navbar-nav > li > a:focus:hover {
@@ -64,26 +64,26 @@ body {
     border-color: transparent;
   }
   .navbar-toggleable-md .navbar-brand {
-    color: rgba(255,255,255,0.75);
+    color: rgba(223, 61, 130, 0.75);
   }
   .navbar-toggleable-md .navbar-brand:hover,
   .navbar-toggleable-md .navbar-brand:focus {
-    color: white;
+    color: #DF3D82;
   }
   .navbar-toggleable-md .navbar-nav > li > a,
   .navbar-toggleable-md .navbar-nav > li > a:focus {
-    color: #222222;
+    color: #DF3D82;
   }
   .navbar-toggleable-md .navbar-nav > li > a:hover,
   .navbar-toggleable-md .navbar-nav > li > a:focus:hover {
-    color: rgba(255,255,255,0.75);
+    color: rgba(223, 61, 130, 0.75);
   }
   .navbar-toggleable-md.affix {
-    background-color: white;
+    background-color: #222222;
     border-color: rgba(0, 0, 0, 0.5);
   }
   .navbar-toggleable-md.affix .navbar-brand {
-    color: #222222;
+    color: #DF3D82;
   }
   .navbar-toggleable-md.affix .navbar-brand:hover,
   .navbar-toggleable-md.affix .navbar-brand:focus {
@@ -91,7 +91,7 @@ body {
   }
   .navbar-toggleable-md.affix .navbar-nav > li > a,
   .navbar-toggleable-md.affix .navbar-nav > li > a:focus {
-    color: #222222;
+    color: #DF3D82;
   }
   .navbar-toggleable-md.affix .navbar-nav > li > a:hover,
   .navbar-toggleable-md.affix .navbar-nav > li > a:focus:hover {
