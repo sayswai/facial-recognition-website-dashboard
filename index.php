@@ -136,10 +136,10 @@
                   </div>
                   <div class="modal-body">
                       <form class="form-horizontal" role="form" method="post" action="php-functions/upload.php" enctype="multipart/form-data">
-                          <h2 class="text-white">File Upload</h2>
-                          <p class="text-white">Select your video: </p>
+                          <h2>File Upload</h2>
+                          <p>Select your video: </p>
                           <br>
-                            <span class="btn btn-primary btn-file text-white">
+                            <span class="btn btn-primary btn-file">
                                 Browse <input type="file" name="userUpload" id="userUpload"/>
                             </span>
                           <br>
