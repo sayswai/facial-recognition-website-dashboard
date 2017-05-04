@@ -20,6 +20,11 @@ $eyeTrackCommand = "../eyeLike/build/bin/eyeLike";
 
 $test = '../eyeLike/build/bin/eyeLike ../vids/fakeVideo/split_frames/output_0004.png 2>&1';
 
+
+/*
+ *
+ *
+ * */
 function eyeTrack($splitImgDirectory,$videoID)
 {
     global $eyeTrackCommand;
@@ -42,7 +47,7 @@ function eyeTrack($splitImgDirectory,$videoID)
 		// No coordinates detected
 	}else{
 		$coords = explode(",",$result);
-		insertEyeCoordinate($videoID, $splitImgCount, $coords[0], $coords[1], $coords[2], $coords[3]);
+		insertEyeCoordinate($videoID, $splitImgCount - 1, $coords[0], $coords[1], $coords[2], $coords[3]);
 		print_r($coords);
         }
 	print_r($eyeTrackCommand . " " . $splitImgDirectory . $splitImagesArray[$splitImgCount]."<br>");
@@ -52,4 +57,3 @@ function eyeTrack($splitImgDirectory,$videoID)
 }
 
 eyeTrack($splitImgDirectory, 20);
-
