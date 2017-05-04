@@ -49,7 +49,7 @@ class auth
             //statements
             switch ($i)
             {
-                case 1:header("Location: upload.php");break;
+                case 1:header("Location: upload.php");break; //GOOD!
 
                 case 2:echo "Username not found, please register if you haven't!";break;
 
