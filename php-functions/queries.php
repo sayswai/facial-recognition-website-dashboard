@@ -82,6 +82,8 @@ function insertPoints($videoID, $frameNum, $arrayOfPoints)
 
     $arrayOfPoints = commaSepArray($arrayOfPoints);
 
+    pg_query($conn1, "DEALLOCATE ALL");
+
     pg_prepare($conn1, "insert_points", 'INSERT INTO OpenFace (vid, framenum, 
 point1,
 point2,

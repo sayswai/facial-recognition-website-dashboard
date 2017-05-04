@@ -120,7 +120,7 @@ $sqlList = [
       point66 POINT NOT NULL,
       point67 POINT NOT NULL,
       point68 POINT NOT NULL,
-      PRIMARY KEY(vID, frameNum)
+      PRIMARY KEY(frameNum)
     );'];
 
 // execute each sql statement to create new tables

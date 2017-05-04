@@ -25,3 +25,16 @@ define("dbPassword", "toor");
 Database name
 */
 define("dbDBname","CS160");
+
+/*
+ * OpenFace Command
+ * To get sudo to work on apache I had to call sudo visudo and add www-data ALL=NOPASSWD: ALL
+ * I had to add the sudo because without it the program did not have the permissions to write point files
+ */
+define("cmdOpenFace", "sudo /home/ben/Downloads/OpenFace/build/bin/FaceLandmarkImg");
+
+/*
+ * EyeLike Command
+ * */
+
+define("cmdEyeLike","../eyeLike/build/bin/eyeLike");

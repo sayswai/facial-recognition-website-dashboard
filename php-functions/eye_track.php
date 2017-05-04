@@ -18,7 +18,8 @@ $splitImgDirectory = "../vids/fakeVideo/split_frames/";
 $test = '../eyeLike/build/bin/eyeLike ../vids/fakeVideo/split_frames/output_0004.png 2>&1';
 
 // Eye Track command usage ./bin/eyeLike <img>
-$eyeTrackCommand = "../eyeLike/build/bin/eyeLike";
+//$eyeTrackCommand = "../eyeLike/build/bin/eyeLike";
+$eyeTrackCommand = \cmdEyeLike;
 
 /*
  * Execute eyeLike program to get the left and right pupil coordinates, then store into the database

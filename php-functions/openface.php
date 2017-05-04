@@ -6,6 +6,8 @@
  * Time: 11:39 PM
  */
 
+include "../configs/Config.php";
+
 /*
  * OpenFace command
  *
@@ -13,12 +15,10 @@
  *
  * -q prevents window boxes from popping up (pop ups give errors)
  *
- * To get sudo to work on apache I had to call sudo visudo and add www-data ALL=NOPASSWD: ALL
- * I had to add the sudo because without it the program did not have the permissions to write point files
- *
  * Change this line to where OpenFace FaceLandmarkImg is installed
  * */
-$openFaceCommand = "sudo /home/ben/Downloads/OpenFace/build/bin/FaceLandmarkImg";
+//$openFaceCommand = "sudo /home/ben/Downloads/OpenFace/build/bin/FaceLandmarkImg";
+$openFaceCommand = \cmdOpenFace;
 
 //Directory of split images
 $splitImgDirectory = "../vids/fakeVideo/split_frames/";

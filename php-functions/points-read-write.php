@@ -33,5 +33,28 @@ function getArrayPoints($fileName)
 //Test
 //getArrayPoints($fileName);
 
-$arrayOfPoints = getArrayPoints($fileName);
-insertPoints(20,20,$arrayOfPoints);
+$dirName = "../vids/fakeVideo/detected_frames/";
+function getPointFilesAndInsert($directoryOfPoints, $videoID){
+
+    $pointFilesArray = scandir($directoryOfPoints);
+
+    for($i = 2; $i < sizeof($pointFilesArray); $i++){
+
+        $fileName = $pointFilesArray[$i];
+        $arrayOfPoints = getArrayPoints($directoryOfPoints . '/' . $fileName);
+
+        $stripFileName = str_replace("output_", "", $fileName);
+        $stripFileName = str_replace("_det_0.pts", "", $stripFileName);
+
+        $frameNum = ltrim($stripFileName, '0');
+
+        insertPoints($videoID, $frameNum,$arrayOfPoints);
+
+
+    }
+    
+}
+
+getPointFilesAndInsert($dirName, 30);
+
+//insertPoints(20,20,$arrayOfPoints);
