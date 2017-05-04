@@ -33,7 +33,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">TeamName</a> <!-- Add auto-scroll functionality, link will be main page -->
+        <a class="navbar-brand" href="#">5Guys1Code</a> <!-- Add auto-scroll functionality, link will be main page -->
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active disabled"> <!-- First item active by default, unfinished so also disabled (ironic). Add main page link, and auto-scroll functionality -->
@@ -143,7 +143,7 @@
                                   <li>Click "Upload", then "Browse" to select your video</li>
                                   <li>Wait for your video to finish processing!</li>
                               </ol>
-                              <p class="text-center">To check on your video's progress, find it in the list to the right</p>
+                              <p class="text-center">To check on your video's progress, find it in the queue</p>
                           </div>
                           <p>Select your video: </p>
                           <br>
