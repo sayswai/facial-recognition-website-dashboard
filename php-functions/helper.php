@@ -6,3 +6,14 @@
  * Time: 11:58 PM
  */
 
+/*
+ * Replace all spaces with commas in each element of array
+ * @param $arrayOfPoints
+ * */
+function commaSepArray($arrayOfPoints){
+    for($i = 0; $i < sizeof($arrayOfPoints); $i++){
+        $arrayOfPoints[$i] = str_replace(" ", ",", $arrayOfPoints[$i]);
+    }
+
+    return $arrayOfPoints;
+}
