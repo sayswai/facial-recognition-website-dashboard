@@ -35,7 +35,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">5Guys1Code</a> <!-- Add auto-scroll functionality, link will be main page -->
+       <font color ="#ff1493"> <a class="navbar-brand" href="#">5 GUYS 1 CODE</a> </font><!-- Add auto-scroll functionality, link will be main page -->
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active disabled"> <!-- First item active by default, unfinished so also disabled (ironic). Add main page link, and auto-scroll functionality -->
@@ -69,11 +69,11 @@
                       <form class="form-horizontal" role="form" method="post" action="php-functions/login.php">
                           <div class="form-group">
                               <label for="userr">Username:</label>
-                              <input type="text" class="form-control" name="userr" placeholder="Enter Username">
+                              <input type="text" class="form-control" name="userr" placeholder="Enter Username" required>
                           </div>
                           <div class="form-group">
                               <label for="passs">Password:</label>
-                              <input type="password" class="form-control" name="passs" placeholder="Enter Password">
+                              <input type="password" class="form-control" name="passs" placeholder="Enter Password" required>
                           </div>
                           <div class="form-group">
                               <div class="checkbox">
@@ -103,24 +103,21 @@
                       <form class="form-horizontal" role="form" method="post" action="php-functions/user.php">
                           <div class="form-group">
                               <label for="fname">First Name:</label>
-                              <input type="text" class="form-control" name="fname" placeholder="Enter First Name">
+                              <input type="text" class="form-control" name="fname"  placeholder="Enter First Name" required>
                           </div>
                           <div class="form-group">
                               <label for="lname">Last Name:</label>
-                              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name">
+                              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
                           </div>
                           <div class="form-group">
                               <label for="uname">Username:</label>
-                              <input type="text" class="form-control" name="uname" placeholder="Enter Desired Username">
+                              <input type="text" class="form-control" name="uname" placeholder="Enter Desired Username" required>
                           </div>
                           <div class="form-group">
                               <label for="pas">Password:</label>
-                              <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password">
+                              <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password" required>
                           </div>
-                          <div class="form-group">
-                              <label for="ip">Test IP:</label>
-                              <input type="text" class="form-control" name="ip" placeholder="Test IP">
-                          </div>
+
                           <input type="submit" name="insert" class="btn btn-default col-sm-offset-2"></input>
                       </form>
                   </div>
