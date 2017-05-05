@@ -1,4 +1,4 @@
-  <html>
+<html>
     <head>
       <meta charset="utf-8">
       <meta httpequiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +17,8 @@
 
       <!-- Custom CSS -->
       <link href="css/view.css" rel="stylesheet">
+
+
 
 
       <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -135,26 +137,29 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
-                      <form class="form-horizontal" role="form" method="post" action="php-functions/upload.php" enctype="multipart/form-data">
-                          <div class="col text-black" id="instructions">
-                              <h2 class="text-center">Upload Instructions</h2><br>
-                              <ol>
-                                  <li>Click "Login or Sign Up" to login or create an account</li>
-                                  <li>Click "Upload", then "Browse" to select your video</li>
-                                  <li>Wait for your video to finish processing!</li>
-                              </ol>
-                              <p class="text-center">To check on your video's progress, find it in the queue</p>
-                          </div>
+                      <div class="col text-black" id="instructions">
+                          <h2 class="text-center">Upload Instructions</h2><br>
+                          <ol>
+                              <li>Click "Login or Sign Up" to login or create an account</li>
+                              <li>Click "Upload", then "Browse" to select your video</li>
+                              <li>Wait for your video to finish processing!</li>
+                          </ol>
+                          <p class="text-center">To check on your video's progress, find it in the queue</p>
+                      </div>
                           <p>Select your video: </p>
                           <br>
+                            <div id="uploadName"></div>
                             <span class="btn btn-primary btn-file">
-                                Browse <input type="file" name="userUpload" id="userUpload"/>
+                                Browse <input type="file" name="userFile" id="userFile"/>
                             </span>
                           <br>
-                          <button type="submit" class="btn btn-default" name="submit">Upload</button>
-                      </form>
+                          <!--<button type="submit" class="btn btn-default" name="submit" onclick="upload();">Upload</button>-->
+                          <button type="submit" class="btn btn-default" id='submitNow' name="submitNow">Upload</button>
                   </div>
                   <div class="modal-footer">
+                      <div id="uploadResult"></div>
+                      <div id="uploadPercent" class=""col text-black"></div>
+                      <div id="progressBar" class="progress"></div>
                   </div>
               </div>
           </div>
@@ -182,16 +187,20 @@
         </div>
 
 
-        <!-- jQuery -->
-        <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+      <!-- jQuery -->
+      <script src="lib/jquery/jquery-3.1.1.min.js"></script>
 
-        <!-- Javascript Plugin -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+      <!-- Javascript Plugin -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
-        <!-- Bootstrap js -->
-        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+      <!-- Bootstrap js -->
+      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
-        <!-- Custom js -->
-        <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
+      <!-- Custom js -->
+      <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
+      <script type="text/javascript" src="js/upload.js"></script>
+
     </body>
   </html>
+
+

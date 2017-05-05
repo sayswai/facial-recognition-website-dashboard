@@ -136,25 +136,27 @@ if(isset($_POST["submit"])) {
                 if(metaCheck($filedir)) { //Check file video integrity
                     /**Extract meta data and store to DB**/
                     if(metaExtract($filename, $filedir)) {
-                        echo $filename . " successfully uploaded";
+                        #echo $filename . " successfully uploaded";
+                        $result = $filename . " successfully uploaded";
                     }else{
                         unlink($filedir);
                         #echo "Something went wrong saving to DB, upload failed.";
                         error_log("db update for video upload failed");
+                        $result = "Upload failed, try again!";
                     }
                 }else{
                     unlink($filedir);
-                    echo "Changing the file extension in the filename won't work here. Try it once more and you'll be banned.";
+                    $result = "Changing the file extension in the filename won't work here. Try it once more and you'll be banned.";
                     error_log("user disguised item as movie and tried to upload");
                     //TODO add danger points to user's dB input every time they try doing this, ban them on the 3rd attempt
 
                 }
             }else{
-                echo "Something went wrong with the upload, please try again.";
+                $result = "Something went wrong with the upload, please try again.";
                 error_log("Upload failed, apache related");
             }
         }else{
-            echo "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB. Cannot upload file.";
+            $result = "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB. Cannot upload file.";
             error_log("user's file size exceeded limitations");
         }
     }else{
@@ -179,10 +181,10 @@ if(isset($_POST["submit"])) {
         }, 2000);
     </script>
     <p id = "output"></p>
-    </div>
     <?php
 
 }else{
+    error_log('upload.php accessed without post');
     ?>
     <script lang="javascript">
         window.location.href = "/index.php";

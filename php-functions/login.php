@@ -1,6 +1,7 @@
 <?php
 
 include 'db_connect.php';
+include 'start_s.php';
 //Database Connection to Postgresql.
 $conn1 = connect_db("postgres", "1", "CS160");
 
@@ -23,9 +24,6 @@ class auth
             $encrypt = 'BitchImBadANDBoujieWhipUpTheDopeWithAnUZI';
             $trimmedp = trim($passwordz);
             $PASS = crypt($trimmedp, $encrypt);
-
-
-            session_start();
 
             $my_name = $_SESSION['User'] = $usernamez;
 
