@@ -129,8 +129,18 @@ body {
     filter: alpha(opacity=0);
     opacity: 0;
     outline: none;
-    background: white;
+    background: #ffffff;
     cursor: inherit;
     display: block;
+}
+
+.progress_outer {
+    border: 1px solid #000000;
+}
+
+.progress {
+    width: 0%;
+    background: #df3d82;
+    height: 20px;
 }
 /* UPLOAD END */

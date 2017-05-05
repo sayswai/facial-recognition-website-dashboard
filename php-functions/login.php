@@ -15,9 +15,6 @@ else{
 
 class auth
 {
-    /**
-     *
-     */
     function access()
     {
         if (!empty($_POST)) {
@@ -26,8 +23,12 @@ class auth
             $encrypt = 'BitchImBadANDBoujieWhipUpTheDopeWithAnUZI';
             $trimmedp = trim($passwordz);
             $PASS = crypt($trimmedp, $encrypt);
+
+
             session_start();
-            $sesh = $_SESSION['userr'] = $usernamez;
+
+            $my_name = $_SESSION['User'] = $usernamez;
+
             $query = "SELECT * FROM users";
             $result = pg_query($query) or die ("Cannot execute query :$query\n");
 
@@ -37,9 +38,9 @@ class auth
             while($col = pg_fetch_row($result))
             {
                 //checks both user & pass
-                if (strcasecmp(trim($usernamez),trim($col[1])) == 0) //check if username matches user in the database
+                if (strcasecmp(trim($usernamez),trim($col[1])) == 0)
                 {
-                    $i = 100;
+                    $i = 3;
                     if (trim($col[2]) == $PASS) //check password that matches user
                     {
                         $i = 1;
@@ -49,11 +50,14 @@ class auth
             //statements
             switch ($i)
             {
-                case 1:header("Location: upload.php");break; //GOOD!
+                case 1:header("Location: upload.php");
+                    break;
 
-                case 2:echo "Username not found, please register if you haven't!";break;
+                case 2:echo "The Username entered has not been registered, please register";
+                    break;
 
-                default:echo "Invalid Authentication!";break;
+                default:echo "Invalid Login, please try again";
+                    break;
             }
 
         }

@@ -22,6 +22,7 @@ $sqlList = [
       firstName VARCHAR(50) NOT NULL,
       lastName VARCHAR(50) NOT NULL,
       IP VARCHAR(39) NOT NULL,
+      Uservids VARCHAR(39) NOT NULL,
       PRIMARY KEY (uID)
     )',
 
@@ -32,6 +33,9 @@ $sqlList = [
       width int not null,
       height int not null,
       fps int not null,
+      vtitle text not null,
+      time_upload int not null,
+      split int not null DEFAULT 0,
       PRIMARY KEY (vID)
     )',
 
@@ -48,13 +52,6 @@ $sqlList = [
     'CREATE TABLE IF NOT EXISTS OpenFace (
       vID INT NOT NULL,
       frameNum INT NOT NULL,
-      yaw INT NOT NULL,
-      pitch INT NOT NULL,
-      roll INT NOT NULL,
-      openfaceLeftPupil POINT NOT NULL,
-      openfaceRightPupil POINT NOT NULL,
-      fabiantimmLeftPupil POINT NOT NULL,
-      fabiantimmRightPupil POINT NOT NULL,
       point1 POINT NOT NULL,
       point2 POINT NOT NULL,
       point3 POINT NOT NULL,
@@ -123,7 +120,7 @@ $sqlList = [
       point66 POINT NOT NULL,
       point67 POINT NOT NULL,
       point68 POINT NOT NULL,
-      PRIMARY KEY(vID, frameNum)
+      PRIMARY KEY(frameNum)
     );'];
 
 // execute each sql statement to create new tables
