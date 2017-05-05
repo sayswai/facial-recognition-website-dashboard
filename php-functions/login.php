@@ -59,7 +59,12 @@ class auth
             //statements
             switch ($i)
             {
-                case 1:header("Location: upload.php");break; //GOOD!
+                #case 1:header("Location: upload.php");break; //GOOD!
+                case 1: echo"
+                            <script lang=\"text/javascript\">
+                                window.location.href = \"/index.php\";
+                            </script>
+                ";
                 case 2:echo "Username not found, please register if you haven't!";break;
                 default:echo "Invalid Authentication!";break;
             }
