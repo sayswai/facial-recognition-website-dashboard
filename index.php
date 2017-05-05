@@ -46,17 +46,17 @@
               <a class="nav-link" href="#">Videos</a>
             </li>
             <li class="nav-item disabled"> <!-- Not yet finished, therefor disabled for now. Add link to scroll to, and auto-scroll functionality -->
-                <a class="nav-link" data-toggle="modal" data-target="#uploadForm">Upload</a>
+                <a class="nav-link" data-toggle="modal" data-target="#uploadForm" href="#">Upload</a>
             </li>
             <!--<li class="nav-item disabled"> NOT IMPLEMENTED AND NEEDS FURTHER DESIGN WORK; NEED METHOD FOR DETERMING USER LOGIN STATUS, AND TOGGLE VIIBILITY WHEN LOGGED IN (OFF FOR NEW USERS< ON FOR LOGGED IN USERS)
               <a class="nav-link" href="#">Profile</a>
             </li> -->
               <li class="nav-item"> <!-- Not yet implemented, therefor disabled for now. Create popup form for account management -->
-                  <a class="nav-link" data-toggle="modal" data-target="#logForm">Login or Sign Up</a>
+                  <a class="nav-link" data-toggle="modal" data-target="#logForm" href="#">Login or Sign Up</a>
               </li>
               <?php if(isset($_SESSION['username'])){?>
               <li class="nav-item">
-                  <a class="nav-link" data-toggle="modal" data-target="#logout">Logout</a>
+                  <a class="nav-link"  href="/index.php" id="logOff">Logout</a>
               </li>
               <?php }?>
           </ul>
@@ -175,7 +175,7 @@
               </div>
           </div>
       </div>
-      
+
 
 
       <!-- Main View -->
@@ -211,6 +211,7 @@
       <!-- Custom js -->
       <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
       <script type="text/javascript" src="js/upload.js"></script>
+      <script type="text/javascript" src="js/logoff.js"></script>
 
     </body>
   </html>
