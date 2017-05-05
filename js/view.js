@@ -16,10 +16,20 @@
       $(document.createElement('video')).appendTo("#videos-left");
     }
   }
-
   //Get all video sources from db
+  $.ajax({
+    url: 'get_videos.php',
+    data: "",
 
+    dataType: 'json',
+    success: function(data)
+    {
+      var videos = data;
+    }
+  });
   $('video').each(function (index) {
-    $(this).attr({ width:320, height:240, src:videoArray[index] });
+    var id = data[index]
+    var url = "vids/"+id+"/"+id;
+    $(this).attr({ width: 320, height: 240, src: url });
   });
 })(jQuery);
