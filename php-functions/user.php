@@ -13,26 +13,38 @@ else{
     echo "The connection is invalid.";
 }
 
-//fetch IP
+if (! empty( $_SERVER ['HTTP_X_FORWARDED_FOR'])) $fetchip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+else if (! empty ( $_SERVER['HTTP_CLIENT_IP'])) $fetchip = $_SERVER['HTTP_CLIENT_IP'];
+else $fetchip = $_SERVER['REMOTE_ADDR'];
+
+
+function failed()
+{
+    echo "Your login has failed!";
+}
 
 if(isset($_POST["insert"]))
-{//passing onto
+{
     $username=$_POST["uname"];
     $password=$_POST["pas"];
     $firstname=$_POST["fname"];
     $lastname=$_POST["lname"];
-    $ip=$_POST["ip"];
-    $encrypt = 'BitchImBadANDBoujieWhipUpTheDopeWithAnUZI';
-    $encryptedpass = crypt($password,$encrypt);
 
-    $query="INSERT INTO users (username,password,firstname,lastname,ip) VALUES ('".$username."', '".$encryptedpass."', '".$firstname."','".$lastname."','".$ip."')";
+    trim($encryptedpass = hash("sha512",$password));
+
+
+
+    $query="INSERT INTO users (username,password,firstname,lastname,ip) VALUES ('".$username."', '".$encryptedpass."', '".$firstname."','".$lastname."','".$fetchip."')";
+
+
     $psql = pg_query($query); //executes the query!
 
-    //check if connection is there.
+    //check if succeeded.
     if($psql)
     {
-        print("");
-        print("Thank you, you have been registered, please sign in!");
+        echo '<script language="javascript">';
+        echo 'alert("Thank You! You have now been registered!")';
+        echo '</script>';
     }
     else{
         $errormsg = pg_last_error();
