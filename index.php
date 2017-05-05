@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>
     <head>
       <meta charset="utf-8">
@@ -50,9 +51,14 @@
             <!--<li class="nav-item disabled"> NOT IMPLEMENTED AND NEEDS FURTHER DESIGN WORK; NEED METHOD FOR DETERMING USER LOGIN STATUS, AND TOGGLE VIIBILITY WHEN LOGGED IN (OFF FOR NEW USERS< ON FOR LOGGED IN USERS)
               <a class="nav-link" href="#">Profile</a>
             </li> -->
-            <li class="nav-item"> <!-- Not yet implemented, therefor disabled for now. Create popup form for account management -->
-              <a class="nav-link" data-toggle="modal" data-target="#logForm">Login or Sign Up</a>
-            </li>
+              <li class="nav-item"> <!-- Not yet implemented, therefor disabled for now. Create popup form for account management -->
+                  <a class="nav-link" data-toggle="modal" data-target="#logForm">Login or Sign Up</a>
+              </li>
+              <?php if(isset($_SESSION['username'])){?>
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="modal" data-target="#logout">Logout</a>
+              </li>
+              <?php }?>
           </ul>
         </div>
       </nav>
@@ -134,33 +140,42 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
-                      <div class="col text-black" id="instructions">
-                          <h2 class="text-center">Upload Instructions</h2><br>
-                          <ol>
-                              <li>Click "Login or Sign Up" to login or create an account</li>
-                              <li>Click "Upload", then "Browse" to select your video</li>
-                              <li>Wait for your video to finish processing!</li>
-                          </ol>
-                          <p class="text-center">To check on your video's progress, find it in the queue</p>
+                      <?php if(isset($_SESSION['username'])){?>
+                      <div id="show">
+                          <div class="col text-black" id="instructions">
+                              <h2 class="text-center">Upload Instructions</h2><br>
+                              <ol>
+                                  <li>Click "Login or Sign Up" to login or create an account</li>
+                                  <li>Click "Upload", then "Browse" to select your video</li>
+                                  <li>Wait for your video to finish processing!</li>
+                              </ol>
+                              <p class="text-center">To check on your video's progress, find it in the queue</p>
+                          </div>
+                              <p>Select your video: </p>
+                              <br>
+                                <div id="uploadName"></div>
+                                <span class="btn btn-primary btn-file">
+                                    Browse <input type="file" name="userFile" id="userFile"/>
+                                </span>
+                              <br>
+                              <!--<button type="submit" class="btn btn-default" name="submit" onclick="upload();">Upload</button>-->
+                              <button type="submit" class="btn btn-default" id='submitNow' name="submitNow">Upload</button>
+                        <div class="modal-footer">
+                          <div id="uploadResult"></div>
+                          <div id="uploadPercent" class=""col text-black"></div>
+                          <div id="progressBar" class="progress"></div>
                       </div>
-                          <p>Select your video: </p>
-                          <br>
-                            <div id="uploadName"></div>
-                            <span class="btn btn-primary btn-file">
-                                Browse <input type="file" name="userFile" id="userFile"/>
-                            </span>
-                          <br>
-                          <!--<button type="submit" class="btn btn-default" name="submit" onclick="upload();">Upload</button>-->
-                          <button type="submit" class="btn btn-default" id='submitNow' name="submitNow">Upload</button>
+                      <?php }else{?>
+                      <div id="noshow">
+                          <h1> Please login </h1>
+                      </div>
+                      <?php } ?>
                   </div>
-                  <div class="modal-footer">
-                      <div id="uploadResult"></div>
-                      <div id="uploadPercent" class=""col text-black"></div>
-                      <div id="progressBar" class="progress"></div>
-                  </div>
+                </div>
               </div>
           </div>
       </div>
+      
 
 
       <!-- Main View -->
