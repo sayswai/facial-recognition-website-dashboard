@@ -7,6 +7,8 @@
 
       <title>Computer Vision Face Detection Pipeline</title>
 
+      <link href="favicon.ico" rel="icon" type="image/x-icon" />
+
       <!-- Bootstrap CSS -->
       <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -28,8 +30,23 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
+
+      <!-- jQuery -->
+      <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+
+      <!-- Javascript Plugin -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+      <!-- Bootstrap js -->
+      <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+      <!-- Custom js -->
+      <script type="text/javascript" src="js/view.js"></script> <!-- TODO create min.js once finished -->
+      <script type="text/javascript" src="js/functions.js"></script>
+      <script src="https://www.google.com/recaptcha/api.js"></script>
     </head>
-    <body>
+    <body onload="createVids()">
       <!-- Navbar -->
       <!-- TODOS: Add auto-scrolling feature, finish profile link, add links once page is further designed, test for visual design, separate navbar and other common html code and import when necessary(reusability) -->
       <nav id="navbar" class="navbar navbar-toggleable-md navbar-inverse" role="navigation">
@@ -66,12 +83,12 @@
       </nav>
 
       <!-- Login Form -->
-      <div class="modal" id="logForm">
-          <div class="modal-dialogue" role="document">
+      <div class="modal hide fade in" id="logForm">
+          <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
                       <h1 class="modal-title">Log In</h1>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose"><span aria-hidden="true">&times;</span></button>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
                       <form class="form-horizontal" role="form" method="" action="" id="loginForm">
@@ -102,12 +119,12 @@
       </div>
 
       <!-- Signup Form -->
-      <div class="modal" id="signForm">
-          <div class="modal-dialogue" role="document">
+      <div class="modal hide fade in" id="signForm">
+          <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
                       <h1 class="modal-title">Sign Up</h1>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose"><span aria-hidden="true">&times;</span></button>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
                       <form class="form-horizontal" role="form" method="post" action="php-functions/user.php">
@@ -214,21 +231,7 @@
         </div>
 
 
-      <!-- jQuery -->
-      <script src="lib/jquery/jquery-3.1.1.min.js"></script>
-
-      <!-- Javascript Plugin -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-      <!-- Bootstrap js -->
-      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-
-      <!-- Custom js -->
-      <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
-      <script type="text/javascript" src="js/functions.js"></script>
-      <script src="https://www.google.com/recaptcha/api.js"></script>
+        <div id="log"></div>
 
     </body>
   </html>
-
-

@@ -1,35 +1,30 @@
-(function($) {
-  "use strict"; //Ensures no undeclared variables are used (ie width=7; is invalid)
-
-  //$('#logForm').on('shown.bs.modal', function() {
-  //  $('#logForm').focus();
-  //});
-
-  for(var i=1, i<60, i++) {
+function createVids() {
+  $("#log").addClass("log");
+  var vid = $("<video width=\"320\" height=\"240\" controls></video>");
+  for(i=1; i<61; i++) {
     if(i%3==0) {
-      $(document.createElement('video')).appendTo("#videos-right");
+      $("#videos-right").html(vid);
     }
     else if(i%2==0) {
-      $(document.createElement('video')).appendTo("#videos-center");
+      $("#videos-center").html(vid);
     }
     else {
-      $(document.createElement('video')).appendTo("#videos-left");
+      $("#videos-left").html(vid);
     }
   }
   //Get all video sources from db
-  $.ajax({
-    url: 'get_videos.php',
-    data: "",
-
-    dataType: 'json',
-    success: function(data)
-    {
-      var videos = data;
-    }
-  });
+//  $.ajax({
+//    url: 'php-functions/get_videos.php',
+//    data: "",
+//
+//    dataType: 'json',
+//    success: function(data)
+//    {
+//      var videos = data;
+//    }
+//  });
+var videos = ["fakeVideo"];
   $('video').each(function (index) {
-    var id = data[index]
-    var url = "vids/"+id+"/"+id;
-    $(this).attr({ width: 320, height: 240, src: url });
+    $(this).append("<source src=\"vids/" + videos[index] + "/finished.mp4\" type=\"video/mp4\">This browser does not support the HTML5 video tag.");
   });
-})(jQuery);
+}
