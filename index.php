@@ -38,7 +38,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
       <!-- Bootstrap js -->
-      <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
+      <!--<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>-->
       <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
       <!-- Custom js -->
