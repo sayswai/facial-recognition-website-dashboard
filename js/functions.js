@@ -10,8 +10,6 @@ var _submit = document.getElementById('submitNow'),
     _percent = document.getElementById('uploadPercent');
 
 var upload = function(){
-
-
     if(_file.files.length === 0){
         _name.innerHTML = "Please choose a file first";
         return;
@@ -111,7 +109,10 @@ var logoff = function(){
 
 
 $('#logOff').click(logoff);
-$("#submitNow").click(upload);
+$("#submitNow").click(function () {
+    $('#submitNow').prop('disabled', true);
+    upload();
+});
 $('#loginSubmit').click(login);
 $("#userFile").change(function () {
     var size = _file.files[0].size;
@@ -139,6 +140,8 @@ $('#newUpload').click(function () {
 
     $('#realOutput').html("");
     $(this).hide();
+
+    $('#submitNow').prop('disabled', false);
 });
 $('#loginForm').on('click', function(e){
     e.preventDefault();
