@@ -19,7 +19,7 @@ $META_OUTPUT = array("mov,mp4,m4a,3gp,3g2,mj2", "mpeg", "avi", "asf");
                         # "mov, mp4.."   "mpg, mpeg", "avi", "wmv"
 $UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'].'/uploads/raw_upload/';
 $VID_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/';
-$MAX_FILE_SIZE = 2050000000; // in bytes
+$MAX_FILE_SIZE = 250000000; // in bytes
 
 
 /*Functions*/
@@ -136,27 +136,27 @@ if(isset($_POST["submit"])) {
                 if(metaCheck($filedir)) { //Check file video integrity
                     /**Extract meta data and store to DB**/
                     if(metaExtract($filename, $filedir)) {
-                        #echo $filename . " successfully uploaded";
-                        $result = $filename . " successfully uploaded";
+                        echo $filename . " successfully uploaded";
+                        #$result = $filename . " successfully uploaded";
                     }else{
                         unlink($filedir);
-                        #echo "Something went wrong saving to DB, upload failed.";
+                        echo "Something went wrong saving to DB, upload failed.";
                         error_log("db update for video upload failed");
-                        $result = "Upload failed, try again!";
+                        #$result = "Upload failed, try again!";
                     }
                 }else{
                     unlink($filedir);
-                    $result = "Changing the file extension in the filename won't work here. Try it once more and you'll be banned.";
+                    echo "Changing the file extension in the filename won't work here. Try it once more and you'll be banned.";
                     error_log("user disguised item as movie and tried to upload");
                     //TODO add danger points to user's dB input every time they try doing this, ban them on the 3rd attempt
 
                 }
             }else{
-                $result = "Something went wrong with the upload, please try again.";
+                echo "Something went wrong with the upload, please try again.";
                 error_log("Upload failed, apache related");
             }
         }else{
-            $result = "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB. Cannot upload file.";
+            echo "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB. Cannot upload file.";
             error_log("user's file size exceeded limitations");
         }
     }else{
@@ -167,22 +167,6 @@ if(isset($_POST["submit"])) {
         error_log("user uploaded non-video flie");
 
     }
-    echo "<br>";
-    ?>
-
-    <script lang="javascript">
-
-        setTimeout(function () {
-            document.getElementById("output").innerHTML = "Redirecting..";
-        }, 1500);
-
-        setTimeout(function(){
-            window.location.href = "/index.php";
-        }, 2000);
-    </script>
-    <p id = "output"></p>
-    <?php
-
 }else{
     error_log('upload.php accessed without post');
     ?>

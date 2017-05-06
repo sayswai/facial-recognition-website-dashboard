@@ -86,7 +86,7 @@
                                   <label><input type="checkbox"> Keep me logged in</label>
                               </div>
                           </div>
-                          <input type="submit" class="btn btn-default col-sm-offset-2"></input>
+                          <input type="submit" class="btn btn-default col-sm-offset-2"> </input>
                       </form>
                   </div>
                   <div class="modal-footer">
@@ -132,7 +132,7 @@
       </div>
 
         <!-- Upload Form -->
-      <div class="modal fade" id="uploadForm">
+      <div class="modal hide fade in" id="uploadForm">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -147,12 +147,19 @@
                               <ol>
                                   <li>Files are limited to 250MB</li>
                                   <li>Accepted formats: mp4, mpg, mov, mpeg, avi, wmv</li>
+                                  <li>Avoid changing extension names</li>
+                                  <div id="outputWrapper" style="display:none">
+                                      <br>
+                                      <div id="realOutput">
+
+                                      </div>
+                                  </div>
                               </ol>
                           </div>
                           <p>Select your video: </p>
                             <div class="text-right">
                                 <div id="uploadName"></div>
-                                <a href="#uploadForm" data-dismiss="modal" data-toggle="modal"> <button type="submit" class="btn btn-default" id='newUpload' name="newUpload" style="display: none;">New Upload</button></a>
+                                <button type="submit" class="btn btn-default" id='newUpload' name="newUpload" style="display: none;">New Upload</button>
                                 <span class="btn btn-primary btn-file">
                                     Browse <input type="file" name="userFile" id="userFile"/>
                                 </span>
@@ -162,7 +169,7 @@
                           <div id="uploadResult"></div>
                           <div id="uploadPercent" class="col text-black"></div>
                           <div id="progressBar" class="progress"></div>
-                      </div>
+                        </div>
                       <?php }else{?>
                       <div id="noshow">
                           <p>Please <a href="#logForm" data-dismiss="modal" data-toggle="modal">login</a> </p>

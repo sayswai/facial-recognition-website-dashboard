@@ -24,16 +24,9 @@ var upload = function(){
 
     var connect = new XMLHttpRequest();
     connect.onreadystatechange = function(){
-        if(connect.readyState == 4){
-            try {
-                var resp = JSON.parse(connect.response);
-            } catch (e){
-                var resp = {
-                    status: 'error caught',
-                    data: 'Unknown error occurred: ' + connect.responseText +''
-                };
-            }
-            console.log(resp.status + ': ' + resp.data);
+        if(connect.readyState == 4 && connect.status == 200){
+            $('#outputWrapper').show();
+            $('#realOutput').html(connect.responseText);
         }
     };
 
@@ -43,12 +36,11 @@ var upload = function(){
     }, false);
 
     connect.upload.addEventListener('load', function(e) {
-        _file = null;
         _output.innerHTML = "Upload complete";
         $("#newUpload").show();
     }, false);
 
-    connect.open('POST', 'php-functions/upload.php');
+    connect.open('POST', 'php-functions/upload.php', true);
     connect.send(data);
 }
 
@@ -73,13 +65,24 @@ var logoff = function(){
     };
     connect.open('POST', 'php-functions/logoff.php');
     connect.send(data);
-}
+};
+
+
 
 $('#logOff').click(logoff);
 $("#submitNow").click(upload);
 $("#userFile").change(function () {
     _name.innerHTML = _file.files[0].name;
 });
-$('#modalClose').click(function () {
-    modal.close();
+$('#newUpload').click(function () {
+    document.getElementById('userFile').value = "";
+    document.getElementById('uploadName').innerHTML = "";
+    document.getElementById('uploadPercent').innerHTML = "";
+    document.getElementById('progressBar').style.width = '0%';
+    document.getElementById('uploadResult').innerHTML = "";
+
+
+    $('#realOutput').html("");
+    $(this).hide();
 });
+
