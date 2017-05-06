@@ -22,7 +22,7 @@ $sqlList = [
       firstName VARCHAR(50) NOT NULL,
       lastName VARCHAR(50) NOT NULL,
       IP VARCHAR(39) NOT NULL,
-      Uservids VARCHAR(39) NOT NULL,
+      Uservids VARCHAR(39) NULL,
       PRIMARY KEY (uID)
     )',
 
