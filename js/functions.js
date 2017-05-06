@@ -90,16 +90,8 @@ var logoff = function(){
     var data = new FormData();
     data.append('submit', true);
     connect.onreadystatechange = function(){
-        if(connect.readyState == 4){
-            try {
-                var resp = JSON.parse(connect.response);
-            } catch (e){
-                var resp = {
-                    status: 'error caught',
-                    data: 'Unknown error occurred: ' + connect.responseText +''
-                };
-            }
-            console.log(resp.status + ': ' + resp.data);
+        if(connect.readyState == 4 && connect.status == 200){
+            $('#logOff').html(connect.responseText);
         }
     };
     connect.open('POST', 'php-functions/logoff.php');

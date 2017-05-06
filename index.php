@@ -171,6 +171,7 @@
                                 </span>
                                 <button type="submit" class="btn btn-default" id='submitNow' name="submitNow">Upload</button>
                             </div>
+                          <br>
                         <div class="modal-footer">
                           <div id="uploadResult"></div>
                           <div id="uploadPercent" class="col text-black"></div>

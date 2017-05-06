@@ -11,12 +11,11 @@ if(isset($_POST['submit'])){
     /*Unset all session variables that were set*/
     #session_unset();
     session_destroy();
-}else {
-    error_log('testing');
+}
     echo "
         <script lang=\"text/javascript\">
             window.location.href = \"/index.php\";
         </script>
                 ";
-}
+
 ?>
