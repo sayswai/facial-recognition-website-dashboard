@@ -7,6 +7,7 @@
  */
 session_start();
 if(isset($_POST['submit'])){
+    error_log('log off called');
     /*Unset all session variables that were set*/
     #session_unset();
     session_destroy();

@@ -45,7 +45,7 @@
             <li class="nav-item disabled"> <!-- Not yet finished, therefor disabled for now. Add link to scroll to, and auto-scroll functionality -->
               <a class="nav-link" href="#">Videos</a>
             </li>
-            <li class="nav-item disabled"> <!-- Not yet finished, therefor disabled for now. Add link to scroll to, and auto-scroll functionality -->
+            <li class="nav-item"> <!-- Not yet finished, therefor disabled for now. Add link to scroll to, and auto-scroll functionality -->
                 <a class="nav-link" data-toggle="modal" data-target="#uploadForm" href="#">Upload</a>
             </li>
             <!--<li class="nav-item disabled"> NOT IMPLEMENTED AND NEEDS FURTHER DESIGN WORK; NEED METHOD FOR DETERMING USER LOGIN STATUS, AND TOGGLE VIIBILITY WHEN LOGGED IN (OFF FOR NEW USERS< ON FOR LOGGED IN USERS)
@@ -64,12 +64,12 @@
       </nav>
 
       <!-- Login Form -->
-      <div class="modal" id="logForm">
+      <div class="modal fade" id="logForm">
           <div class="modal-dialogue" role="document">
               <div class="modal-content">
                   <div class="modal-header">
                       <h1 class="modal-title">Log In</h1>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
                       <form class="form-horizontal" role="form" method="post" action="php-functions/login.php">
@@ -103,7 +103,7 @@
               <div class="modal-content">
                   <div class="modal-header">
                       <h1 class="modal-title">Sign Up</h1>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
                       <form class="form-horizontal" role="form" method="post" action="php-functions/user.php">
@@ -132,7 +132,7 @@
       </div>
 
         <!-- Upload Form -->
-      <div class="modal" id="uploadForm">
+      <div class="modal fade" id="uploadForm">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -143,31 +143,29 @@
                       <?php if(isset($_SESSION['username'])){?>
                       <div id="show">
                           <div class="col text-black" id="instructions">
-                              <h2 class="text-center">Upload Instructions</h2><br>
+                              <h2 class="text-center">Upload Rules</h2><br>
                               <ol>
-                                  <li>Click "Login or Sign Up" to login or create an account</li>
-                                  <li>Click "Upload", then "Browse" to select your video</li>
-                                  <li>Wait for your video to finish processing!</li>
+                                  <li>Files are limited to 250MB</li>
+                                  <li>Accepted formats: mp4, mpg, mov, mpeg, avi, wmv</li>
                               </ol>
-                              <p class="text-center">To check on your video's progress, find it in the queue</p>
                           </div>
-                              <p>Select your video: </p>
-                              <br>
+                          <p>Select your video: </p>
+                            <div class="text-right">
                                 <div id="uploadName"></div>
+                                <a href="#uploadForm" data-dismiss="modal" data-toggle="modal"> <button type="submit" class="btn btn-default" id='newUpload' name="newUpload" style="display: none;">New Upload</button></a>
                                 <span class="btn btn-primary btn-file">
                                     Browse <input type="file" name="userFile" id="userFile"/>
                                 </span>
-                              <br>
-                              <!--<button type="submit" class="btn btn-default" name="submit" onclick="upload();">Upload</button>-->
-                              <button type="submit" class="btn btn-default" id='submitNow' name="submitNow">Upload</button>
+                                <button type="submit" class="btn btn-default" id='submitNow' name="submitNow">Upload</button>
+                            </div>
                         <div class="modal-footer">
                           <div id="uploadResult"></div>
-                          <div id="uploadPercent" class=""col text-black"></div>
+                          <div id="uploadPercent" class="col text-black"></div>
                           <div id="progressBar" class="progress"></div>
                       </div>
                       <?php }else{?>
                       <div id="noshow">
-                          <h1> Please login </h1>
+                          <p>Please <a href="#logForm" data-dismiss="modal" data-toggle="modal">login</a> </p>
                       </div>
                       <?php } ?>
                   </div>
@@ -210,8 +208,7 @@
 
       <!-- Custom js -->
       <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
-      <script type="text/javascript" src="js/upload.js"></script>
-      <script type="text/javascript" src="js/logoff.js"></script>
+      <script type="text/javascript" src="js/functions.js"></script>
 
     </body>
   </html>

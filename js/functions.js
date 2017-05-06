@@ -2,16 +2,18 @@
  * Created by Wai on 5/5/2017.
  */
 
-
+var _submit = document.getElementById('submitNow'),
+    _file = document.getElementById('userFile'),
+    _progress = document.getElementById('progressBar'),
+    _output = document.getElementById('uploadResult'),
+    _name = document.getElementById('uploadName'),
+    _percent = document.getElementById('uploadPercent');
 
 var upload = function(){
-    var _file = document.getElementById('userFile'),
-        _progress = document.getElementById('progressBar'),
-        _output = document.getElementById('uploadResult'),
-        _name = document.getElementById('uploadName'),
-        _percent = document.getElementById('uploadPercent');
+
 
     if(_file.files.length === 0){
+        _name.innerHTML = "Please choose a file first";
         return;
     }
     _output.innerHTML = "Upload started: ";
@@ -36,23 +38,23 @@ var upload = function(){
     };
 
     connect.upload.addEventListener('progress', function(e){
-        _progress.style.width = Math.ceil(e.loaded / e.total) * 100 + '%';
-        _percent.innerHTML = Math.ceil(e.loaded / e.total) * 100 + '%';
+        _progress.style.width = Math.round((e.loaded / e.total) * 100) + '%';
+        _percent.innerHTML = Math.round((e.loaded / e.total) * 100) + '%';
     }, false);
 
     connect.upload.addEventListener('load', function(e) {
+        _file = null;
         _output.innerHTML = "Upload complete";
+        $("#newUpload").show();
     }, false);
 
     connect.open('POST', 'php-functions/upload.php');
     connect.send(data);
 }
 
-var namechange = function () {
-    _name.innerHTML = _file.files[0].name;
-}
 
-function logoff(){
+var logoff = function(){
+    $('#logOff').fadeOut();
     var connect = new XMLHttpRequest();
     var data = new FormData();
     data.append('submit', true);
@@ -73,6 +75,11 @@ function logoff(){
     connect.send(data);
 }
 
-$("#logoff").click(logoff());
-$("#submitNow").click(upload());
-$("#uploadForm").mouseleave
+$('#logOff').click(logoff);
+$("#submitNow").click(upload);
+$("#userFile").change(function () {
+    _name.innerHTML = _file.files[0].name;
+});
+$('#modalClose').click(function () {
+    modal.close();
+});

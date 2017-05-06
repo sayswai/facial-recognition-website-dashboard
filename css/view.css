@@ -101,7 +101,7 @@ body {
 /* NAVBAR END */
 
 /* MODAL START */
-#logForm, #signForm {
+#logForm, #signForm, #uploadForm {
   width: 600;
   height: 600;
   margin-top: 50;
@@ -111,6 +111,7 @@ body {
 #signForm {
   height: auto;
 }
+
 /* MODAL END */
 
 /* UPLOAD START */
