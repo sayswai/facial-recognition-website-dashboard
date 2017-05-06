@@ -36,7 +36,7 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-       <font color ="#ff1493"> <a class="navbar-brand" href="#">5 GUYS 1 CODE</a> </font><!-- Add auto-scroll functionality, link will be main page -->
+       <font color ="#ff1493"> <a class="navbar-brand" href="#">5 GUYS 1 CODE</a> </font>
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active disabled"> <!-- First item active by default, unfinished so also disabled (ironic). Add main page link, and auto-scroll functionality -->
@@ -51,9 +51,11 @@
             <!--<li class="nav-item disabled"> NOT IMPLEMENTED AND NEEDS FURTHER DESIGN WORK; NEED METHOD FOR DETERMING USER LOGIN STATUS, AND TOGGLE VIIBILITY WHEN LOGGED IN (OFF FOR NEW USERS< ON FOR LOGGED IN USERS)
               <a class="nav-link" href="#">Profile</a>
             </li> -->
+              <?php if(!isset($_SESSION['username'])){?>
               <li class="nav-item"> <!-- Not yet implemented, therefor disabled for now. Create popup form for account management -->
                   <a class="nav-link" data-toggle="modal" data-target="#logForm" href="#">Login or Sign Up</a>
               </li>
+              <?php }?>
               <?php if(isset($_SESSION['username'])){?>
               <li class="nav-item">
                   <a class="nav-link"  href="/index.php" id="logOff">Logout</a>
@@ -72,22 +74,24 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modalClose"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
-                      <form class="form-horizontal" role="form" method="post" action="php-functions/login.php">
+                      <form class="form-horizontal" role="form" method="" action="" id="loginForm">
                           <div class="form-group">
                               <label for="userr">Username:</label>
-                              <input type="text" class="form-control" name="userr" placeholder="Enter Username" required>
+                              <input type="text" class="form-control" name="userr" placeholder="Enter Username" id="userr">
                           </div>
                           <div class="form-group">
                               <label for="passs">Password:</label>
-                              <input type="password" class="form-control" name="passs" placeholder="Enter Password" required>
+                              <input type="password" class="form-control" name="passs" placeholder="Enter Password" id="passs">
                           </div>
                           <div class="form-group">
                               <div class="checkbox">
                                   <label><input type="checkbox"> Keep me logged in</label>
                               </div>
                           </div>
-                          <input type="submit" class="btn btn-default col-sm-offset-2"> </input>
+                          <button type="submit" class="btn btn-default col-sm-offset-2" id="loginSubmit">Login</button>
                       </form>
+                      <!--Login information output is pumped here-->
+                      <div class="text-right" id="loginOutput"></div>
                   </div>
                   <div class="modal-footer">
                       <p>Need an account?</p>
@@ -123,6 +127,9 @@
                               <label for="pas">Password:</label>
                               <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password" required>
                           </div>
+                          <div class="form-group">
+                              <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci-b9O2ys8nX68"></div>
+                          </div>
 
                           <input type="submit" name="insert" class="btn btn-default col-sm-offset-2"></input>
                       </form>
@@ -151,7 +158,6 @@
                                   <div id="outputWrapper" style="display:none">
                                       <br>
                                       <div id="realOutput">
-
                                       </div>
                                   </div>
                               </ol>
@@ -199,7 +205,10 @@
             </div>
           </div>
           <div class="col" id="blank">
-
+              <!--Welcome user-->
+              <?php if(isset($_SESSION['username'])){?>
+                  <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['username'];?>!</font>
+              <?php } ?> <!-- Add auto-scroll functionality, link will be main page -->
           </div>
         </div>
 
@@ -216,6 +225,7 @@
       <!-- Custom js -->
       <script src="js/view.js"></script> <!-- TODO create min.js once finished -->
       <script type="text/javascript" src="js/functions.js"></script>
+      <script src="https://www.google.com/recaptcha/api.js"></script>
 
     </body>
   </html>

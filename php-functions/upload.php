@@ -1,5 +1,6 @@
 <?php
 include 'db_connect.php';
+include '../configs/Config.php';
 include 'vsplit.php';
 
 /**
@@ -103,7 +104,7 @@ function metaExtract($filename, $filedir) {
     }
 
     //TODO insert $vid into user's list of videos
-    $connection = connect_db('postgres', '1', 'CS160');
+    $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
     $query = "INSERT INTO videos (vtitle, vid, uid, framecount, width, height, fps, time_upload) VALUES ('".$vtitle."', $vid, $uid, $framecount, $width, $height, $fps, $time)"; //TODO needs to be tested on umy server
     $result = pg_query($query);
     pg_close($connection);

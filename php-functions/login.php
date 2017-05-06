@@ -1,16 +1,14 @@
 <?php
 session_start();
 include 'db_connect.php';
+include '../configs/Config.php';
 //Database Connection to Postgresql.
-$conn1 = connect_db("postgres", "1", "CS160");
+$conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
 
-if($conn1)
+
+if(!$conn1)
 {
-    echo "The connection is valid.\n";
-
-}
-else{
-    echo "The connection is invalid.";
+    error_log('DB connection problem :: login.php');
 }
 
 
@@ -29,7 +27,7 @@ class auth
 
     function access()
     { $usernounce = $this->nounce();
-        if (isset($_POST)) {
+        if (isset($_POST['submit'])) {
             $usernamez = filter_input(INPUT_POST, 'userr', FILTER_SANITIZE_STRING);
             $passwordz = filter_input(INPUT_POST, 'passs', FILTER_SANITIZE_STRING);
             $trimmedp = trim($passwordz);
@@ -60,12 +58,8 @@ class auth
             switch ($i)
             {
                 #case 1:header("Location: upload.php");break; //GOOD!
-                case 1: echo"
-                            <script lang=\"text/javascript\">
-                                window.location.href = \"/index.php\";
-                            </script>
-                ";
-                case 2:echo "Username not found, please register if you haven't!";break;
+                case 1: echo "Login Successful!";break;
+                case 2: echo "Username not found, please register if you haven't!";break;
                 default:echo "Invalid Authentication!";break;
             }
         }

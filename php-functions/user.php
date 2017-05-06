@@ -1,9 +1,11 @@
 <?php
 
 include 'db_connect.php';
+include '../configs/Config.php';
 //Database Connection to Postgresql.
-$conn1 = connect_db("postgres", "1", "CS160");
+$conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
 
+/*
 if($conn1)
 {
     echo "The connection is valid.";
@@ -11,7 +13,7 @@ if($conn1)
 }
 else{
     echo "The connection is invalid.";
-}
+}*/
 
 if (! empty( $_SERVER ['HTTP_X_FORWARDED_FOR'])) $fetchip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 else if (! empty ( $_SERVER['HTTP_CLIENT_IP'])) $fetchip = $_SERVER['HTTP_CLIENT_IP'];

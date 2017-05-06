@@ -44,6 +44,47 @@ var upload = function(){
     connect.send(data);
 }
 
+var login = function () {
+    var v1 = $.trim($('#userr').val());
+    var v2 = $.trim($('#passs').val());
+    if (!v1 || !v2){
+        $('#loginOutput').html("Missing fields");
+        if (!v1) {
+            $('#userr').css("border-color", "#DF3D82");
+        }
+        if (!v2){
+            $('#passs').css("border-color", "#DF3D82");
+        }
+        return;
+    }
+
+    $('#loginOutput').html("Trying");
+    var data = new FormData();
+    data.append('submit', true);
+    data.append('userr', $('#userr').val());
+    data.append('passs', $('#passs').val());
+
+    var connect = new XMLHttpRequest();
+    connect.onreadystatechange = function(){
+        if(connect.readyState == 4 && connect.status == 200){
+            $('#loginOutput').html(connect.responseText);
+            if (connect.responseText == "Login Successful!"){
+                setTimeout(function(){
+                    window.location.href = "/index.php";
+                }, 500);
+                $('#userr').css("border-color", "#43df0c");
+                $('#passs').css("border-color", "#43df0c");
+            }else{
+                $('#passs').css("border-color", "#DF3D82");
+                $('#userr').css("border-color", "#DF3D82");
+            }
+        }
+    };
+    connect.open('POST', 'php-functions/login.php', true);
+    connect.send(data);
+
+
+};
 
 var logoff = function(){
     $('#logOff').fadeOut();
@@ -71,6 +112,7 @@ var logoff = function(){
 
 $('#logOff').click(logoff);
 $("#submitNow").click(upload);
+$('#loginSubmit').click(login);
 $("#userFile").change(function () {
     _name.innerHTML = _file.files[0].name;
 });
@@ -84,5 +126,8 @@ $('#newUpload').click(function () {
 
     $('#realOutput').html("");
     $(this).hide();
+});
+$('#loginForm').on('click', function(e){
+    e.preventDefault();
 });
 
