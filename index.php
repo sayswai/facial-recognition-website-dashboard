@@ -64,7 +64,7 @@
       </nav>
 
       <!-- Login Form -->
-      <div class="modal fade" id="logForm">
+      <div class="modal" id="logForm">
           <div class="modal-dialogue" role="document">
               <div class="modal-content">
                   <div class="modal-header">
