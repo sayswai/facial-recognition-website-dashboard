@@ -10,10 +10,7 @@ var _submit = document.getElementById('submitNow'),
     _percent = document.getElementById('uploadPercent');
 
 var upload = function(){
-    if(_file.files.length === 0){
-        _name.innerHTML = "Please choose a file first";
-        return;
-    }
+
     _output.innerHTML = "Upload started: ";
 
     var data = new FormData();
@@ -102,6 +99,10 @@ var logoff = function(){
 
 $('#logOff').click(logoff);
 $("#submitNow").click(function () {
+    if(_file.files.length === 0){
+        _name.innerHTML = "Please choose a file first";
+        return;
+    }
     $('#submitNow').prop('disabled', true);
     upload();
 });
@@ -131,6 +132,7 @@ $('#newUpload').click(function () {
 
 
     $('#realOutput').html("");
+    $('#uploadName').css('color', '#000000');
     $(this).hide();
 
     $('#submitNow').prop('disabled', false);
