@@ -114,7 +114,20 @@ $('#logOff').click(logoff);
 $("#submitNow").click(upload);
 $('#loginSubmit').click(login);
 $("#userFile").change(function () {
-    _name.innerHTML = _file.files[0].name;
+    var size = _file.files[0].size;
+    if (size > 262144000){
+        $('#submitNow').prop('disabled', true);
+        $('#uploadName').css('color', '#df0719');
+    }else{
+        $('#uploadName').css('color', '#14df2a');
+        $('#submitNow').prop('disabled', false);
+    }
+
+    var strr = _file.files[0].name;
+    strr += '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
+    //_name.innerHTML = _file.files[0].name + '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
+    _name.innerHTML = strr;
+
 });
 $('#newUpload').click(function () {
     document.getElementById('userFile').value = "";

@@ -20,7 +20,7 @@ $META_OUTPUT = array("mov,mp4,m4a,3gp,3g2,mj2", "mpeg", "avi", "asf");
                         # "mov, mp4.."   "mpg, mpeg", "avi", "wmv"
 $UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'].'/uploads/raw_upload/';
 $VID_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/';
-$MAX_FILE_SIZE = 250000000; // in bytes
+$MAX_FILE_SIZE = 262144000; // in bytes
 
 
 /*Functions*/
@@ -128,8 +128,6 @@ if(isset($_POST["submit"])) {
 
     /**File name extension check**/
     if (extName($filedir)){ // Checks for appropriate Format
-        /**File size check**/
-        if ($_FILES["userUpload"]["size"] < $MAX_FILE_SIZE) { // checks file size, set file size in bytes
             /**Uploading**/
             //TODO webserver's apache settings limit file size uploads to 2M, find a way to change this
             if (move_uploaded_file($_FILES["userUpload"]["tmp_name"], $filedir)) {
@@ -156,10 +154,6 @@ if(isset($_POST["submit"])) {
                 echo "Something went wrong with the upload, please try again.";
                 error_log("Upload failed, apache related");
             }
-        }else{
-            echo "File size exceeds " . $MAX_FILE_SIZE / 1000000 . "MB. Cannot upload file.";
-            error_log("user's file size exceeded limitations");
-        }
     }else{
         echo "Invalid Format; Accepted Formats: <br>";
         foreach ($V_TYPES as $formats){
