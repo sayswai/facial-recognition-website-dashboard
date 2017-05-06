@@ -8,14 +8,11 @@
 
 include 'queries.php';
 
-//Test
-//insertDummyVideo();
+//Example directory
+//$splitImgDirectory = "../vids/fakeVideo/split_frames/";
 
 //Test
-$splitImgDirectory = "../vids/fakeVideo/split_frames/";
-
-//Test
-$test = '../eyeLike/build/bin/eyeLike ../vids/fakeVideo/split_frames/output_0004.png 2>&1';
+//$test = '../eyeLike/build/bin/eyeLike ../vids/fakeVideo/split_frames/output_0004.png 2>&1';
 
 // Eye Track command usage ./bin/eyeLike <img>
 //$eyeTrackCommand = "../eyeLike/build/bin/eyeLike";
@@ -37,7 +34,7 @@ function eyeTrack($splitImgDirectory,$videoID)
     $videoID = $fileStructure[2];
     */
 
-    // Get all files in directory
+    // Get all files in directory and store to array
     $splitImagesArray = scandir($splitImgDirectory);
 
     for($splitImgCount = 2; $splitImgCount < sizeof($splitImagesArray); $splitImgCount++){
@@ -58,5 +55,3 @@ function eyeTrack($splitImgDirectory,$videoID)
 
 }
 
-//Test
-eyeTrack($splitImgDirectory, 20);

@@ -13,23 +13,24 @@ include "../configs/Config.php";
  *
  * Usage:  ./OpenFace/build/bin/FaceLandmarkImg -fdir "../videos/" -ofdir "./demo_img/" -q
  *
+ * -fdir directory of frames
+ *
+ * -ofdir output directory of points
+ *
  * -q prevents window boxes from popping up (pop ups give errors)
  *
- * Change this line to where OpenFace FaceLandmarkImg is installed
  * */
 //$openFaceCommand = "sudo /home/ben/Downloads/OpenFace/build/bin/FaceLandmarkImg";
 $openFaceCommand = \cmdOpenFace;
 
-//Directory of split images
-$splitImgDirectory = "../vids/fakeVideo/split_frames/";
+//Example directory of split images
+//$splitImgDirectory = "../vids/fakeVideo/split_frames/";
 
-//Directory where detected landmarks should be written
-$ofDir = "../vids/fakeVideo/detected_frames/";
+//Example directory where detected landmarks should be written
+//$ofDir = "../vids/fakeVideo/detected_frames/";
 
 //Test
-$test = 'sudo /home/ben/Downloads/OpenFace/build/bin/FaceLandmarkImg -fdir "../vids/fakeVideo/split_frames/" -ofdir "../vids/fakeVideo/detected_frames/" -q 2>&1';
-;
-
+//$test = 'sudo /home/ben/Downloads/OpenFace/build/bin/FaceLandmarkImg -fdir "../vids/fakeVideo/split_frames/" -ofdir "../vids/fakeVideo/detected_frames/" -q 2>&1';
 
 /*
  * Call OpenFace to detected points and save the points into a directory
@@ -45,7 +46,7 @@ function openFace($splitImgDirectory, $ofDir){
 
 }
 
-//Test
-openFace($splitImgDirectory, $ofDir);
+//Example function call
+//openFace($splitImgDirectory, $ofDir);
 
 

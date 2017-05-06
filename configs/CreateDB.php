@@ -40,17 +40,17 @@ $sqlList = [
     )',
 
     'CREATE TABLE IF NOT EXISTS Eye (
-      vID INT NOT NULL,
+      vID BIGSERIAL,
       frameNum INT NOT NULL,
       rightPupilX INT,
       rightPupilY INT,
       leftPupilX INT,
       leftPupilY INT,
-      PRIMARY KEY (vID, frameNum)
+      FOREIGN KEY(vID) REFERENCES Videos(vID)
     )',
 
     'CREATE TABLE IF NOT EXISTS OpenFace (
-      vID INT NOT NULL,
+      vID BIGSERIAL,
       frameNum INT NOT NULL,
       point1 POINT NOT NULL,
       point2 POINT NOT NULL,
@@ -120,7 +120,7 @@ $sqlList = [
       point66 POINT NOT NULL,
       point67 POINT NOT NULL,
       point68 POINT NOT NULL,
-      PRIMARY KEY(frameNum)
+      FOREIGN KEY(vID) REFERENCES Videos(vID)
     );'];
 
 // execute each sql statement to create new tables

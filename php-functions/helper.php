@@ -7,7 +7,7 @@
  */
 
 /*
- * Replace all spaces with commas in each element of array
+ * Replace all whitespaces with commas in each element of array
  * @param $arrayOfPoints
  * */
 function commaSepArray($arrayOfPoints){
