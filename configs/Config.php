@@ -19,12 +19,12 @@ define("dbUsername","postgres");
 /*
 Password
 */
-define("dbPassword", "toor");
+define("dbPassword", "umyserver");
 
 /*
 Database name
 */
-define("dbDBname","CS160");
+define("dbDBname","cs160");
 
 /*
  * OpenFace Command
