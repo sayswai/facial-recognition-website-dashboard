@@ -14,7 +14,7 @@ function vsplit($vid, $fps) {
     mkdir($VID_SPLIT_DIR);
     shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'/split_%04d.png </dev/null >/dev/null 2>&1 &');
 
-    $connection = connect_db('postgres', '1', 'CS160');
+    $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
     $query = "UPDATE videos SET split = 1 WHERE vid = " . $vid . ";";
     $result = pg_query($query);
     pg_close($connection);
