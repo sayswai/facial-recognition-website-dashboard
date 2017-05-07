@@ -192,7 +192,7 @@
 
       <!-- Main View -->
         <div class="row">
-          <div class="col-6" id="videos">
+          <div class="col-10" id="videos">
             <div class="row">
               <div class="col" id="videos-left">
 
@@ -205,15 +205,13 @@
               </div>
             </div>
           </div>
-          <div class="col" id="blank">
+          <div class="col-2" id="blank">
               <!--Welcome user-->
               <?php if(isset($_SESSION['username'])){?>
                   <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['username'];?>!</font>
               <?php } ?> <!-- Add auto-scroll functionality, link will be main page -->
           </div>
         </div>
-
-
         <div id="log"></div>
 
       <!-- jQuery -->
