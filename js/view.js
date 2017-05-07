@@ -23,7 +23,7 @@ function createVids() {
 //      var videos = data;
 //    }
 //  });
-var videos = ["fakeVideo"];
+var videos = ["fakeVideo", "fakeVideo1", "fakeVideo2"];
   $('video').each(function (index) {
     $(this).append("<source src=\"vids/" + videos[index] + "/finished.mp4\" type=\"video/mp4\">This browser does not support the HTML5 video tag.");
   });
