@@ -28,3 +28,14 @@ var videos = ["fakeVideo"];
     $(this).append("<source src=\"vids/" + videos[index] + "/finished.mp4\" type=\"video/mp4\">This browser does not support the HTML5 video tag.");
   });
 }
+
+$(function() {
+  $("#logForm").on("hidden.bs.modal", function() {
+    $(this).find("input").val('');
+    $(this).find("input[type=checkbox]").prop("checked", "");
+  });
+  $("#signForm").on("hidden.bs.modal", function() {
+    $(this).find("input").val('');
+    grecaptcha.reset();
+  });
+});

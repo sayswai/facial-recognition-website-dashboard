@@ -131,7 +131,7 @@
                               <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci-b9O2ys8nX68"></div>
                           </div>
 
-                          <input type="submit" name="insert" class="btn btn-default col-sm-offset-2"></input>
+                          <button type="submit" name="insert" class="btn btn-default col-sm-offset-2">Sign Up</button>
                       </form>
                   </div>
               </div>
@@ -230,8 +230,5 @@
       <script type="text/javascript" src="js/view.js"></script> <!-- TODO create min.js once finished -->
       <script type="text/javascript" src="js/functions.js"></script>
       <script src="https://www.google.com/recaptcha/api.js"></script>
-
-
-
     </body>
   </html>
