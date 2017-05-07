@@ -12,7 +12,7 @@ function createVids() {
   //    }
   //  });
   var videos = ["fakeVideo", "fakeVideo1", "fakeVideo2"];
-  for(i=1; i<61; i++) {
+  for(i=1; i<31; i++) {
     var html = "<video width=\"320\" height=\"240\" controls><source src=\"vids/" + videos[i-1] + "/finished.mp4\" type=\"video/mp4\">This browser does not support the HTML5 video tag.</video>"
     if (i % 3 == 0) {
       $("#videos-right").append(html);
