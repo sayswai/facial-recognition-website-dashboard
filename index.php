@@ -31,20 +31,6 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
 
-      <!-- jQuery -->
-      <script src="lib/jquery/jquery-3.1.1.min.js"></script>
-
-      <!-- Javascript Plugin -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-      <!-- Bootstrap js -->
-      <!--<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>-->
-      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-
-      <!-- Custom js -->
-      <script type="text/javascript" src="js/view.js"></script> <!-- TODO create min.js once finished -->
-      <script type="text/javascript" src="js/functions.js"></script>
-      <script src="https://www.google.com/recaptcha/api.js"></script>
     </head>
     <body onload="createVids()">
       <!-- Navbar -->
@@ -148,7 +134,7 @@
                               <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci-b9O2ys8nX68"></div>
                           </div>
 
-                          <input type="submit" name="insert" class="btn btn-default col-sm-offset-2"></input>
+                          <button type="submit" name="insert" class="btn btn-default col-sm-offset-2">Sign Up</button>
                       </form>
                   </div>
               </div>
@@ -231,7 +217,19 @@
         </div>
 
 
-        <div id="log"></div>
+        <!-- jQuery -->
+        <script src="lib/jquery/jquery-3.1.1.min.js"></script>
 
+        <!-- Javascript Plugin -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+        <!-- Bootstrap js -->
+        <!--<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>-->
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Custom js -->
+        <script type="text/javascript" src="js/view.js"></script> <!-- TODO create min.js once finished -->
+        <script type="text/javascript" src="js/functions.js"></script>
+        <script src="https://www.google.com/recaptcha/api.js"></script>
     </body>
   </html>
