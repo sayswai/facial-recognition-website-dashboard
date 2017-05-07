@@ -42,6 +42,7 @@ var upload = function(){
 var login = function () {
     var v1 = $.trim($('#userr').val());
     var v2 = $.trim($('#passs').val());
+
     if (!v1 || !v2){
         $('#loginOutput').html("Missing fields");
         if (!v1) {
@@ -53,7 +54,8 @@ var login = function () {
         return;
     }
 
-    $('#loginOutput').html("Trying");
+   // $('#loginOutput').html("Trying");
+
     var data = new FormData();
     data.append('submit', true);
     data.append('userr', $('#userr').val());
@@ -62,14 +64,15 @@ var login = function () {
     var connect = new XMLHttpRequest();
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
-            $('#loginOutput').html(connect.responseText);
-            if (connect.responseText == "Login Successful!"){
+            if (connect.responseText.trim() == "0"){
+                $('#loginOutput').html('Login Successful!');
                 setTimeout(function(){
                     window.location.href = "/index.php";
                 }, 500);
                 $('#userr').css("border-color", "#43df0c");
                 $('#passs').css("border-color", "#43df0c");
             }else{
+                $('#loginOutput').html(connect.responseText);
                 $('#passs').css("border-color", "#DF3D82");
                 $('#userr').css("border-color", "#DF3D82");
             }
@@ -77,8 +80,6 @@ var login = function () {
     };
     connect.open('POST', 'php-functions/login.php', true);
     connect.send(data);
-
-
 };
 
 var logoff = function(){

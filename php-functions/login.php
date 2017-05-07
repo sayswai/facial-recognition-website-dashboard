@@ -58,7 +58,7 @@ class auth
             switch ($i)
             {
                 #case 1:header("Location: upload.php");break; //GOOD!
-                case 1: echo "Login Successful!";break;
+                case 1: echo "0";break;
                 case 2: echo "Username not found, please register if you haven't!";break;
                 default:echo "Invalid Authentication!";break;
             }

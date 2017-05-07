@@ -21,30 +21,13 @@
       <!-- Custom CSS -->
       <link href="css/view.css" rel="stylesheet">
 
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-
-
-      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-
-      <!-- jQuery -->
-      <script src="lib/jquery/jquery-3.1.1.min.js"></script>
-
-      <!-- Javascript Plugin -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-      <!-- Bootstrap js -->
-      <!--<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>-->
-      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
-
-      <!-- Custom js -->
-      <script type="text/javascript" src="js/view.js"></script> <!-- TODO create min.js once finished -->
-      <script type="text/javascript" src="js/functions.js"></script>
-      <script src="https://www.google.com/recaptcha/api.js"></script>
     </head>
     <body onload="createVids()">
       <!-- Navbar -->
@@ -232,6 +215,23 @@
 
 
         <div id="log"></div>
+
+      <!-- jQuery -->
+      <script src="lib/jquery/jquery-3.1.1.min.js"></script>
+
+      <!-- Javascript Plugin -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+      <!-- Bootstrap js -->
+      <!--<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>-->
+      <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+      <!-- Custom js -->
+      <script type="text/javascript" src="js/view.js"></script> <!-- TODO create min.js once finished -->
+      <script type="text/javascript" src="js/functions.js"></script>
+      <script src="https://www.google.com/recaptcha/api.js"></script>
+
+
 
     </body>
   </html>
