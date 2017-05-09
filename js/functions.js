@@ -7,7 +7,10 @@ var _submit = document.getElementById('submitNow'),
     _progress = document.getElementById('progressBar'),
     _output = document.getElementById('uploadResult'),
     _name = document.getElementById('uploadName'),
-    _percent = document.getElementById('uploadPercent');
+    _percent = document.getElementById('uploadPercent'),
+    _extensions = ["mp4", "mpg", "mov", "mpeg", "avi", "wmv"],
+    _size = 262144000;
+
 
 var upload = function(){
 
@@ -110,19 +113,27 @@ $("#submitNow").click(function () {
 $('#loginSubmit').click(login);
 $("#userFile").change(function () {
     var size = _file.files[0].size;
-    if (size > 262144000){
+    var ext = _file.files[0].name.split('.').pop();
+
+    if (size > _size || jQuery.inArray(ext, _extensions) == -1){
         $('#submitNow').prop('disabled', true);
         $('#uploadName').css('color', '#df0719');
+        $('#outputWrapper').show();
+        if(size > _size){
+            $('#realOutput').html('File size is too big!');
+        }else{
+            $('#realOutput').html('Unsupported file format!');
+        }
     }else{
         $('#uploadName').css('color', '#14df2a');
         $('#submitNow').prop('disabled', false);
+        $('#outputWrapper').hide();
     }
 
     var strr = _file.files[0].name;
     strr += '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
     //_name.innerHTML = _file.files[0].name + '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
     _name.innerHTML = strr;
-
 });
 $('#newUpload').click(function () {
     document.getElementById('userFile').value = "";
