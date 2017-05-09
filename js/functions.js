@@ -11,7 +11,7 @@ var _submit = document.getElementById('submitNow'),
     _name = document.getElementById('uploadName'),
     _percent = document.getElementById('uploadPercent'),
     _extensions = ["mp4", "mpg", "mov", "mpeg", "avi", "wmv"],
-    _size = 262144000;
+    _size = 10000000;
 
 
 /*JS functions*/

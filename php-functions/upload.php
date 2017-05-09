@@ -20,7 +20,7 @@ $META_OUTPUT = array("mov,mp4,m4a,3gp,3g2,mj2", "mpeg", "avi", "asf");
                         # "mov, mp4.."   "mpg, mpeg", "avi", "wmv"
 $UPLOAD_DIR = $_SERVER['DOCUMENT_ROOT'].'/uploads/raw_upload/';
 $VID_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/';
-$MAX_FILE_SIZE = 262144000; // in bytes
+$MAX_FILE_SIZE = 10000000; // in bytes
 
 
 /*Functions*/
