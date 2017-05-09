@@ -9,7 +9,7 @@
 include 'queries.php';
 
 //Example file name
-//$fileName = "../vids/fakeVideo/detected_frames/output_0003_det_0.pts";
+//$fileName = "../vids/fakeVideo/detected_frames/split_0003_det_0.pts";
 
 /*
  * Function to extract the 68 points into an array
@@ -52,11 +52,11 @@ function parsePointFilesAndInsert($directoryOfPoints, $videoID){
         // Store the point file into an array
         $arrayOfPoints = getArrayPoints($directoryOfPoints . '/' . $fileName);
 
-        //$stripFileName = str_replace("output_", "", $fileName);
+        //$stripFileName = str_replace("split_", "", $fileName);
         //$stripFileName = str_replace("_det_0.pts", "", $stripFileName);
 
         // Get the frame number from the file name
-        preg_match_all('/output_(.*?)_det_/', $fileName, $out);
+        preg_match_all('/split_(.*?)_det_/', $fileName, $out);
 
         $stripFileName = $out[1][0];
 
