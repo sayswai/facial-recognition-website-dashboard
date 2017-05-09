@@ -29,7 +29,7 @@
     <![endif]-->
 
     </head>
-    <body onload="createVid()">
+    <body onload="createVids()">
       <!-- Navbar -->
       <!-- TODOS: Add auto-scrolling feature, finish profile link, add links once page is further designed, test for visual design, separate navbar and other common html code and import when necessary(reusability) -->
       <nav id="navbar" class="navbar navbar-toggleable-md navbar-inverse" role="navigation">
@@ -192,20 +192,10 @@
 
       <!-- Main View -->
         <div class="row">
-          <div class="col-10" id="videos">
-            <div class="row">
-              <div class="col" id="videos-left">
+          <div class="col-10" id="video">
 
-              </div>
-              <div class="col" id="videos-center">
-
-              </div>
-              <div class="col" id="videos-right">
-
-              </div>
-            </div>
           </div>
-          <div class="col-2" id="blank">
+          <div class="col-2" id="userVideos">
               <!--Welcome user-->
               <?php if(isset($_SESSION['username'])){?>
                   <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['username'];?>!</font>
