@@ -133,11 +133,29 @@ var signUp = function(){
     var connect = new XMLHttpRequest();
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
-                $('#signUpOutput').html(connect.responseText);
+            if(connect.responseText == 23505){
+                $('#signUpOutput').html('Username already exists.');
+                return false;
+            }
+                $('#signUpOutput').html("Registration Successful! Proceed to <a href=\"#logForm\" data-dismiss=\"modal\" data-toggle=\"modal\">login<\/a>");
         }
     };
     connect.open('POST', 'php-functions/user.php', true);
     connect.send(data);
+};
+
+var signOnPass = function(){
+    if ($('#pas').val() != $('#repas').val() || $('#pas').val().length <= 0 || $('#repas').val().length <= 0){
+        $('#signUpSubmit').prop('disabled', true);
+        $('#pas').css('border-color', '#df3d82');
+        $('#repas').css('border-color', '#df3d82');
+        $('#signUpOutput').html('Passwords do not match');
+    }else {
+        $('#signUpSubmit').prop('disabled', false);
+        $('#pas').css('border-color', '#43df0c');
+        $('#repas').css('border-color', '#43df0c');
+        $('#signUpOutput').html('');
+    }
 };
 
 
@@ -204,30 +222,5 @@ $('#signUpForm').on('click', function(e){
     e.preventDefault();
 });
 $('#signUpSubmit').click(signUp);
-$('#pas').change(function(){
-        if ($('#pas').val() != $('#repas').val() || $(this).val().length <= 0){
-            $('#signUpSubmit').prop('disabled', true);
-            $('#pas').css('border-color', '#df3d82');
-            $('#repas').css('border-color', '#df3d82');
-            $('#signUpOutput').html('Passwords do not match');
-        }else{
-            $('#signUpSubmit').prop('disabled', false);
-            $('#pas').css('border-color', '#43df0c');
-            $('#repas').css('border-color', '#43df0c');
-            $('#signUpOutput').html('');
-        }
-});
-$('#repas').change(function(){
-    if ($('#pas').val() != $('#repas').val() || $(this).val().length <= 0){
-        $('#signUpSubmit').prop('disabled', true);
-        $('#pas').css('border-color', '#df3d82');
-        $('#repas').css('border-color', '#df3d82');
-        $('#signUpOutput').html('Passwords do not match');
-    }else{
-        $('#signUpSubmit').prop('disabled', false);
-        $('#pas').css('border-color', '#43df0c');
-        $('#repas').css('border-color', '#43df0c');
-        $('#signUpOutput').html('');
-    }
-});
-
+$('#pas').keyup(signOnPass);
+$('#repas').keyup(signOnPass);
