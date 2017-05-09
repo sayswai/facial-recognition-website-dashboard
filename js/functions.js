@@ -7,7 +7,9 @@ var _submit = document.getElementById('submitNow'),
     _progress = document.getElementById('progressBar'),
     _output = document.getElementById('uploadResult'),
     _name = document.getElementById('uploadName'),
-    _percent = document.getElementById('uploadPercent');
+    _percent = document.getElementById('uploadPercent'),
+    _extensions = ["mp4", "mpg", "mov", "mpeg", "avi", "wmv"];
+
 
 var upload = function(){
 
@@ -21,7 +23,7 @@ var upload = function(){
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
             $('#outputWrapper').show();
-            $('#realOutput').html(connect.responseText);
+            $('#realOutput').html('<b>' + connect.responseText + '</b>');
         }
     };
 
@@ -110,7 +112,9 @@ $("#submitNow").click(function () {
 $('#loginSubmit').click(login);
 $("#userFile").change(function () {
     var size = _file.files[0].size;
-    if (size > 262144000){
+    var ext = _file.files[0].name.split('.').pop();
+
+    if (size > 262144000 || jQuery.inArray(ext, _extensions) == -1){
         $('#submitNow').prop('disabled', true);
         $('#uploadName').css('color', '#df0719');
     }else{
@@ -122,7 +126,6 @@ $("#userFile").change(function () {
     strr += '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
     //_name.innerHTML = _file.files[0].name + '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
     _name.innerHTML = strr;
-
 });
 $('#newUpload').click(function () {
     document.getElementById('userFile').value = "";
