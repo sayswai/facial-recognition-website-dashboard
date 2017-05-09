@@ -39,18 +39,10 @@ if(isset($_POST["insert"]))
     $query="INSERT INTO users (username,password,firstname,lastname,ip) VALUES ('".$username."', '".$encryptedpass."', '".$firstname."','".$lastname."','".$fetchip."')";
 
 
-    $psql = pg_query($query); //executes the query!
-
-    //check if succeeded.
-    if($psql)
-    {
-        echo "Registration Successful, continue to <a href=\"#logForm\" data-dismiss=\"modal\" data-toggle=\"modal\">login</a>";
-    }
-    else{
-        $errormsg = pg_last_error();
-        echo "We have faced an error: ".$errormsg;
-        exit();
-    }
+    #$psql = pg_query($query); //executes the query!
+    $pgsql = pg_send_query($conn1, $query);
+    $resp = pg_get_result($conn1);
+    echo pg_result_error_field($resp, PGSQL_DIAG_SQLSTATE);
 }
 pg_close($conn1);
 ?>

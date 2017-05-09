@@ -63,7 +63,7 @@
               <?php }?>
               <?php if(isset($_SESSION['username'])){?>
               <li class="nav-item">
-                  <a class="nav-link"  href="" id="logOff">Logout</a>
+                  <a class="nav-link" href="" id="logOff">Logout</a>
               </li>
               <?php }?>
           </ul>
@@ -165,7 +165,7 @@
                                   <li>Files are limited to 250MB</li>
                                   <li>Accepted formats: mp4, mpg, mov, mpeg, avi, wmv</li>
                                   <li>Avoid changing extension names</li>
-                                  <div id="outputWrapper" style="display:none">
+                                  <div id="outputWrapper" style="display:none;">
                                       <br>
                                       <u><b>Output</b></u><br>
                                       <div style="font-weight: bold;" id="realOutput">
@@ -219,7 +219,7 @@
           <div class="col-2" id="blank">
               <!--Welcome user-->
               <?php if(isset($_SESSION['username'])){?>
-                  <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['username'];?>!</font>
+                  <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['firstname'];?>!</font>
               <?php } ?> <!-- Add auto-scroll functionality, link will be main page -->
           </div>
         </div>

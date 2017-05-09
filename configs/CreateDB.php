@@ -16,37 +16,44 @@ $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
 $sqlList = [
 
     'CREATE TABLE IF NOT EXISTS Users (
-      uID BIGSERIAL,
-      username  CHAR(50) NOT NULL UNIQUE,
-      password CHAR(128) NOT NULL,
-      firstName VARCHAR(50) NOT NULL,
-      lastName VARCHAR(50) NOT NULL,
-      IP VARCHAR(39) NOT NULL,
-      Uservids VARCHAR(39) NULL,
-      PRIMARY KEY (uID)
+      uid bigserial not null
+		constraint users_pkey
+			primary key,
+	username char(50) not null
+		constraint users_username_key
+			unique,
+	password char(128) not null,
+	firstname varchar(50) not null,
+	lastname varchar(50) not null,
+	ip varchar(39) not null,
+	uservids text,
+	uploaded integer default 0,
+	infraction integer default 0
     )',
 
     'CREATE TABLE IF NOT EXISTS Videos (
-      vID bigserial,
-      uID int not null,
-      frameCount int not null,
-      width int not null,
-      height int not null,
-      fps int not null,
-      vtitle text not null,
-      time_upload int not null,
-      split int not null DEFAULT 0,
-      PRIMARY KEY (vID)
+      vid bigserial not null
+		constraint videos_pkey
+			primary key,
+	uid integer not null,
+	framecount integer not null,
+	width integer not null,
+	height integer not null,
+	fps integer not null,
+	vtitle text not null,
+	time_upload integer not null,
+	split integer default 0 not null
     )',
 
     'CREATE TABLE IF NOT EXISTS Eye (
-      vID BIGSERIAL,
-      frameNum INT NOT NULL,
-      rightPupilX INT,
-      rightPupilY INT,
-      leftPupilX INT,
-      leftPupilY INT,
-      FOREIGN KEY(vID) REFERENCES Videos(vID)
+      vid integer not null,
+	framenum integer not null,
+	rightpupilx integer,
+	rightpupily integer,
+	leftpupilx integer,
+	leftpupily integer,
+	constraint eye_pkey
+		primary key (vid, framenum)
     )',
 
     'CREATE TABLE IF NOT EXISTS OpenFace (

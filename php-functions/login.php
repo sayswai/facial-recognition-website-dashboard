@@ -50,11 +50,19 @@ class auth
                     if (trim($col[2]) == $PASS) //check password that matches user
                     {
                         $i = 1;
+                        $query = "SELECT uid FROM users WHERE username = '" . $usernamez ."'";
+                        $result = pg_query($query);
+                        $_SESSION['uid'] = pg_fetch_all($result)[0][uid];
+                        $query = "SELECT firstname FROM users WHERE username = '" . $usernamez ."'";
+                        $result = pg_query($query);
+                        $_SESSION['firstname'] = pg_fetch_all($result)[0][firstname];
                         $_SESSION['username'] = $usernamez;
                     }
                 }
             }
             //statements
+
+
             switch ($i)
             {
                 #case 1:header("Location: upload.php");break; //GOOD!
@@ -68,4 +76,5 @@ class auth
 $grantyes = new auth();
 $grantyes->nounce();
 $grantyes->access();
+pg_close($conn1);
 ?>
