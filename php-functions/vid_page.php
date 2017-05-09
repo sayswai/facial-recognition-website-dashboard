@@ -29,15 +29,7 @@
     <![endif]-->
 
     </head>
-<<<<<<< HEAD
-    <body onload="createVid()">
-=======
-    <?php if(isset($_SESSION['username'])){?>
-        <body onload="createVids()">
-    <?php }else{ ?>
-        <body>
-        <?php } ?>
->>>>>>> origin/master
+    <body onload="createVids()">
       <!-- Navbar -->
       <!-- TODOS: Add auto-scrolling feature, finish profile link, add links once page is further designed, test for visual design, separate navbar and other common html code and import when necessary(reusability) -->
       <nav id="navbar" class="navbar navbar-toggleable-md navbar-inverse" role="navigation">
@@ -66,7 +58,7 @@
               <?php }?>
               <?php if(isset($_SESSION['username'])){?>
               <li class="nav-item">
-                  <a class="nav-link"  href="" id="logOff">Logout</a>
+                  <a class="nav-link"  href="/index.php" id="logOff">Logout</a>
               </li>
               <?php }?>
           </ul>
@@ -118,34 +110,29 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
-                      <form class="form-horizontal" role="form" method="" action="php-functions/user.php" id="signUpForm">
+                      <form class="form-horizontal" role="form" method="post" action="php-functions/user.php">
                           <div class="form-group">
                               <label for="fname">First Name:</label>
-                              <input type="text" class="form-control" name="fname"  placeholder="Enter First Name" id="fname">
+                              <input type="text" class="form-control" name="fname"  placeholder="Enter First Name" required>
                           </div>
                           <div class="form-group">
                               <label for="lname">Last Name:</label>
-                              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" id="lname">
+                              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
                           </div>
                           <div class="form-group">
                               <label for="uname">Username:</label>
-                              <input type="text" class="form-control" name="uname" placeholder="Enter Desired Username" id="uname">
+                              <input type="text" class="form-control" name="uname" placeholder="Enter Desired Username" required>
                           </div>
                           <div class="form-group">
                               <label for="pas">Password:</label>
-                              <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password" id="pas">
-                          </div>
-                          <div class="form-group">
-                              <label for="repas">Repeat Password:</label>
-                              <input type="password" class="form-control" name="repas" placeholder="Repeat Password" id="repas">
+                              <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password" required>
                           </div>
                           <div class="form-group">
                               <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci-b9O2ys8nX68"></div>
                           </div>
-                          <button type="submit" name="insert" class="btn btn-default col-sm-offset-2" id="signUpSubmit">Sign Up</button>
+
+                          <button type="submit" name="insert" class="btn btn-default col-sm-offset-2">Sign Up</button>
                       </form>
-                      <div class="text-right" id="signUpOutput">
-                      </div>
                   </div>
               </div>
           </div>
@@ -170,8 +157,7 @@
                                   <li>Avoid changing extension names</li>
                                   <div id="outputWrapper" style="display:none">
                                       <br>
-                                      <u><b>Output</b></u><br>
-                                      <div style="font-weight: bold;" id="realOutput">
+                                      <div id="realOutput">
                                       </div>
                                   </div>
                               </ol>
@@ -206,20 +192,10 @@
 
       <!-- Main View -->
         <div class="row">
-          <div class="col-10" id="videos">
-            <div class="row">
-              <div class="col" id="videos-left">
+          <div class="col-10" id="video">
 
-              </div>
-              <div class="col" id="videos-center">
-
-              </div>
-              <div class="col" id="videos-right">
-
-              </div>
-            </div>
           </div>
-          <div class="col-2" id="blank">
+          <div class="col-2" id="userVideos">
               <!--Welcome user-->
               <?php if(isset($_SESSION['username'])){?>
                   <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['username'];?>!</font>
