@@ -8,7 +8,8 @@ var _submit = document.getElementById('submitNow'),
     _output = document.getElementById('uploadResult'),
     _name = document.getElementById('uploadName'),
     _percent = document.getElementById('uploadPercent'),
-    _extensions = ["mp4", "mpg", "mov", "mpeg", "avi", "wmv"];
+    _extensions = ["mp4", "mpg", "mov", "mpeg", "avi", "wmv"],
+    _size = 262144000;
 
 
 var upload = function(){
@@ -23,7 +24,7 @@ var upload = function(){
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
             $('#outputWrapper').show();
-            $('#realOutput').html('<b>' + connect.responseText + '</b>');
+            $('#realOutput').html(connect.responseText);
         }
     };
 
@@ -114,12 +115,19 @@ $("#userFile").change(function () {
     var size = _file.files[0].size;
     var ext = _file.files[0].name.split('.').pop();
 
-    if (size > 262144000 || jQuery.inArray(ext, _extensions) == -1){
+    if (size > _size || jQuery.inArray(ext, _extensions) == -1){
         $('#submitNow').prop('disabled', true);
         $('#uploadName').css('color', '#df0719');
+        $('#outputWrapper').show();
+        if(size > _size){
+            $('#realOutput').html('File size is too big!');
+        }else{
+            $('#realOutput').html('Unsupported file format!');
+        }
     }else{
         $('#uploadName').css('color', '#14df2a');
         $('#submitNow').prop('disabled', false);
+        $('#outputWrapper').hide();
     }
 
     var strr = _file.files[0].name;

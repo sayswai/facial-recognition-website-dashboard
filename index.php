@@ -29,7 +29,11 @@
     <![endif]-->
 
     </head>
-    <body onload="createVids()">
+    <?php if(isset($_SESSION['username'])){?>
+        <body onload="createVids()">
+    <?php }else{ ?>
+        <body>
+        <?php } ?>
       <!-- Navbar -->
       <!-- TODOS: Add auto-scrolling feature, finish profile link, add links once page is further designed, test for visual design, separate navbar and other common html code and import when necessary(reusability) -->
       <nav id="navbar" class="navbar navbar-toggleable-md navbar-inverse" role="navigation">
@@ -157,7 +161,8 @@
                                   <li>Avoid changing extension names</li>
                                   <div id="outputWrapper" style="display:none">
                                       <br>
-                                      <div id="realOutput">
+                                      <u><b>Output</b></u><br>
+                                      <div style="font-weight: bold;" id="realOutput">
                                       </div>
                                   </div>
                               </ol>
