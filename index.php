@@ -63,7 +63,7 @@
               <?php }?>
               <?php if(isset($_SESSION['username'])){?>
               <li class="nav-item">
-                  <a class="nav-link"  href="" id="logOff">Logout</a>
+                  <a class="nav-link" href="" id="logOff">Logout</a>
               </li>
               <?php }?>
           </ul>

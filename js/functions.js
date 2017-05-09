@@ -96,7 +96,9 @@ var logoff = function(){
     data.append('submit', true);
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
-            $('#logOff').html(connect.responseText);
+            setTimeout(function(){
+                window.location.href = "/index.php";
+            }, 500);
         }
     };
     connect.open('POST', 'php-functions/logoff.php');
