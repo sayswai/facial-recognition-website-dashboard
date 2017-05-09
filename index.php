@@ -29,15 +29,12 @@
     <![endif]-->
 
     </head>
-<<<<<<< HEAD
     <body onload="createVid()">
-=======
     <?php if(isset($_SESSION['username'])){?>
         <body onload="createVids()">
     <?php }else{ ?>
         <body>
         <?php } ?>
->>>>>>> origin/master
       <!-- Navbar -->
       <!-- TODOS: Add auto-scrolling feature, finish profile link, add links once page is further designed, test for visual design, separate navbar and other common html code and import when necessary(reusability) -->
       <nav id="navbar" class="navbar navbar-toggleable-md navbar-inverse" role="navigation">
