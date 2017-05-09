@@ -44,9 +44,7 @@ if(isset($_POST["insert"]))
     //check if succeeded.
     if($psql)
     {
-        echo '<script language="javascript">';
-        echo 'alert("Thank You! You have now been registered!")';
-        echo '</script>';
+        echo "Registration Successful, continue to <a href=\"#logForm\" data-dismiss=\"modal\" data-toggle=\"modal\">login</a>";
     }
     else{
         $errormsg = pg_last_error();

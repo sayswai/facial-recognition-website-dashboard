@@ -62,7 +62,7 @@
               <?php }?>
               <?php if(isset($_SESSION['username'])){?>
               <li class="nav-item">
-                  <a class="nav-link"  href="/index.php" id="logOff">Logout</a>
+                  <a class="nav-link"  href="" id="logOff">Logout</a>
               </li>
               <?php }?>
           </ul>
@@ -114,29 +114,34 @@
                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                   </div>
                   <div class="modal-body">
-                      <form class="form-horizontal" role="form" method="post" action="php-functions/user.php">
+                      <form class="form-horizontal" role="form" method="" action="php-functions/user.php" id="signUpForm">
                           <div class="form-group">
                               <label for="fname">First Name:</label>
-                              <input type="text" class="form-control" name="fname"  placeholder="Enter First Name" required>
+                              <input type="text" class="form-control" name="fname"  placeholder="Enter First Name" id="fname">
                           </div>
                           <div class="form-group">
                               <label for="lname">Last Name:</label>
-                              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" required>
+                              <input type="text" class="form-control" name="lname" placeholder="Enter Last Name" id="lname">
                           </div>
                           <div class="form-group">
                               <label for="uname">Username:</label>
-                              <input type="text" class="form-control" name="uname" placeholder="Enter Desired Username" required>
+                              <input type="text" class="form-control" name="uname" placeholder="Enter Desired Username" id="uname">
                           </div>
                           <div class="form-group">
                               <label for="pas">Password:</label>
-                              <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password" required>
+                              <input type="password" class="form-control" name="pas" placeholder="Enter Desired Password" id="pas">
+                          </div>
+                          <div class="form-group">
+                              <label for="repas">Repeat Password:</label>
+                              <input type="password" class="form-control" name="repas" placeholder="Repeat Password" id="repas">
                           </div>
                           <div class="form-group">
                               <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci-b9O2ys8nX68"></div>
                           </div>
-
-                          <button type="submit" name="insert" class="btn btn-default col-sm-offset-2">Sign Up</button>
+                          <button type="submit" name="insert" class="btn btn-default col-sm-offset-2" id="signUpSubmit">Sign Up</button>
                       </form>
+                      <div class="text-right" id="signUpOutput">
+                      </div>
                   </div>
               </div>
           </div>

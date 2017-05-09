@@ -2,6 +2,8 @@
  * Created by Wai on 5/5/2017.
  */
 
+/*JS variables*/
+
 var _submit = document.getElementById('submitNow'),
     _file = document.getElementById('userFile'),
     _progress = document.getElementById('progressBar'),
@@ -11,6 +13,8 @@ var _submit = document.getElementById('submitNow'),
     _extensions = ["mp4", "mpg", "mov", "mpeg", "avi", "wmv"],
     _size = 262144000;
 
+
+/*JS functions*/
 
 var upload = function(){
 
@@ -61,8 +65,8 @@ var login = function () {
 
     var data = new FormData();
     data.append('submit', true);
-    data.append('userr', $('#userr').val());
-    data.append('passs', $('#passs').val());
+    data.append('userr', v1);
+    data.append('passs', v2);
 
     var connect = new XMLHttpRequest();
     connect.onreadystatechange = function(){
@@ -99,18 +103,55 @@ var logoff = function(){
     connect.send(data);
 };
 
-
-
-$('#logOff').click(logoff);
-$("#submitNow").click(function () {
-    if(_file.files.length === 0){
-        _name.innerHTML = "Please choose a file first";
-        return;
+var signUp = function(){
+    $('#signUpOutput').html('');
+    if(/\s/.test($('#fname').val()) || /\s/.test($('#lname').val()) || /\s/.test($('#uname').val())){
+        $('#signUpOutput').html('No white spaces allowed, check ');
+        if(/\s/.test($('#fname').val())){
+            $('#signUpOutput').append('First Name ');
+        }
+        if(/\s/.test($('#lname').val())){
+            $('#signUpOutput').append('Last Name ');
+        }
+        if(/\s/.test($('#uname').val())){
+            $('#signUpOutput').append('Username ');
+        }
+        return false;
     }
-    $('#submitNow').prop('disabled', true);
-    upload();
+    if($('#fname').val().length == 0 || $('#lname').val().length == 0 || $('#uname').val().length == 0){
+        $('#signUpOutput').html('Missing fields');
+        return false;
+    }
+
+    var data = new FormData();
+    data.append('insert', true);
+    data.append('uname', $('#uname').val());
+    data.append('pas', $('#pas').val());
+    data.append('fname', $('#fname').val());
+    data.append('lname', $('#lname').val());
+
+    var connect = new XMLHttpRequest();
+    connect.onreadystatechange = function(){
+        if(connect.readyState == 4 && connect.status == 200){
+                $('#signUpOutput').html(connect.responseText);
+        }
+    };
+    connect.open('POST', 'php-functions/user.php', true);
+    connect.send(data);
+};
+
+
+
+/*jQuery*/
+
+/*Log In & Log Out Related*/
+$('#logOff').click(logoff);
+$('#loginForm').on('click', function(e){
+    e.preventDefault();
 });
 $('#loginSubmit').click(login);
+
+/*Upload form Related*/
 $("#userFile").change(function () {
     var size = _file.files[0].size;
     var ext = _file.files[0].name.split('.').pop();
@@ -149,7 +190,44 @@ $('#newUpload').click(function () {
 
     $('#submitNow').prop('disabled', false);
 });
-$('#loginForm').on('click', function(e){
+$("#submitNow").click(function () {
+    if(_file.files.length === 0){
+        _name.innerHTML = "Please choose a file first";
+        return;
+    }
+    $('#submitNow').prop('disabled', true);
+    upload();
+});
+
+/*Sign Up Form Related*/
+$('#signUpForm').on('click', function(e){
     e.preventDefault();
+});
+$('#signUpSubmit').click(signUp);
+$('#pas').change(function(){
+        if ($('#pas').val() != $('#repas').val() || $(this).val().length <= 0){
+            $('#signUpSubmit').prop('disabled', true);
+            $('#pas').css('border-color', '#df3d82');
+            $('#repas').css('border-color', '#df3d82');
+            $('#signUpOutput').html('Passwords do not match');
+        }else{
+            $('#signUpSubmit').prop('disabled', false);
+            $('#pas').css('border-color', '#43df0c');
+            $('#repas').css('border-color', '#43df0c');
+            $('#signUpOutput').html('');
+        }
+});
+$('#repas').change(function(){
+    if ($('#pas').val() != $('#repas').val() || $(this).val().length <= 0){
+        $('#signUpSubmit').prop('disabled', true);
+        $('#pas').css('border-color', '#df3d82');
+        $('#repas').css('border-color', '#df3d82');
+        $('#signUpOutput').html('Passwords do not match');
+    }else{
+        $('#signUpSubmit').prop('disabled', false);
+        $('#pas').css('border-color', '#43df0c');
+        $('#repas').css('border-color', '#43df0c');
+        $('#signUpOutput').html('');
+    }
 });
 
