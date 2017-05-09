@@ -165,7 +165,7 @@
                                   <li>Files are limited to 250MB</li>
                                   <li>Accepted formats: mp4, mpg, mov, mpeg, avi, wmv</li>
                                   <li>Avoid changing extension names</li>
-                                  <div id="outputWrapper" style="display:none">
+                                  <div id="outputWrapper" style="display:none;">
                                       <br>
                                       <u><b>Output</b></u><br>
                                       <div style="font-weight: bold;" id="realOutput">
