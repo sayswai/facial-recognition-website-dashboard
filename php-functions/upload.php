@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db_connect.php';
 include '../configs/Config.php';
 include 'vsplit.php';
@@ -88,7 +89,7 @@ function metaExtract($filename, $filedir) {
     $time = time();
 
     $vid = crc32("V:" . $vtitle . "D:" . $duration . "S" . $size . "T" . $time);
-    $uid = 123124; //TODO this needs to change to fetch the user id from sessions
+    $uid = $_SESSION['uid'];
 
     /*Finalize
     -Create folder: /root/vids/(vid)/
@@ -103,17 +104,33 @@ function metaExtract($filename, $filedir) {
         return false;
     }
 
-    //TODO insert $vid into user's list of videos
+    //TODO  Very poor db control here, edit when you have the chance
     $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
     $query = "INSERT INTO videos (vtitle, vid, uid, framecount, width, height, fps, time_upload) VALUES ('".$vtitle."', $vid, $uid, $framecount, $width, $height, $fps, $time)"; //TODO needs to be tested on umy server
     $result = pg_query($query);
+    $query = "SELECT uservids FROM users WHERE uid = '" . $uid . "'";
+    $result1 = pg_query($query);
+    if (pg_fetch_all($result1)[0][uservids] == ''){
+        $query = "UPDATE users SET uservids = '{" . $vid . "}' WHERE uid = '". $uid ."'";
+    }else{
+        $query = "UPDATE users SET uservids = '{" . $vid . "}' || uservids WHERE uid = '" . $uid . "'";
+    }
+    $query .= "; UPDATE users SET uploaded = uploaded + 1 WHERE uid = '" . $uid . "'";
+    $result2 = pg_query($query);
     pg_close($connection);
-    if (!$result){
+    if ($result == false || $result1 == false || $result2 == false){
         //if db query fails, everything fails; remove created directory
         shell_exec('rm -rf "' .$newdir.'"');
         return false;
     }
 
+    /*FETCH ViDS FROM USER:
+    $query = "SELECT uservids FROM users WHERE username = '" . $username . "'";
+    $result = pg_query($query);
+    $arr = pg_fetch_all($result);
+    preg_match_all('/{(.*?)}/', $arr[0][uservids], $matches);
+    echo $matches[1][0];
+    */
     vsplit($vid, $fps);
     return true;
 }

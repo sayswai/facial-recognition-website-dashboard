@@ -39,6 +39,8 @@ var upload = function(){
 
     connect.upload.addEventListener('load', function(e) {
         _output.innerHTML = "Upload complete";
+        $('#outputWrapper').show();
+        $('#realOutput').html('...finalizing.....');
         $("#newUpload").show();
     }, false);
 
@@ -209,6 +211,7 @@ $('#newUpload').click(function () {
     $(this).hide();
 
     $('#submitNow').prop('disabled', false);
+    $('#outputWrapper').hide();
 });
 $("#submitNow").click(function () {
     if(_file.files.length === 0){

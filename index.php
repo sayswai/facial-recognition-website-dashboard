@@ -219,7 +219,7 @@
           <div class="col-2" id="blank">
               <!--Welcome user-->
               <?php if(isset($_SESSION['username'])){?>
-                  <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['username'];?>!</font>
+                  <br> <font color ="#ff1493">Hi there, <?php echo $_SESSION['firstname'];?>!</font>
               <?php } ?> <!-- Add auto-scroll functionality, link will be main page -->
           </div>
         </div>
