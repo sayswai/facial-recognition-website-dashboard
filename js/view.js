@@ -84,15 +84,18 @@ var hideVideo = function (e) {
 
 
 
-$(function() {
-  $("#logForm").on("hidden.bs.modal", function() {
+
+$("#logForm").on("hidden.bs.modal", function() {
     $(this).find("input").val('');
     $(this).find("input[type=checkbox]").prop("checked", "");
-  });
-  $("#signForm").on("hidden.bs.modal", function() {
+});
+$("#signForm").on("hidden.bs.modal", function() {
     $(this).find("input").val('');
     grecaptcha.reset();
-  });
+});
+$('.modal').on('show.bs.modal', function() {
+    $('.modal .modal-body').css('overflow-y', 'auto');
+    $('.modal .modal-body').css('max-height', $(window).height() * 0.7);
 });
 
 
