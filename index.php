@@ -184,13 +184,16 @@
                             <li>Accepted formats: mp4, mpg, mov, mpeg, avi, wmv</li>
                             <li>Avoid changing extension names</li>
                             <li>Each user is limited to 3 video uploads</li>
-                            <div id="outputWrapper" style="display:none;">
-                                <br>
-                                <u><b>Output</b></u><br>
-                                <div style="font-weight: bold;" id="realOutput">
-                                </div>
-                            </div>
                         </ol>
+
+                        <div class="card" id="outputWrapper" style="display: none;">
+                            <div class="card-header">
+                                <h2 class="text-center">Upload Results<h2>
+                            </div>
+                            <div class="card-block" id="realOutput">
+                            </div>
+                        </div>
+                        <br>
                     </div>
                     <div class="row">
                         <div class="col-4"><p>Select your video:</p></div>
