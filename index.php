@@ -227,25 +227,29 @@
 
 
 <!-- Main View -->
-<div class="row">
+<div class="video-title" id="vidTitle" style="display:none;">
+    <h1 class="text-right text">VIDEOS</h1>
+</div>
+
+<div class="row" style="padding: 30px;">
     <div class="col-10" id="videos">
         <div class="row">
             <div class="col" id="videos-left">
-
             </div>
             <div class="col" id="videos-center">
             </div>
             <div class="col" id="videos-right">
-
             </div>
         </div>
     </div>
 
-    <div class="col-2" id="blank">
+    <div class="col-2" id="greetings" style="color: #ff1493;">
         <!--Welcome user-->
+        <font color="#ff1493">
         <?php if (isset($_SESSION['username'])) { ?>
-            <br> <font color="#ff1493">Hi there, <?php echo $_SESSION['firstname']; ?>!</font>
+            <br> Hi there, <?php echo $_SESSION['firstname']; ?>!
         <?php } ?> <!-- Add auto-scroll functionality, link will be main page -->
+        </font>
     </div>
 </div>
 <div id="log"></div

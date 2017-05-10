@@ -9,6 +9,10 @@ body {
   text-align: center;
 }
 
+.pull-right {
+    float: right;
+}
+
 /* NAVBAR START */
 .navbar-toggleable-md {
   background-color: #222222;
@@ -111,8 +115,17 @@ body {
 #signForm {
   height: auto;
 }
+*/
 
 /* MODAL END */
+
+/* USER VIDEO START */
+.video-title {
+    padding: 40px;
+    padding-bottom: 0px;
+    color: #585858;
+}
+/* USER VIDEO END */
 
 /* UPLOAD START */
 .btn-file {
@@ -149,9 +162,12 @@ body {
 
 /* HOVER VIDEO START*/
 .hVideo {
-    height: 320px;
-    width: 240px;
-    margin-bottom: 50px;
+    width: 320px;
+    height: 240px;
+}
+
+.hVideoColumn {
+    width: 320px
 }
 
 /* Hide Play button + controls on iOS */
@@ -159,3 +175,9 @@ video::-webkit-media-controls {
     display:none !important;
 }
 /* HOVER VIDEO END */
+
+/* FORMS START */
+.form-horizontal {
+    padding: 2px;
+}
+/* FORMS END */
