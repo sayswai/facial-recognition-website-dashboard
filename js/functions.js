@@ -119,12 +119,10 @@ var logoff = function(){
     data.append('submit', true);
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
-            setTimeout(function(){
-                window.location.href = "/index.php";
-            }, 500);
+            window.location.href = "/index.php"
         }
     };
-    connect.open('POST', 'php-functions/logoff.php');
+    connect.open('POST', 'php-functions/logoff.php', true);
     connect.send(data);
 };
 
@@ -162,7 +160,12 @@ var signUp = function(){
                 $('#signUpOutput').html('Username already exists.');
                 return false;
             }
-                $('#signUpOutput').html("Registration Successful! Proceed to <a href=\"#logForm\" data-dismiss=\"modal\" data-toggle=\"modal\">login<\/a>");
+                //$('#signUpOutput').html("Registration Successful! Proceed to <a href=\"#logForm\" data-dismiss=\"modal\" data-toggle=\"modal\">login<\/a>");
+            setTimeout(function(){
+                $('#signForm').modal('hide');
+                $('#logForm').modal('show');
+            }, 700);
+            $('#signUpBody').html('Registration Successful!');
         }
     };
     connect.open('POST', 'php-functions/user.php', true);

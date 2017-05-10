@@ -15,7 +15,7 @@ function createVid() {
 
 function pushVideos(vID) {
     if (vID.length <= 0){
-        $('#videos-center').html('No videos found, start uploading!');
+        $('#videos-center').html('<font color="#ff1493">No videos found, start uploading!</font>');
         return false;
     }
     for (var x = 0; x < vID.length; x++){

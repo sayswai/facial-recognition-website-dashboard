@@ -139,7 +139,7 @@ function metaExtract($filename, $filedir) {
 
 /*Post*/
 /**Upload**/
-if(isset($_POST["submit"])) {
+if(isset($_POST["submit"]) && isset($_SESSION['username']) && isset($_SESSION['uid'])) {
     $filename = basename($_FILES["userUpload"]["name"]);
     $filedir = $UPLOAD_DIR . $filename;
 
@@ -162,10 +162,12 @@ if(isset($_POST["submit"])) {
                     }
                 }else{
                     unlink($filedir);
-                    echo "Changing the file extension in the filename won't work here. Try it once more and you'll be banned.";
-                    error_log("user disguised item as movie and tried to upload");
-                    //TODO add danger points to user's dB input every time they try doing this, ban them on the 3rd attempt
-
+                    echo "Changing the file extension in the filename won't work here. <br>An infraction has been added to your account. <br>One more and you'll be banned.";
+                    error_log("user ". $_SESSION['username']. "disguised item as movie and tried to upload");
+                    $conn = connect_db(\dbUsername, \dbPassword, \dbDBname);
+                    $query = "UPDATE users SET infraction = infraction + 1 WHERE uid = '" . $_SESSION['uid'] . "'";
+                    pg_query($query);
+                    pg_close($conn);
                 }
             }else{
                 echo "Something went wrong with the upload, please try again.";
