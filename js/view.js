@@ -1,32 +1,6 @@
-function createVids() {
-
-    //Get all video sources from db
-  //  $.ajax({
-  //    url: 'php-functions/get_videos.php',
-  //    data: "",
-  //
-  //    dataType: 'json',
-  //    success: function(data)
-  //    {
-  //      var videos = data;
-  //    }
-  //  });
-  var videos = [["fakeVideo", "video1"], ["fakeVideo1", "video2"], ["fakeVideo2", "video3"]];
-  for(i=1; i<31; i++) {
-    var html = "<video width=\"320\" height=\"240\" controls><source src=\"vids/" + videos[i-1][0] + "/finished.mp4\" type=\"video/mp4\">This browser does not support the HTML5 video tag.</video><br><a href=\"https://sayswaiy.ddns.net/"+ videos[i-1][0] +"\"><p class=\"center-text\">"+ videos[i-1][1] +"</p></a>";
-    if (i % 3 == 0) {
-      $("#videos-right").append(html);
-    } else if (i % 2 == 0) {
-      $("#videos-center").append(html);
-    } else {
-      $("#log").addClass("log");
-      $("#videos-left").append(html);
-    }
-  }
-}
 
 function createVid() {
-  var vID = window.location.href.slice(26);
+  //var vID = window.location.href.slice(26);
   //Get video source from db
 //  $.ajax({
 //    url: 'php-functions/get_video.php',
@@ -38,11 +12,58 @@ function createVid() {
 //    {
 //      var video = data;
 //    }
-//  });
+//  });    var connect = new XMLHttpRequest();
+    var connect = new XMLHttpRequest();
+    var data = new FormData();
+    data.append('submit', true);
+    connect.onreadystatechange = function(){
+        if(connect.readyState == 4 && connect.status == 200){
+            pushVideos(JSON.parse(connect.responseText));
+            }
+    };
 
-  var html = "<video width=\"1280\" height=\"960\" controls><source src=\"vids/" + vID + "/finished.mp4\" type=\"video/mp4\">This browser does not support the HTML5 video tag.</video><br><h2 class=\"center-text\">"+ video[1] +"</h2>";
-  $("#video").append(html);
+    connect.open('POST', 'php-functions/get_videos.php', true);
+    connect.send(data);
 }
+
+function pushVideos(vID) {
+    if (vID.length <= 0){
+        $('#videos-center').html('No videos found, start uploading!');
+        return false;
+    }
+    for (var x = 0; x < vID.length; x++){
+        src = "vids/" + vID[x] + "/main.mp4";
+
+        html = " <div class=\"hVideo\">"+
+            "   <video width=\"320px\" height=\"240px\">" +
+            "       <source src=\"" +src+ "\" type=\"video/mp4\">" +
+            "       <source src=\"movie.ogg\" type=\"video/ogg\">" +
+            "       Your browser does not support the video tag." +
+            "   </video>" +
+            "</div>";
+        if(x == 0){
+            $('#videos-left').append(html);
+        }else if(x == 1){
+            $('#videos-center').append(html);
+        }else{
+            $('#videos-right').append(html);
+        }
+    }
+
+    $(".hVideo").hover( hoverVideo, hideVideo );
+    return true;
+}
+
+var hoverVideo = function (e) {
+    $('video', this).get(0).play();
+}
+
+var hideVideo = function (e) {
+    $('video', this).get(0).pause();
+}
+
+$(".hVideo").hover( hoverVideo, hideVideo );
+
 
 $(function() {
   $("#logForm").on("hidden.bs.modal", function() {
@@ -54,3 +75,6 @@ $(function() {
     grecaptcha.reset();
   });
 });
+
+
+

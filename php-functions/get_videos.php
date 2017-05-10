@@ -1,15 +1,28 @@
 <?php
-
+session_start();
 include 'db_connect.php';
 include '../configs/Config.php';
 
-//Database Connection to Postgresql.
-$connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
+#if(isset($_POST['submit']) && isset($_SESSION['username'])){
+if(true){
+    $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
 
-$sql = "SELECT vID, vtitle FROM Videos ORDER BY time_upload DESC LIMIT 60"
-$result = pg_query($sql) or die ("Cannot execute query :$query\n");
-$array = pg_fetch_row($result) or die ("Cannot execute row fetch :$result\n");
-pg_close($connection);
+    $query = "SELECT uservids FROM users WHERE username = '" . $_SESSION['username'] . "'";
+    $result = pg_query($query);
+    $arr = pg_fetch_all($result);
+    preg_match_all('/{(.*?)}/', $arr[0][uservids], $matches);
+    pg_close($connection);
 
-echo json_encode($array);
+    if (isset($matches[1])) {
+        echo json_encode($matches[1]);
+    }
+}else{
+    error_log('get_videos.php accessed without post');
+    ?>
+    <script lang="javascript">
+        window.location.href = "/index.php";
+    </script>
+    <?php
+}
+
 ?>

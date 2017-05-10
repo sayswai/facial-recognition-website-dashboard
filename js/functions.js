@@ -29,6 +29,7 @@ var upload = function(){
         if(connect.readyState == 4 && connect.status == 200){
             $('#outputWrapper').show();
             $('#realOutput').html(connect.responseText);
+            $('#goToVideos').show();
         }
     };
 
@@ -212,6 +213,7 @@ $('#newUpload').click(function () {
 
     $('#submitNow').prop('disabled', false);
     $('#outputWrapper').hide();
+    $('#gotovideos').hide();
 });
 $("#submitNow").click(function () {
     if(_file.files.length === 0){

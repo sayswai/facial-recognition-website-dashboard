@@ -29,9 +29,8 @@
     <![endif]-->
 
     </head>
-    <body onload="createVid()">
     <?php if(isset($_SESSION['username'])){?>
-        <body onload="createVids()">
+        <body onload="createVid()">
     <?php }else{ ?>
         <body>
         <?php } ?>
@@ -162,7 +161,7 @@
                           <div class="col text-black" id="instructions">
                               <h2 class="text-center">Upload Rules</h2><br>
                               <ol>
-                                  <li>Files are limited to 250MB</li>
+                                  <li>Files are limited to 10MB (Until more powerful servers arrive)</li>
                                   <li>Accepted formats: mp4, mpg, mov, mpeg, avi, wmv</li>
                                   <li>Avoid changing extension names</li>
                                   <div id="outputWrapper" style="display:none;">
@@ -176,6 +175,7 @@
                           <p>Select your video: </p>
                             <div class="text-right">
                                 <div id="uploadName"></div>
+                                <a href="index.php"><button type="submit" class="btn btn-default" id='goToVideos' name="goToVideos" style="display: none;">My Videos</button></a>
                                 <button type="submit" class="btn btn-default" id='newUpload' name="newUpload" style="display: none;">New Upload</button>
                                 <span class="btn btn-primary btn-file">
                                     Browse <input type="file" name="userFile" id="userFile"/>
@@ -209,13 +209,13 @@
 
               </div>
               <div class="col" id="videos-center">
-
               </div>
               <div class="col" id="videos-right">
 
               </div>
             </div>
           </div>
+
           <div class="col-2" id="blank">
               <!--Welcome user-->
               <?php if(isset($_SESSION['username'])){?>

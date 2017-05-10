@@ -145,3 +145,17 @@ body {
     height: 20px;
 }
 /* UPLOAD END */
+
+
+/* HOVER VIDEO START*/
+.hVideo {
+    height: 320px;
+    width: 240px;
+    margin-bottom: 50px;
+}
+
+/* Hide Play button + controls on iOS */
+video::-webkit-media-controls {
+    display:none !important;
+}
+/* HOVER VIDEO END */
