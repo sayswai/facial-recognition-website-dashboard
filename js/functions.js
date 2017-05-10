@@ -59,6 +59,7 @@ var numOfUpload = function (){
         if(connect.readyState == 4 && connect.status == 200){
             if (connect.responseText >= 3){
                 $('#uploadResult').html('At the moment, we are only accepting 3 videos. <br> Please delete existing videos to upload more.');
+                $('#goToVideos').show();
                 return false;
             }
             upload();

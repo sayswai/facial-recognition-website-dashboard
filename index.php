@@ -70,7 +70,7 @@
       </nav>
 
       <!-- Login Form -->
-      <div class="modal hide fade in" id="logForm">
+      <div class="modal hide fade in" id="logForm" tabindex="-1">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -106,7 +106,7 @@
       </div>
 
       <!-- Signup Form -->
-      <div class="modal hide fade in" id="signForm">
+      <div class="modal hide fade in" id="signForm" tabindex="-1">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -148,7 +148,7 @@
       </div>
 
         <!-- Upload Form -->
-      <div class="modal hide fade in" id="uploadForm">
+      <div class="modal hide fade in" id="uploadForm" tabindex="-1">
           <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-header">
