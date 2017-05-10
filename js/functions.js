@@ -32,11 +32,7 @@ var upload = function() {
             $('#realOutput').html(connect.responseText);
             $('#realOutput').append('<br> Click \'My Videos\' to view your video right now!');
             $('#goToVideos').show();
-        }else{
-            $('#userFileDiv').prop('disabled', true);
-            $('#submitNow').prop('disabled', true);
         }
-
     };
 
     connect.upload.addEventListener('progress', function(e){
@@ -52,6 +48,7 @@ var upload = function() {
     }, false);
 
     connect.open('POST', 'php-functions/upload.php', true);
+    $('#userFileDiv').hide();
     connect.send(data);
 };
 
@@ -240,6 +237,7 @@ $('#newUpload').click(function () {
 
     $('#submitNow').prop('disabled', false);
     $('#outputWrapper').hide();
+    $('#userFileDiv').show();
 });
 $("#submitNow").click(function () {
     if(_file.files.length === 0){
