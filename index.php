@@ -192,18 +192,18 @@
                             </div>
                         </ol>
                     </div>
-                    <p>Select your video: </p>
+                    <div class="row">
+                        <div class="col-4"><p>Select your video:</p></div>
+                        <div class="col-8"id="uploadName"></div>
+                    </div>
                     <div class="text-right">
-                        <div id="uploadName"></div>
-                        <a href="index.php">
-                            <button type="submit" class="btn btn-default" id='goToVideos' name="goToVideos"
-                                    style="display: none;">My Videos
-                            </button>
-                        </a>
+                        <button type="submit" class="btn btn-success" id='goToVideos' name="goToVideos">
+                            My Videos
+                        </button>
                         <button type="submit" class="btn btn-default" id='newUpload' name="newUpload"
                                 style="display: none;">New Upload
                         </button>
-                        <span class="btn btn-primary btn-file">
+                        <span class="btn btn-primary btn-file" id="userFileDiv">
                                     Browse <input type="file" name="userFile" id="userFile"/>
                                 </span>
                         <button type="submit" class="btn btn-default" id='submitNow' name="submitNow">Upload</button>

@@ -30,8 +30,13 @@ var upload = function() {
         if(connect.readyState == 4 && connect.status == 200){
             $('#outputWrapper').show();
             $('#realOutput').html(connect.responseText);
+            $('#realOutput').append('<br> Click \'My Videos\' to view your video right now!');
             $('#goToVideos').show();
+        }else{
+            $('#userFileDiv').prop('disabled', true);
+            $('#submitNow').prop('disabled', true);
         }
+
     };
 
     connect.upload.addEventListener('progress', function(e){
@@ -42,7 +47,7 @@ var upload = function() {
     connect.upload.addEventListener('load', function(e) {
         _output.innerHTML = "Upload complete";
         $('#outputWrapper').show();
-        $('#realOutput').html('...finalizing.....');
+        $('#realOutput').html('..just a few more seconds..');
         $("#newUpload").show();
     }, false);
 
@@ -59,7 +64,6 @@ var numOfUpload = function (){
         if(connect.readyState == 4 && connect.status == 200){
             if (connect.responseText >= 3){
                 $('#uploadResult').html('At the moment, we are only accepting 3 videos. <br> Please delete existing videos to upload more.');
-                $('#goToVideos').show();
                 return false;
             }
             upload();
@@ -220,7 +224,7 @@ $("#userFile").change(function () {
     var strr = _file.files[0].name;
     strr += '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
     //_name.innerHTML = _file.files[0].name + '[' + parseFloat(_file.files[0].size/1000000).toFixed(2)+ ' MB]';
-    _name.innerHTML = strr;
+    $('#uploadName').html(strr);
 });
 $('#newUpload').click(function () {
     document.getElementById('userFile').value = "";
@@ -236,7 +240,6 @@ $('#newUpload').click(function () {
 
     $('#submitNow').prop('disabled', false);
     $('#outputWrapper').hide();
-    $('#gotovideos').hide();
 });
 $("#submitNow").click(function () {
     if(_file.files.length === 0){
@@ -245,6 +248,9 @@ $("#submitNow").click(function () {
     }
     $('#submitNow').prop('disabled', true);
     numOfUpload();
+});
+$('#goToVideos').click(function () {
+    window.location.href='/index.php';
 });
 
 /*Sign Up Form Related*/
