@@ -164,6 +164,7 @@
                                   <li>Files are limited to 10MB (Until more powerful servers arrive)</li>
                                   <li>Accepted formats: mp4, mpg, mov, mpeg, avi, wmv</li>
                                   <li>Avoid changing extension names</li>
+                                  <li>Each user is limited to 3 video uploads</li>
                                   <div id="outputWrapper" style="display:none;">
                                       <br>
                                       <u><b>Output</b></u><br>

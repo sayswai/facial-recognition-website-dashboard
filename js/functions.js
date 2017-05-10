@@ -113,7 +113,6 @@ var login = function () {
 };
 
 var logoff = function(){
-    $('#logOff').fadeOut();
     var connect = new XMLHttpRequest();
     var data = new FormData();
     data.append('submit', true);
