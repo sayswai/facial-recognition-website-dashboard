@@ -16,7 +16,8 @@ var _submit = document.getElementById('submitNow'),
 
 /*JS functions*/
 
-var upload = function(){
+var upload = function() {
+
 
     _output.innerHTML = "Upload started: ";
 
@@ -47,7 +48,26 @@ var upload = function(){
 
     connect.open('POST', 'php-functions/upload.php', true);
     connect.send(data);
-}
+};
+
+var numOfUpload = function (){
+    var data = new FormData();
+    data.append('submit', true);
+
+    var connect = new XMLHttpRequest();
+    connect.onreadystatechange = function(){
+        if(connect.readyState == 4 && connect.status == 200){
+            if (connect.responseText >= 3){
+                $('#uploadResult').html('At the moment, we are only accepting 3 videos. <br> Please delete existing videos to upload more.');
+                return false;
+            }
+            upload();
+        }
+    };
+
+    connect.open('POST', 'php-functions/numOfUploads.php', true);
+    connect.send(data);
+};
 
 var login = function () {
     var v1 = $.trim($('#userr').val());
@@ -221,7 +241,7 @@ $("#submitNow").click(function () {
         return;
     }
     $('#submitNow').prop('disabled', true);
-    upload();
+    numOfUpload();
 });
 
 /*Sign Up Form Related*/

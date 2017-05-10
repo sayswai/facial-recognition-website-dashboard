@@ -1,18 +1,5 @@
 
 function createVid() {
-  //var vID = window.location.href.slice(26);
-  //Get video source from db
-//  $.ajax({
-//    url: 'php-functions/get_video.php',
-//    type: "POST",
-//    data: { vID : vID },
-//
-//    dataType: 'json',
-//    success: function(data)
-//    {
-//      var video = data;
-//    }
-//  });    var connect = new XMLHttpRequest();
     var connect = new XMLHttpRequest();
     var data = new FormData();
     data.append('submit', true);
