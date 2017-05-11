@@ -146,7 +146,6 @@ if(isset($_POST["submit"]) && isset($_SESSION['username']) && isset($_SESSION['u
     /**File name extension check**/
     if (extName($filedir)){ // Checks for appropriate Format
             /**Uploading**/
-            //TODO webserver's apache settings limit file size uploads to 2M, find a way to change this
             if (move_uploaded_file($_FILES["userUpload"]["tmp_name"], $filedir)) {
                 /**Meta data check**/
                 if(metaCheck($filedir)) { //Check file video integrity

@@ -40,7 +40,7 @@ function eyeTrack($splitImgDirectory,$videoID)
     for($splitImgCount = 2; $splitImgCount < sizeof($splitImagesArray); $splitImgCount++){
        
 	    // Call eye track command here
-        $result = shell_exec($eyeTrackCommand . " " . $splitImgDirectory . $splitImagesArray[$splitImgCount] . " 2>&1");
+        $result = shell_exec($eyeTrackCommand . " " . $splitImgDirectory ."/". $splitImagesArray[$splitImgCount] . " 2>&1");
 
         if($result == NULL){
 		// No coordinates detected
