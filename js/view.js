@@ -100,11 +100,12 @@ function pushVideos(vID) {
     $('.hVideo').click(function(){
         vID = this.id.replace(/[^\d.]/g,'');
         src = "vids/" + vID + "/main.mp4";
-        html = "<video controls width='720px' height='auto'>" +
+        html = "<video class='video' controls width='100%' height='auto'>" +
             "<source src='" + src + "' type='video/mp4'>" +
             "</video>"
         $('#videoPlayerBody').html(html);
         $('#videoPlayer').modal('show');
+        $('video', $('#videoPlayer')).get(0).play()
     });
     return true;
 }
@@ -135,6 +136,20 @@ $('.modal').on('show.bs.modal', function() {
 $('#videoPlayer').on("hidden.bs.modal", function(e) {
     $('video', this).get(0).pause();
 });
+$('#videoPlayerBody').click(function(e) {
+    $('video', this).get(0).paused ? $('video', this).get(0).play() : $('video', this).get(0).pause();
+});
 
-
+$(function() {
+    function reposition() {
+        var modal = $(this),
+            dialog = modal.find('.modal-dialog');
+        modal.css('display', 'block');
+        dialog.css("margin-top", Math.max(0, ($(window).height() - dialog.height()) / 3));
+    }
+    $('.modal').on('show.bs.modal', reposition);
+    $(window).on('resize', function() {
+        $('.modal:visible').each(reposition);
+    });
+});
 

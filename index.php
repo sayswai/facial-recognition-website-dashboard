@@ -232,7 +232,7 @@
 
 <!-- Video Modal -->
 <div class="modal hide fade in" id="videoPlayer" tabindex="-1">
-    <div class="modal-dialog vertical-aligner-center" role="document">
+    <div class="modal-dialog modal-lg vertical-aligner-center" role="document">
         <div class="modal-content">
             <div class="modal-body" id="videoPlayerBody">
             </div>

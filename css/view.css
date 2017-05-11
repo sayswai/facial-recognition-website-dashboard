@@ -120,13 +120,41 @@ body {
 /* MODAL END */
 
 /* MODAL VIDEO START */
+
+
 #videoPlayer .modal-dialog{
     position: relative;
     display: table;
     overflow-y: auto;
     overflow-x: auto;
     width: auto;
+    height: auto;
     min-width: 300px;
+}
+
+#videoPlayer .modal-content {
+    background: none;
+    border: 0;
+    -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
+    -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none;
+}
+
+#videoPlayer .modal-body {
+    padding: 0 25px 25px 25px;
+}
+
+@media screen and (min-width: 768px){
+    .modal-dialog{
+        width: 700px;
+    }
+    .modal-sm{
+        width: 350px;
+    }
+}
+@media screen and (min-width: 992px) {
+    .modal-lg {
+        width: 1080px;
+    }
 }
 /* MODAL VIDEO END */
 
