@@ -51,10 +51,11 @@
                     <!-- Used for accessibility (sr stands for screen reader, used for blind/visually impaired individuals) -->
                 </a>
             </li>
+            <!--
             <li class="nav-item disabled">
-                <!-- Not yet finished, therefor disabled for now. Add link to scroll to, and auto-scroll functionality -->
                 <a class="nav-link" href="#">Videos</a>
             </li>
+            -->
             <li class="nav-item">
                 <!-- Not yet finished, therefor disabled for now. Add link to scroll to, and auto-scroll functionality -->
                 <a class="nav-link" data-toggle="modal" data-target="#uploadForm" href="#">Upload</a>
@@ -229,9 +230,23 @@
 </div>
 
 
+<!-- Video Modal -->
+<div class="modal hide fade in" id="videoPlayer" tabindex="-1">
+    <div class="modal-dialog vertical-aligner-center" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="videoPlayerBody">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 <!-- Main View -->
 <div class="video-title" id="vidTitle" style="display:none;">
-    <h1 class="text-right text">VIDEOS</h1>
+    <h1 class="text-right text">YOUR VIDEOS</h1>
 </div>
 
 <div class="row" style="padding: 30px;">

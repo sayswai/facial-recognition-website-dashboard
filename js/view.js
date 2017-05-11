@@ -39,10 +39,36 @@ function pushVideos(vID) {
     $('#vidTitle').show();
     for (var x = 0; x < vID.length; x++){
         src = "vids/" + vID[x] + "/main.mp4";
+        /* For later
+        html = "<div class='card' style='position: absolute; background-color: #47494b; margin-top: 2px;'>" +
+            "<div class='card-img-top' style='margin-top: 2px;'>" +
+            "   <div class=\"hVideo\">"+
+            "   <video width=\"320px\" height=\"240px\" muted>" +
+            "       <source src=\"" +src+ "\" type=\"video/mp4\">" +
+            "       <source src=\"movie.ogg\" type=\"video/ogg\">" +
+            "       Your browser does not support the video tag." +
+            "       </video>" +
+            "   </div>" +
+            "</div>" +
+            "<div class='card-block'>" +
+            "   <h2 class='card-title'>Video</h2>" +
+            "   <div class='card-text'>" +
+            "       <div class='btn-group pull-right'>" +
+            "           <button type='button' class='btn btn-danger btn-sm dropdown-toggle' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" +
+            "               Delete Video?" +
+            "           </button>" +
+            "           <div class='dropdown-menu'>" +
+            "            <a class='dropdown-item dlt' href='#' id='"+ vID[x]+ "del'>Yes</a>" +
+            "           </div>" +
+            "       </div>" +
+            "   </div>" +
+            "   </div>" +
+            "</div>";
+            */
 
         html = "<div class='hVideoColumn'>" +
-            " <div class=\"hVideo\">"+
-            "   <video width=\"320px\" height=\"240px\" muted>" +
+            " <div class=\"hVideo\" id='" +vID[x]+ "vid'>"+
+            "   <video width=\"320px\" height=\"240px\" muted >" +
             "       <source src=\"" +src+ "\" type=\"video/mp4\">" +
             "       <source src=\"movie.ogg\" type=\"video/ogg\">" +
             "       Your browser does not support the video tag." +
@@ -66,10 +92,19 @@ function pushVideos(vID) {
         }
     }
 
-    $('#greetings').append('<br>Try hovering the mouse over the videos!');
+    $('#greetings').append('<br>Try hovering your mouse over the videos!<br>Click on any video you want to watch!');
     $(".hVideo").hover( hoverVideo, hideVideo );
     $('.dlt').click(function () {
         deleteVideo(this.id);
+    });
+    $('.hVideo').click(function(){
+        vID = this.id.replace(/[^\d.]/g,'');
+        src = "vids/" + vID + "/main.mp4";
+        html = "<video controls width='720px' height='auto'>" +
+            "<source src='" + src + "' type='video/mp4'>" +
+            "</video>"
+        $('#videoPlayerBody').html(html);
+        $('#videoPlayer').modal('show');
     });
     return true;
 }
@@ -96,6 +131,9 @@ $("#signForm").on("hidden.bs.modal", function() {
 $('.modal').on('show.bs.modal', function() {
     $('.modal .modal-body').css('overflow-y', 'auto');
     $('.modal .modal-body').css('max-height', $(window).height() * 0.7);
+});
+$('#videoPlayer').on("hidden.bs.modal", function(e) {
+    $('video', this).get(0).pause();
 });
 
 
