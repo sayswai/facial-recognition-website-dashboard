@@ -9,6 +9,7 @@ include 'db_connect.php';
 include '../configs/Config.php';
 include  'helper.php';
 
+
 //Database Connection to Postgresql.
 $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
 
