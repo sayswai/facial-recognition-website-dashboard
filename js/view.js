@@ -65,7 +65,7 @@ function pushVideos(vID) {
             "   </div>" +
             "</div>";
             */
-
+        //TODO: don't show DELETE BUTTON if the video hasn't finished processing...
         html = "<div class='hVideoColumn'>" +
             " <div class=\"hVideo\" id='" +vID[x]+ "vid'>"+
             "   <video width=\"320px\" height=\"240px\" muted >" +

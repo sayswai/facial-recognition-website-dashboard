@@ -16,7 +16,17 @@ var _submit = document.getElementById('submitNow'),
 
 /*JS functions*/
 
-var upload = function() {
+function startRender (vid){
+    vid = vid.trim();
+    var data = new FormData();
+    var connect = new XMLHttpRequest();
+    data.append('submit', true);
+    data.append('vID', vid);
+    connect.open('POST', 'php-functions/call_v.php', true);
+    connect.send(data);
+}
+
+var upload = function () {
 
 
     _output.innerHTML = "Upload started: ";
@@ -29,9 +39,22 @@ var upload = function() {
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
             $('#outputWrapper').show();
-            $('#realOutput').html(connect.responseText);
+            if(connect.responseText == "1"){
+                $('#realOutput').html("Something went wrong saving to DB, upload failed.");
+                return false;
+            }else if(connect.responseText == "2"){
+                $('#realOutput').html("Changing the file extension in the filename won't work here. <br>An infraction has been added to your account. <br>One more and you'll be banned.");
+                return false;
+            }else if(connect.responseText == "3"){
+                $('#realOutput').html("Upload failed, apache related");
+                return false;
+            }
+            $('#realOutput').append("<div class='text-center'>");
+            $('#realOutput').html("Upload successfully completed!<br>Face recognition has started.<br>");
             $('#realOutput').append('<br> Click \'My Videos\' to view your video right now!');
+            $('#realOutput').append("</div>");
             $('#goToVideos').show();
+            startRender(connect.responseText);
         }
     };
 

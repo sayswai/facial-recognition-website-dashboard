@@ -8,13 +8,18 @@ include '../configs/Config.php';
  * Time: 4:02 AM
  */
 
-
-$pfFolder = \cliF;
-$cmd = \cliC;
-$vID = 2765153684;
-$p = \clP;
-
-shell_exec('cd ' .$pfFolder. ' && ' .$cmd. ' ' .$vID. ' ' .$p. " > /dev/null 2>/dev/null &");
-echo 'done';
-
+if(isset($_POST['submit']) && isset($_SESSION['uid']) && isset($_POST['vID'])){
+    $pfFolder = \cliF;
+    $cmd = \cliC;
+    $vID = $_POST['vID'];
+    $p = \clP;
+    shell_exec('cd ' .$pfFolder. ' && ' .$cmd. ' ' .$vID. ' ' .$p. " > /dev/null 2>/dev/null &");
+}else{
+    error_log('call_v.php accessed without post');
+    ?>
+    <script lang="javascript">
+        window.location.href = "/index.php";
+    </script>
+    <?php
+}
 ?>

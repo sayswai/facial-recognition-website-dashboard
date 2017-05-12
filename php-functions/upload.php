@@ -132,7 +132,7 @@ function metaExtract($filename, $filedir) {
     echo $matches[1][0];
     */
     vsplit($vid, $fps);
-    return true;
+    return $vid;
 }
 
 
@@ -150,18 +150,21 @@ if(isset($_POST["submit"]) && isset($_SESSION['username']) && isset($_SESSION['u
                 /**Meta data check**/
                 if(metaCheck($filedir)) { //Check file video integrity
                     /**Extract meta data and store to DB**/
-                    if(metaExtract($filename, $filedir)) {
-                        echo $filename . " successfully uploaded";
+                    $vid = metaExtract($filename, $filedir);
+                    if($vid != false) {
+                        echo $vid;
+                        return true;
                         #$result = $filename . " successfully uploaded";
                     }else{
                         unlink($filedir);
-                        echo "Something went wrong saving to DB, upload failed.";
+                        echo "1"; // returns 1"Something went wrong saving to DB, upload failed."
                         error_log("db update for video upload failed");
                         #$result = "Upload failed, try again!";
                     }
                 }else{
                     unlink($filedir);
-                    echo "Changing the file extension in the filename won't work here. <br>An infraction has been added to your account. <br>One more and you'll be banned.";
+                    /* returns 2  "Changing the file extension in the filename won't work here. <br>An infraction has been added to your account. <br>One more and you'll be banned."*/
+                    echo "2";
                     error_log("user ". $_SESSION['username']. "disguised item as movie and tried to upload");
                     $conn = connect_db(\dbUsername, \dbPassword, \dbDBname);
                     $query = "UPDATE users SET infraction = infraction + 1 WHERE uid = '" . $_SESSION['uid'] . "'";
@@ -169,25 +172,22 @@ if(isset($_POST["submit"]) && isset($_SESSION['username']) && isset($_SESSION['u
                     pg_close($conn);
                 }
             }else{
-                echo "Something went wrong with the upload, please try again.";
+                echo "3"; // return 3 Something went wrong with the upload, please try again.
                 error_log("Upload failed, apache related");
             }
     }else{
-        echo "Invalid Format; Accepted Formats: <br>";
-        foreach ($V_TYPES as $formats){
-            echo "." . $formats . " ";
-        }
         error_log("user uploaded non-video flie");
 
     }
 }else{
     error_log('upload.php accessed without post');
-    ?>
-    <script lang="javascript">
-        window.location.href = "/index.php";
+
+
+}?>
+<script lang="javascript">
+window.location.href = "/index.php";
     </script>
     <?php
-}
 
 
 
@@ -197,22 +197,3 @@ if(isset($_POST["submit"]) && isset($_SESSION['username']) && isset($_SESSION['u
 //To get metadata we should use: ffprobe input.mp4
 
 ?>
-
-<body>
-<!--
-<br>
-Accepted formats:
-<?php/*
-foreach ($V_TYPES as $formats){
-    echo "." . $formats . " ";
-}
-*/
-?><br>
-Do not try disguisng your file as a video format, you'll gain a strike.<br><br>
-<form method="post" enctype="multipart/form-data">
-    Select file to upload:
-    <input type="file" name="userUpload" id="userUpload"/>
-    <input type="submit" name="submit" value="Upload Image"/>
-</form>
--->
-</body>
