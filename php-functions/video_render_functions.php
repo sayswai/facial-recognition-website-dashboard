@@ -12,7 +12,7 @@ include "../configs/Config.php";
 $eyeTrackCommand = \cmdEyeLike;
 $openFaceCommand = \cmdOpenFace;
 $pa = \clP;
-$root_loc = '/mnt/c/cs160';
+$root_loc = \cliR;
 
 
 /* EYE TRACK START */
