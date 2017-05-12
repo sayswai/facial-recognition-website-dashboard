@@ -7,7 +7,10 @@
  */
 
 include 'queries.php';
+/* HOW TO CALL
+eyeTrack("/mnt/c/cs160/vids/775964992/split",775964992);
 
+*/
 //Example directory
 //$splitImgDirectory = "../vids/fakeVideo/split_frames/";
 
@@ -38,7 +41,8 @@ function eyeTrack($splitImgDirectory,$videoID)
     $splitImagesArray = scandir($splitImgDirectory);
 
     for($splitImgCount = 2; $splitImgCount < sizeof($splitImagesArray); $splitImgCount++){
-       
+
+
 	    // Call eye track command here
         $result = shell_exec($eyeTrackCommand . " " . $splitImgDirectory ."/". $splitImagesArray[$splitImgCount] . " 2>&1");
 
