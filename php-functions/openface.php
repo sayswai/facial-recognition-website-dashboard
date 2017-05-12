@@ -7,7 +7,9 @@
  */
 
 include "../configs/Config.php";
-
+/*
+ * /home/cs160/openFace/build/bin$ ./FaceLandmarkImg -fdir "/mnt/c/cs160/vids/2457131084/split/" -ofdir "/mnt/c/cs160/vids/2457131084/detected_frames" -q 2>&1
+ */
 /*
  * OpenFace command
  *

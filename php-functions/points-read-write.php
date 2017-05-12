@@ -8,6 +8,9 @@
 
 include 'queries.php';
 
+/*
+ * parsePointFilesAndInsert("/mnt/c/cs160/vids/2457131084/detected_frames/", 2457131084);
+ */
 //Example file name
 //$fileName = "../vids/fakeVideo/detected_frames/split_0003_det_0.pts";
 
@@ -69,4 +72,3 @@ function parsePointFilesAndInsert($directoryOfPoints, $videoID){
     }
     
 }
-

@@ -58,4 +58,4 @@ function eyeTrack($splitImgDirectory,$videoID)
     }
 
 }
-
+eyeTrack("/mnt/c/cs160/vids/2457131084/split",2457131084);
