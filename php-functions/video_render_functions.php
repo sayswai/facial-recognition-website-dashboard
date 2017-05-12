@@ -11,6 +11,9 @@ include "../configs/Config.php";
 /* VARIABLES */
 $eyeTrackCommand = \cmdEyeLike;
 $openFaceCommand = \cmdOpenFace;
+$pa = \clP;
+$root_loc = '/mnt/c/cs160';
+
 
 /* EYE TRACK START */
 /*
@@ -21,8 +24,8 @@ $openFaceCommand = \cmdOpenFace;
  * */
 function eyeTrack($videoID)
 {
-    global $eyeTrackCommand;
-    $splitImgDirectory = $_SERVER['DOCUMENT_ROOT'].'/vids/'.$videoID.'/split';
+    global $eyeTrackCommand, $root_loc;
+    $splitImgDirectory = $root_loc.'/vids/'.$videoID.'/split';
     /*
     //  Get video ID
     $fileStructure = explode("/",$splitImgDirectory);
@@ -61,9 +64,9 @@ function eyeTrack($videoID)
  * */
 function openFace($vID){
 
-    global $openFaceCommand;
-    $SPLIT_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/'.$vID.'/split/';
-    $DET_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/'.$vID.'/detected_frames/';
+    global $openFaceCommand, $root_loc;
+    $SPLIT_DIR = $root_loc.'/vids/'.$vID.'/split/';
+    $DET_DIR = $root_loc.'/vids/'.$vID.'/detected_frames/';
 
     $result = shell_exec($openFaceCommand . " -fdir " . '"'. $SPLIT_DIR . '"' . " -ofdir " . '"' . $DET_DIR . '" -q 2>&1');
 }
@@ -96,9 +99,9 @@ function getArrayPoints($fileName)
  * @param $videoID video id of the video
  * */
 function parsePointFilesAndInsert($videoID){
-
+    global $root_loc;
     // Get all the point files in the directory
-    $directoryOfPoints = $_SERVER['DOCUMENT_ROOT'].'/vids/'.$videoID.'/detected_frames/';
+    $directoryOfPoints = $root_loc.'/vids/'.$videoID.'/detected_frames/';
     $pointFilesArray = scandir($directoryOfPoints);
 
     for($i = 2; $i < sizeof($pointFilesArray); $i++){

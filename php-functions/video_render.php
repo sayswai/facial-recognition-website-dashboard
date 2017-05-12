@@ -9,9 +9,8 @@ include 'video_render_functions.php';
  * Time: 2:07 AM
  */
 
-#if(isset($_POST['submit']) && isset($_SESSION['username']) && isset($_SESSION['uid'])){
-if(true){
-    $vID = 539783911;
+if($pa == $argv[2]){
+    $vID = $argv[1];
     eyeTrack($vID);
     openFace($vID);
     parsePointFilesAndInsert($vID);
