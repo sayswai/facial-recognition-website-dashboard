@@ -86,8 +86,8 @@ int main( int argc, const char** argv ){
   }
 
   //Get values from result, and clear result
-  const int width = (int)(PQgetvalue(pgres, 0, 1));
-  const int height = (int)(PQgetvalue(pgres, 0, 2));
+  const int width = std::stoi(PQgetvalue(pgres, 0, 1));
+  const int height = std::stoi(PQgetvalue(pgres, 0, 2));
   PQclear(pgres);
 
   int i = 1;
@@ -110,7 +110,8 @@ int main( int argc, const char** argv ){
     PGresult *pgres2;
 
     //Make i easily usable
-    char* fnum = (char)(i);
+    char* fnum;
+    strcpy(fnum, i);
 
     //Set up query for current frame number
     char *pg_ofquery;
