@@ -2,6 +2,7 @@
 
 include 'db_connect.php';
 include '../configs/Config.php';
+
 //Database Connection to Postgresql.
 $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
 
@@ -45,6 +46,7 @@ if(isset($_POST["insert"]))
     echo pg_result_error_field($resp, PGSQL_DIAG_SQLSTATE);
 }
 pg_close($conn1);
+
 ?>
 
 

@@ -6,8 +6,8 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <fstream>
-#include <libpq-fe.h>
 #include <unistd.h>
+#include "/usr/include/postgresql/libpq-fe.h"
 
 
 const int qcount = 1440; //Number of times to attempt each query (qcount*slplen=max_execution_time)

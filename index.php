@@ -153,7 +153,7 @@
                                id="repas">
                     </div>
                     <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci-b9O2ys8nX68"></div>
+                        <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci­-b9O2ys8nX68"></div>
                     </div>
                     <button type="submit" name="insert" class="btn btn-default col-sm-offset-2" id="signUpSubmit">Sign
                         Up
