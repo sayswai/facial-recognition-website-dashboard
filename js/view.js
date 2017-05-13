@@ -82,7 +82,7 @@ function pushVideos(vID) {
             "       <h2 class='card-title' id='"+vID[x]+"cardTitle'>" +
             "           Title: " +
             "       </h2>" +
-            "<div class='progress card-subtitle'><div class='progress-bar' id='"+vID[x]+"progressBar' role='progressbar' style='width: 0%;' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>Facial Recognition Render: 0%</div></div>" +
+            "<div class='progress card-subtitle'><div class='progress-bar pbvb' id='"+vID[x]+"progressBar' role='progressbar' style='width: 0%;' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>Video Facial Recognition Render: 0%</div></div>" +
             "       <p class='card-text' id='"+vID[x]+"cardText'>Text</p>" +
             "   <div class='btn-group pull-right'>" +
             "   <button type='button' class='btn btn-danger btn-sm dropdown-toggle' id='"+vID[x]+"dell' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' disabled>" +
@@ -110,10 +110,10 @@ function pushVideos(vID) {
 
 function progressBar (vID, progress){
     if (progress == 100){
-        $('#'+vID+'progressBar').css('width', '100%').attr('aria-valuenow', '100').html('Facial Recognition Render: Complete').addClass('bg-success');
+        $('#'+vID+'progressBar').css('width', '100%').attr('aria-valuenow', '100').html('Video Facial Recognition Render: Complete').addClass('bg-success');
         $('#'+vID+'dell').prop('disabled', false);
     }else{
-        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('Facial Recognition Render: '+progress+'%');
+        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('Video Facial Recognition Render: '+progress+'%');
         $('#'+vID+'cardText').append('<br>Delete will enable after video is done processing.');
     }
 }
@@ -127,10 +127,29 @@ function videoBoxInfo (vID){
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
             var output = JSON.parse(connect.responseText);
-            var progress = Math.floor((output['progress'] / operations) * 100);
             $('#'+vID+'cardTitle').html('Title: '+output['vtitle']);
             $('#'+vID+'cardText').html('FPS: '+output['fps']+'<br>Dimensions: '+output['width']+' x '+output['height']);
-            progressBar(vID, progress);
+        }
+    };
+
+    connect.open('POST', 'php-functions/video_information.php', true);
+    connect.send(data);
+}
+
+
+function updateProgress (vID){
+    setInterval(getProgress(vID), 200);
+}
+
+function getProgress (vID){
+    var data = new FormData();
+    var connect = new XMLHttpRequest();
+
+    data.append('progress', true);
+    data.append('vID', vID);
+    connect.onreadystatechange = function(){
+        if(connect.readyState == 4 && connect.status == 200){
+            progressBar(vID, connect.responseText);
         }
     };
 
@@ -139,13 +158,14 @@ function videoBoxInfo (vID){
 }
 
 function pushVideosJquery(){
+
     $('.videoBoxHover').hover(function () {
         vID = this.id.replace('hover','');
         vID = vID.trim();
         $('#'+vID+'vidvid').get(0).play();
         videoBoxInfo(vID);
-        vID = vID.concat('box');
-        $('#'+vID).show();
+        setInterval(updateProgress(vID), 500);
+        $('#'+vID+'box').show();
     }, function () {
         vID = this.id.replace('hover','');
         vID = vID.trim();
@@ -180,6 +200,8 @@ function pushVideosJquery(){
         $('#videoPlayer').modal('show');
         $('video', $('#videoPlayer')).get(0).play()
     });
+
+
 }
 
 

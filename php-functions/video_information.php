@@ -22,7 +22,7 @@ if(isset($_POST['submit']) && isset($_POST['vID']) && isset($_SESSION['uid'])){
     pg_close($conn);
 
 
-    $arr[0]['progress'] = getProgress($vID);
+    #$arr[0]['progress'] = getProgress($vID);
     // $arr[0] ... [vtitle] [fps] [width] [height] [progress]
     $js = json_encode($arr[0]);
     echo $js;
@@ -38,11 +38,30 @@ if(isset($_POST['submit']) && isset($_POST['vID']) && isset($_SESSION['uid'])){
 }
 
 function getProgress($vID){
+    $total = \operations;
     $VID_DIR = $_SERVER['DOCUMENT_ROOT'].'/vids/'.$vID.'/';
+
     $progress = glob($VID_DIR . 'done_*');
     if ($progress != false){
         $progress = count($progress);
+        if ($progress == $total){
+            return 100;
+        }
     }
-    return $progress;
+
+    if (file_exists($VID_DIR.'done_split')){
+        $splitFrames = glob($VID_DIR . 'split/*.png');
+        $splitFrames = count($splitFrames);
+        $total += $splitFrames;
+
+        $detFrames = glob($VID_DIR . 'detected_frames/*.pts');
+        if ($detFrames != false){
+            $detFrames = count($detFrames);
+            $progress += $detFrames;
+        }
+    }
+
+
+    return (($progress/$total)*100);
 }
 ?>
