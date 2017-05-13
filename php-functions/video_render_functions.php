@@ -1,6 +1,8 @@
 <?php
-include 'queries.php';
+
+include 'db_connect.php';
 include "../configs/Config.php";
+include 'queries.php';
 /**
  * Created by PhpStorm.
  * Functions created by Ben
@@ -24,13 +26,12 @@ function vsplit($vid, $fps) {
 
     mkdir($VID_SPLIT_DIR);
     #shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'split_%04d.png </dev/null >/dev/null 2>&1 &');
-    shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'split_%04d.png </dev/null >/dev/null 2>&1 && > '.$VID_SPLIT_DIR.'done &');
+    shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'split_%04d.png </dev/null >/dev/null 2>&1 && > '.$VID_DIR.'done_split &');
 
     $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
     $query = "UPDATE videos SET split = 1 WHERE vid = " . $vid . ";";
     $result = pg_query($query);
     pg_close($connection);
-    while (!file_exists($VID_SPLIT_DIR.'done')){}
     return true;
 
 }
@@ -46,7 +47,9 @@ function vsplit($vid, $fps) {
 function eyeTrack($videoID)
 {
     global $eyeTrackCommand, $root_loc;
+    $VID_DIR = $root_loc.'/vids/'.$videoID.'/';
     $splitImgDirectory = $root_loc.'/vids/'.$videoID.'/split/';
+    while(!file_exists($VID_DIR.'/done_split')){sleep(2);};//wait for split to finish
     /*
     //  Get video ID
     $fileStructure = explode("/",$splitImgDirectory);
@@ -54,20 +57,18 @@ function eyeTrack($videoID)
     */
     // Get all files in directory and store to array
     $splitImagesArray = scandir($splitImgDirectory);
+    $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
     for($splitImgCount = 2; $splitImgCount < sizeof($splitImagesArray); $splitImgCount++){
 
-
         // Call eye track command here
-        $result = shell_exec($eyeTrackCommand . " " . $splitImgDirectory ."/". $splitImagesArray[$splitImgCount] . " 2>&1");
-
+        $result = shell_exec($eyeTrackCommand . " " . $splitImgDirectory . $splitImagesArray[$splitImgCount] . " 2>&1 && >".$VID_DIR."done_eye");
         if($result != NULL){
             $coords = explode(",",$result);
-            insertEyeCoordinate($videoID, $splitImgCount - 1, $coords[0], $coords[1], $coords[2], $coords[3]);
-            //print_r($coords);
+            insertEyeCoordinate($videoID, $splitImgCount - 1, $coords[0], $coords[1], $coords[2], $coords[3], $conn1);
         }
-        //print_r($eyeTrackCommand . " " . $splitImgDirectory . $splitImagesArray[$splitImgCount]."<br>");
 
     }
+    pg_close($conn1);
 
     return true;
 
@@ -84,11 +85,15 @@ function eyeTrack($videoID)
 function openFace($vID){
 
     global $openFaceCommand, $root_loc;
+    $VID_DIR = $root_loc.'/vids/'.$vID.'/';
     $SPLIT_DIR = $root_loc.'/vids/'.$vID.'/split/';
     $DET_DIR = $root_loc.'/vids/'.$vID.'/detected_frames/';
 
-    $result = shell_exec($openFaceCommand . " -fdir " . '"'. $SPLIT_DIR . '"' . " -ofdir " . '"' . $DET_DIR . '" -q 2>&1');
-    
+    while(!file_exists($VID_DIR.'done_split')){sleep(2);};//wait for split to finish
+
+    $result = shell_exec($openFaceCommand . " -fdir " . '"'. $SPLIT_DIR . '"' . " -ofdir " . '"' . $DET_DIR . '" -q 2>&1 && > '.$VID_DIR.'done_openface');
+    parsePointFilesAndInsert($vID);
+    return true;
 }
 
 /*
@@ -120,11 +125,16 @@ function getArrayPoints($fileName)
  * */
 function parsePointFilesAndInsert($videoID){
     global $root_loc;
-    echo ' in';
+
     // Get all the point files in the directory
+    $VID_DIR = $root_loc.'/vids/'.$videoID.'/';
     $directoryOfPoints = $root_loc.'/vids/'.$videoID.'/detected_frames/';
-    echo $directoryOfPoints;
+
+    while(!file_exists($VID_DIR.'done_openface')){sleep(2);};//wait for split to finish
+
     $pointFilesArray = scandir($directoryOfPoints);
+    $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
+
 
     for($i = 2; $i < sizeof($pointFilesArray); $i++){
 
@@ -143,10 +153,11 @@ function parsePointFilesAndInsert($videoID){
         // Remove leading zeros
         $frameNum = ltrim($stripFileName, '0');
 
-        insertPoints($videoID, $frameNum,$arrayOfPoints);
+        insertPoints($videoID,$frameNum,$arrayOfPoints,$conn1);
 
 
     }
+    pg_close($conn1);
     return true;
 
 }

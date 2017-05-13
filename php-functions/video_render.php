@@ -18,16 +18,10 @@ if($pa == $argv[2]){
     $result = pg_query($query);
     $arr = pg_fetch_all($result);
     $fps = $arr[0][fps];
-
-    if(vsplit($vID, $fps)){
-        if(eyeTrack($vID)){
-            if(openFace($vID)){
-                if(parsePointFilesAndInsert($vID)){
-                    error_log('done');
-                }
-            }
-        }
-    }
+    
+    vsplit($vID, $fps);
+    openFace($vID);
+    eyeTrack($vID);
 
 }else{
     error_log('video_render.php accessed without post');
