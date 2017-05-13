@@ -7,6 +7,8 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
+#include </usr/include/boost/filesystem.hpp>
+#include </usr/include/boost/lambda/bind.hpp>
 #include "/usr/include/string.h"
 #include "/usr/include/postgresql/libpq-fe.h"
 
