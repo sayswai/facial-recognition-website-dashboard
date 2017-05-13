@@ -164,6 +164,10 @@ body {
     padding-bottom: 0px;
     color: #585858;
 }
+
+.bg-danger {
+    background-color: #ff405d !important;
+}
 /* USER VIDEO END */
 
 /* UPLOAD START */
