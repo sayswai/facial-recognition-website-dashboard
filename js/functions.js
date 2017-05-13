@@ -59,8 +59,8 @@ var upload = function () {
     };
 
     connect.upload.addEventListener('progress', function(e){
-        _progress.style.width = Math.round((e.loaded / e.total) * 100) + '%';
-        _percent.innerHTML = Math.round((e.loaded / e.total) * 100) + '%';
+        var prog = Math.round((e.loaded / e.total) * 100) + '%';
+        $('#progressBar').css('width', prog+'%').attr('aria-valuenow', prog);
     }, false);
 
     connect.upload.addEventListener('load', function(e) {

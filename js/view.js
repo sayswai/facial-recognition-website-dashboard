@@ -138,10 +138,6 @@ function videoBoxInfo (vID){
 
 
 function updateProgress (vID){
-    setInterval(getProgress(vID), 200);
-}
-
-function getProgress (vID){
     var data = new FormData();
     var connect = new XMLHttpRequest();
 
@@ -156,6 +152,8 @@ function getProgress (vID){
     connect.open('POST', 'php-functions/video_information.php', true);
     connect.send(data);
 }
+
+
 
 function pushVideosJquery(){
 
@@ -176,6 +174,7 @@ function pushVideosJquery(){
 
     $('.videoBox').hover(function (){
         vID = this.id.replace('box','');
+        setInterval(updateProgress(vID), 500);
         $('#'+vID+'vidvid').get(0).play();
         $(this).show();
     },function (){
