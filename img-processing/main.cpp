@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
+#include "/usr/include/string.h"
 #include "/usr/include/postgresql/libpq-fe.h"
 
 
@@ -88,11 +89,27 @@ int main( int argc, const char** argv ){
   const int height = (int)(PQgetvalue(pgres, 0, 2));
   PQclear(pgres);
 
-  for(int i=1; i<=fcount; i++){
+  int i = 1;
+  char* urr;
+  strcpy(urr, "/vids/");
+  strcat(urr, vID);
+  strcat(urr, "/done_openface");
+  int max = 0;
+  while(i<max || max==0){
+    if(std::ifstream(urr) && max==0) {
+      char* urt
+      strcpy(urt, "/vids/");
+      strcat(urt, vID);
+      strcat(urt, "/detected_frames/")
+      max = std::count_if(directory_iterator(urt), directory_iterator(), static_cast<bool(*)(const path&)>(is_regular_file));
+    }
+    if (i>max && max != 0){
+      break;
+    }
     PGresult *pgres2;
 
     //Make i easily usable
-    char *fnum = (char)(i);
+    char* fnum = (char)(i);
 
     //Set up query for current frame number
     char *pg_ofquery;
