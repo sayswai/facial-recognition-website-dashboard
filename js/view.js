@@ -84,7 +84,8 @@ function pushVideos(vID) {
             "       </h2>" +
             "<div class='progress card-subtitle'><div class='progress-bar pbvb' id='"+vID[x]+"progressBar' role='progressbar' style='width: 0%;' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>Video Facial Recognition Render: 0%</div></div>" +
             "       <p class='card-text' id='"+vID[x]+"cardText'>Text</p>" +
-            "   <div class='btn-group pull-right'>" +
+            "       <p class='card-text text-right' id='"+vID[x]+"cardTextPB'></p> "+
+            "  <div class='btn-group pull-right'>" +
             "   <button type='button' class='btn btn-danger btn-sm dropdown-toggle' id='"+vID[x]+"dell' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' disabled>" +
             "       Delete Video?" +
             "   </button>" +
@@ -112,9 +113,10 @@ function progressBar (vID, progress){
     if (progress == 100){
         $('#'+vID+'progressBar').css('width', '100%').attr('aria-valuenow', '100').html('Video Facial Recognition Render: Complete').addClass('bg-success');
         $('#'+vID+'dell').prop('disabled', false);
+        $('#'+vID+'cardTextPB').html();
     }else{
         $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('Video Facial Recognition Render: '+progress+'%');
-        $('#'+vID+'cardText').append('<br>Delete will enable after video is done processing.');
+        $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
     }
 }
 
