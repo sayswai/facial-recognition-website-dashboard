@@ -85,14 +85,18 @@ function pushVideos(vID) {
             "<div class='progress card-subtitle'><div class='progress-bar pbvb' id='"+vID[x]+"progressBar' role='progressbar' style='width: 0%;' aria-valuenow='0' aria-valuemin='0' aria-valuemax='100'>Video Facial Recognition Render: 0%</div></div>" +
             "       <p class='card-text' id='"+vID[x]+"cardText'>Text</p>" +
             "       <p class='card-text text-right' id='"+vID[x]+"cardTextPB'></p> "+
-            "  <div class='btn-group pull-right'>" +
+            "  <div class='row'><div class='col'>" +
+            "   <button type='button' class='btn btn-success btn-sm' id='"+vID[x]+"showFinal' disabled>" +
+            "       Resulting Video" +
+            "   </button>" +
+            "   </div><div class='col'><div class='btn-group pull-right'>" +
             "   <button type='button' class='btn btn-danger btn-sm dropdown-toggle' id='"+vID[x]+"dell' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false' disabled>" +
             "       Delete Video?" +
             "   </button>" +
             "   <div class='dropdown-menu'>" +
             "       <a class='dropdown-item dlt' href='#' id='"+ vID[x]+ "del'>Yes</a>" +
-            "   </div>" +
-            "   </div>" +
+            "   </div></div></div>" +
+            " </div>" +
             "</div>" +
             "</div>" +
 
