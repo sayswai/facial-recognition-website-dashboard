@@ -90,13 +90,15 @@ int main( int argc, const char** argv ){
   PQclear(pgres);
 
   int i = 1;
-  char* urr = "/vids/";
+  char* urr;
+  strcpy(urr, "/vids/");
   strcat(urr, vID);
   strcat(urr, "/done_openface");
   int max = 0;
   while(i<max || max==0){
-    if(ifstream(urr) && max==0) {
-      char* urt = "/vids/";
+    if(std::ifstream(urr) && max==0) {
+      char* urt
+      strcpy(urt, "/vids/");
       strcat(urt, vID);
       strcat(urt, "/detected_frames/")
       max = std::count_if(directory_iterator(urt), directory_iterator(), static_cast<bool(*)(const path&)>(is_regular_file));
