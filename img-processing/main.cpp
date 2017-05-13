@@ -86,7 +86,6 @@ int main( int argc, const char** argv ){
   }
 
   //Get values from result, and clear result
-  const int fcount = (int)(PQgetvalue(pgres, 0, 0));
   const int width = (int)(PQgetvalue(pgres, 0, 1));
   const int height = (int)(PQgetvalue(pgres, 0, 2));
   PQclear(pgres);
