@@ -18,10 +18,18 @@ if($pa == $argv[2]){
     $result = pg_query($query);
     $arr = pg_fetch_all($result);
     $fps = $arr[0][fps];
-    
+
     vsplit($vID, $fps);
-    openFace($vID);
-    eyeTrack($vID);
+    //eyeTrack and openFace are forked here
+    $pid = pcntl_fork();
+    if($pid == -1){
+        error_log('Problem forking, VID - '.$vID);
+        return false;
+    }else if ($pid){
+        eyeTrack($vID);
+    }else{
+        openFace($vID);
+    }
 
 }else{
     error_log('video_render.php accessed without post');
