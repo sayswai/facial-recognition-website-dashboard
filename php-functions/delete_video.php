@@ -21,7 +21,7 @@ if(isset($_POST['submit']) && isset($_POST['vID']) && isset($_SESSION['uid'])){
     $query = "DELETE FROM videos WHERE vid = '" . $vID .  "'; DELETE FROM eye WHERE vid = '" . $vID .  "'; DELETE FROM openface WHERE vid = '" . $vID .  "';";
     $query .= "UPDATE users SET uservids = replace(uservids, '{".$vID."}', '') WHERE uid = '".$uid."';";
     $query .= "UPDATE users SET uploaded = uploaded - 1 WHERE uid = '" . $uid . "';";
-    shell_exec('rm -rf '.$VID_DIR);
+    shell_exec('sudo rm -rf '.$VID_DIR);
     pg_query($query);
     pg_close($conn);
 }else{
