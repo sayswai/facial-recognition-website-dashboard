@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <unistd.h>
+#include "/usr/include/string.h"
 #include "/usr/include/postgresql/libpq-fe.h"
 
 
@@ -92,7 +93,7 @@ int main( int argc, const char** argv ){
     PGresult *pgres2;
 
     //Make i easily usable
-    char *fnum = (char)(i);
+    char fnum = (char)(i);
 
     //Set up query for current frame number
     char *pg_ofquery;
