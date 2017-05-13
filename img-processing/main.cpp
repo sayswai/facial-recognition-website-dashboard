@@ -89,7 +89,22 @@ int main( int argc, const char** argv ){
   const int height = (int)(PQgetvalue(pgres, 0, 2));
   PQclear(pgres);
 
-  for(int i=1; i<=fcount; i++){
+  int i = 1;
+  char* urr = "/vids/";
+  strcat(urr, vID);
+  strcat(urr, "/done_openface");
+  int max = 0;
+  while(i<max || max==0){
+    if(ifstream(urr)) {
+      char* urt = "/vids/";
+      strcat(urt, vID);
+      strcat(urt, "/detected_frames/")
+      path p(urt);
+      max = std::count_if(directory_iterator(p), directory_iterator(), static_cast<bool(*)(const path&)>(is_regular_file));
+    }
+    if (i>max && max != 0){
+      break;
+    }
     PGresult *pgres2;
 
     //Make i easily usable
