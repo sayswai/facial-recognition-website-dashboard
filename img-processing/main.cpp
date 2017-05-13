@@ -93,7 +93,7 @@ int main( int argc, const char** argv ){
     PGresult *pgres2;
 
     //Make i easily usable
-    char fnum = (char)(i);
+    char* fnum = (char*)(i);
 
     //Set up query for current frame number
     char *pg_ofquery;
@@ -166,10 +166,10 @@ int main( int argc, const char** argv ){
     std::string rny(PQgetvalue(pgres2, 0, 1));
     std::string lnx(PQgetvalue(pgres2, 0, 2));
     std::string lny(PQgetvalue(pgres2, 0, 3));
-    float rx = std::stof(rnx);
-    float ry = std::stof(rny);
-    float lx = std::stof(lnx);
-    float ly = std::stof(lny);
+    float rx = stof(rnx);
+    float ry = stof(rny);
+    float lx = stof(lnx);
+    float ly = stof(lny);
     cv::Point2f pupilRight = cv::Point2f(rx, ry);
     cv::Point2f pupilLeft = cv::Point2f(lx, ly);
     dot(img_original, pupilRight);
