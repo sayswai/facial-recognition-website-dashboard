@@ -95,7 +95,7 @@ int main( int argc, const char** argv ){
   strcat(urr, "/done_openface");
   int max = 0;
   while(i<max || max==0){
-    if(ifstream(urr)) {
+    if(ifstream(urr) && max==0) {
       char* urt = "/vids/";
       strcat(urt, vID);
       strcat(urt, "/detected_frames/")
