@@ -103,7 +103,7 @@ int main( int argc, const char** argv ){
       strcpy(urt, "/vids/");
       strcat(urt, vID);
       strcat(urt, "/detected_frames/");
-      max = std::count_if(directory_iterator(urt), directory_iterator(), static_cast<bool(*)(const path&)>(is_regular_file));
+      max = std::count_if(boost::filesystem::directory_iterator(urt), boost::filesystem::directory_iterator(), static_cast<bool(*)(const boost::filesystem::path&)>(boost::filesystem::is_regular_file));
     }
     if (i>max && max != 0){
       break;
