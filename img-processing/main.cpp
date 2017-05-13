@@ -110,8 +110,8 @@ int main( int argc, const char** argv ){
     PGresult *pgres2;
 
     //Make i easily usable
-    char* fnum;
-    strcpy(fnum, i);
+    std::string s = std::to_string(i);
+    char const* fnum = s.c_str();
 
     //Set up query for current frame number
     char *pg_ofquery;
