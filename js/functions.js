@@ -177,6 +177,17 @@ var signUp = function(){
     data.append('fname', $('#fname').val());
     data.append('lname', $('#lname').val());
 
+    //reCaptcha check
+    var response = grecaptcha.getResponse();
+
+    if(response.length == 0){
+    //reCaptcha not verified
+
+        $('#signUpOutput').html('reCaptcha!');
+
+    }else{
+    //reCaptcha work
+
     var connect = new XMLHttpRequest();
     connect.onreadystatechange = function(){
         if(connect.readyState == 4 && connect.status == 200){
@@ -192,8 +203,11 @@ var signUp = function(){
             $('#signUpBody').html('Registration Successful!');
         }
     };
+
+
     connect.open('POST', 'php-functions/user.php', true);
     connect.send(data);
+}
 };
 
 var signOnPass = function(){
