@@ -2,6 +2,20 @@
 
 include 'db_connect.php';
 include '../configs/Config.php';
+require_once('recaptchalib.php');
+
+$privatekey = "6LejPCAUAAAAACvj0pKg9VbjixAvBp8T7yoUTDyj";
+
+$resp = recaptcha_check_answer ($privatekey,
+                                $_SERVER["REMOTE_ADDR"],
+                                $_POST["recaptcha_challenge_field"],
+                                $_POST["recaptcha_response_field"]);
+  if (!$resp->is_valid) {
+    // What happens when the CAPTCHA was entered incorrectly
+    die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
+         "(reCAPTCHA said: " . $resp->error . ")");
+  } else {
+
 //Database Connection to Postgresql.
 $conn1 = connect_db(\dbUsername, \dbPassword, \dbDBname);
 
@@ -45,6 +59,7 @@ if(isset($_POST["insert"]))
     echo pg_result_error_field($resp, PGSQL_DIAG_SQLSTATE);
 }
 pg_close($conn1);
+}
 ?>
 
 

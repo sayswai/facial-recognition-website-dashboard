@@ -155,6 +155,11 @@
                     <div class="form-group">
                         <div class="g-recaptcha" data-sitekey="6LejPCAUAAAAAIUohV4ruRvyb5Ci-b9O2ys8nX68"></div>
                     </div>
+                        <?php
+                            require_once('php-functions/recaptchalib.php');
+                            $publickey = "6LejPCAUAAAAAIUohV4ruRvyb5Ci­b9O2ys8nX68"; // you got this from the signup page
+                            echo recaptcha_get_html($publickey);
+                            ?>
                     <button type="submit" name="insert" class="btn btn-default col-sm-offset-2" id="signUpSubmit">Sign
                         Up
                     </button>
