@@ -66,8 +66,9 @@ function getFrameCount($videoID)
 function insertEyeCoordinate($videoID, $frameNum, $rightX, $rightY, $leftX, $leftY)
 {
     global $conn1;
-    pg_prepare($conn1, "insert_eyeCoordinate", 'INSERT INTO Eye (vid, framenum, rightpupilx, rightpupily, leftpupilx, leftpupily) VALUES ($1, $2, $3, $4, $5, $6)');
-    pg_execute($conn1, "insert_eyeCoordinate", array($videoID, $frameNum, $rightX, $rightY, $leftX, $leftY));
+    $n = 'insert_eyeCoordinate';
+    pg_prepare($conn1, "", 'INSERT INTO Eye (vid, framenum, rightpupilx, rightpupily, leftpupilx, leftpupily) VALUES ($1, $2, $3, $4, $5, $6)');
+    pg_execute($conn1, "", array($videoID, $frameNum, $rightX, $rightY, $leftX, $leftY));
 
 }
 
@@ -85,7 +86,7 @@ function insertPoints($videoID, $frameNum, $arrayOfPoints)
 
     pg_query($conn1, "DEALLOCATE ALL");
 
-    pg_prepare($conn1, "insert_points", 'INSERT INTO OpenFace (vid, framenum, 
+    pg_prepare($conn1, "", 'INSERT INTO OpenFace (vid, framenum, 
 point1,
 point2,
 point3,
@@ -159,7 +160,7 @@ VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $
  $26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42, $43, $44, $45, $46, $47, $48, $49, $50, 
  $51, $52, $53, $54, $55, $56, $57, $58, $59, $60, $61, $62, $63, $64, $65, $66, $67, $68, $69, $70)');
 
-    pg_execute($conn1, "insert_points", array($videoID, $frameNum,
+    pg_execute($conn1, "", array($videoID, $frameNum,
         $arrayOfPoints[1], $arrayOfPoints[2], $arrayOfPoints[3], $arrayOfPoints[4],
         $arrayOfPoints[5],$arrayOfPoints[6],$arrayOfPoints[7],$arrayOfPoints[8],
     $arrayOfPoints[9],$arrayOfPoints[10],$arrayOfPoints[11],$arrayOfPoints[12],

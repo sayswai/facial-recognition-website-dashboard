@@ -60,9 +60,7 @@ function eyeTrack($videoID)
         // Call eye track command here
         $result = shell_exec($eyeTrackCommand . " " . $splitImgDirectory ."/". $splitImagesArray[$splitImgCount] . " 2>&1");
 
-        if($result == NULL){
-            // No coordinates detected
-        }else{
+        if($result != NULL){
             $coords = explode(",",$result);
             insertEyeCoordinate($videoID, $splitImgCount - 1, $coords[0], $coords[1], $coords[2], $coords[3]);
             //print_r($coords);
@@ -70,6 +68,7 @@ function eyeTrack($videoID)
         //print_r($eyeTrackCommand . " " . $splitImgDirectory . $splitImagesArray[$splitImgCount]."<br>");
 
     }
+
     return true;
 
 }
@@ -89,7 +88,7 @@ function openFace($vID){
     $DET_DIR = $root_loc.'/vids/'.$vID.'/detected_frames/';
 
     $result = shell_exec($openFaceCommand . " -fdir " . '"'. $SPLIT_DIR . '"' . " -ofdir " . '"' . $DET_DIR . '" -q 2>&1');
-    parsePointFilesAndInsert($vID);
+    
 }
 
 /*
@@ -121,8 +120,10 @@ function getArrayPoints($fileName)
  * */
 function parsePointFilesAndInsert($videoID){
     global $root_loc;
+    echo ' in';
     // Get all the point files in the directory
     $directoryOfPoints = $root_loc.'/vids/'.$videoID.'/detected_frames/';
+    echo $directoryOfPoints;
     $pointFilesArray = scandir($directoryOfPoints);
 
     for($i = 2; $i < sizeof($pointFilesArray); $i++){
