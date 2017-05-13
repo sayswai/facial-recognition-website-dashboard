@@ -11,9 +11,24 @@ include 'video_render_functions.php';
 
 if($pa == $argv[2]){
     $vID = $argv[1];
-    eyeTrack($vID);
-    openFace($vID);
-    parsePointFilesAndInsert($vID);
+
+    $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
+
+    $query = "SELECT fps FROM videos WHERE vid = '" . $vID . "'";
+    $result = pg_query($query);
+    $arr = pg_fetch_all($result);
+    $fps = $arr[0][fps];
+
+    if(vsplit($vID, $fps)){
+        if(eyeTrack($vID)){
+            if(openFace($vID)){
+                if(parsePointFilesAndInsert($vID)){
+                    error_log('done');
+                }
+            }
+        }
+    }
+
 }else{
     error_log('video_render.php accessed without post');
     ?>

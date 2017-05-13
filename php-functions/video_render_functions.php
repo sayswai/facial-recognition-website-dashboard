@@ -15,6 +15,27 @@ $pa = \clP;
 $root_loc = \cliR;
 
 
+/* VSPLIT START */
+function vsplit($vid, $fps) {
+    global $root_loc;
+    $VID_DIR = $root_loc.'/vids/'.$vid.'/';
+    $VID_SPLIT_DIR = $VID_DIR.'split/';
+    $V = $VID_DIR.'main.*';
+
+    mkdir($VID_SPLIT_DIR);
+    #shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'split_%04d.png </dev/null >/dev/null 2>&1 &');
+    shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'split_%04d.png </dev/null >/dev/null 2>&1 && > '.$VID_SPLIT_DIR.'done &');
+
+    $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
+    $query = "UPDATE videos SET split = 1 WHERE vid = " . $vid . ";";
+    $result = pg_query($query);
+    pg_close($connection);
+    while (!file_exists($VID_SPLIT_DIR.'done')){}
+    return true;
+
+}
+/* VSPLIT END */
+
 /* EYE TRACK START */
 /*
  * Execute eyeLike program to get the left and right pupil coordinates, then store into the database
@@ -25,16 +46,14 @@ $root_loc = \cliR;
 function eyeTrack($videoID)
 {
     global $eyeTrackCommand, $root_loc;
-    $splitImgDirectory = $root_loc.'/vids/'.$videoID.'/split';
+    $splitImgDirectory = $root_loc.'/vids/'.$videoID.'/split/';
     /*
     //  Get video ID
     $fileStructure = explode("/",$splitImgDirectory);
     $videoID = $fileStructure[2];
     */
-
     // Get all files in directory and store to array
     $splitImagesArray = scandir($splitImgDirectory);
-
     for($splitImgCount = 2; $splitImgCount < sizeof($splitImagesArray); $splitImgCount++){
 
 
@@ -51,6 +70,7 @@ function eyeTrack($videoID)
         //print_r($eyeTrackCommand . " " . $splitImgDirectory . $splitImagesArray[$splitImgCount]."<br>");
 
     }
+    return true;
 
 }
 /* EYE TRACK END */
@@ -69,6 +89,7 @@ function openFace($vID){
     $DET_DIR = $root_loc.'/vids/'.$vID.'/detected_frames/';
 
     $result = shell_exec($openFaceCommand . " -fdir " . '"'. $SPLIT_DIR . '"' . " -ofdir " . '"' . $DET_DIR . '" -q 2>&1');
+    parsePointFilesAndInsert($vID);
 }
 
 /*
@@ -125,6 +146,7 @@ function parsePointFilesAndInsert($videoID){
 
 
     }
+    return true;
 
 }
 /* OPENFACE END */

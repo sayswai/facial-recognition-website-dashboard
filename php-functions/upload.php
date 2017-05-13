@@ -2,7 +2,6 @@
 session_start();
 include 'db_connect.php';
 include '../configs/Config.php';
-include 'vsplit.php';
 
 /**
  * Created by PhpStorm.
@@ -131,7 +130,6 @@ function metaExtract($filename, $filedir) {
     preg_match_all('/{(.*?)}/', $arr[0][uservids], $matches);
     echo $matches[1][0];
     */
-    vsplit($vid, $fps);
     return $vid;
 }
 
