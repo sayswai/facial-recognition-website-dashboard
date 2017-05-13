@@ -3,8 +3,8 @@ session_start();
 include 'db_connect.php';
 include '../configs/Config.php';
 
-#if(isset($_POST['submit']) && isset($_SESSION['username'])){
-if(true){
+if(isset($_POST['submit']) && isset($_SESSION['username'])){
+#if(true){
     $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
 
     $query = "SELECT uservids FROM users WHERE username = '" . $_SESSION['username'] . "'";

@@ -190,7 +190,7 @@ body {
     cursor: inherit;
     display: block;
 }
-
+/*
 .progress_outer {
     border: 1px solid #000000;
 }
@@ -199,7 +199,7 @@ body {
     width: 0%;
     background: #df3d82;
     height: 20px;
-}
+}*/
 /* UPLOAD END */
 
 

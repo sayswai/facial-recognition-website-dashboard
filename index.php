@@ -216,7 +216,9 @@
                     <div class="modal-footer">
                         <div id="uploadResult"></div>
                         <div id="uploadPercent" class="col text-black"></div>
-                        <div id="progressBar" class="progress"></div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+                        </div>
                     </div>
                     <?php } else { ?>
                         <div id="noshow">
