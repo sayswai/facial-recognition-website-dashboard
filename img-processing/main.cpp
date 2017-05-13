@@ -100,7 +100,7 @@ int main( int argc, const char** argv ){
       char* urt;
       strcpy(urt, "/vids/");
       strcat(urt, vID);
-      strcat(urt, "/detected_frames/")
+      strcat(urt, "/detected_frames/");
       max = std::count_if(directory_iterator(urt), directory_iterator(), static_cast<bool(*)(const path&)>(is_regular_file));
     }
     if (i>max && max != 0){
