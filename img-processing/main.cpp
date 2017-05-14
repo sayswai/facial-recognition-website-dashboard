@@ -56,12 +56,13 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 }
 
 int main( int argc, char* argv[] ){
+  std::string vID;
   if(argc > 1) {
-    std::string vID = argv[1];
+    vID = argv[1];
   }
   else{
-    cout << "Not enough arguments";
-    exit();
+    std::cout << "Not enough arguments";
+    exit(1);
   }
 
 
