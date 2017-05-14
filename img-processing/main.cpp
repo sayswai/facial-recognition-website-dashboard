@@ -57,7 +57,7 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 
 int main(int argc, char* argv[]){
   char* vID;
-  char* fnum;
+  std::string fnum;
   if(argc>2){
     vID = argv[1];
     fnum = argv[2];
@@ -112,6 +112,7 @@ int main(int argc, char* argv[]){
 
   //Create padded frame number for file navigation
   char *nav;
+  int i = std::atoi(fnum);
   if(fnum<10){
     strcpy(nav, "000");
     strcat(nav, fnum);
