@@ -112,16 +112,16 @@ int main(int argc, char* argv[]){
 
   //Create padded frame number for file navigation
   char *nav;
-  int i = std::atoi(fnum);
-  if(fnum<10){
+  int h = std::atoi(fnum);
+  if(h<10){
     strcpy(nav, "000");
     strcat(nav, fnum);
   }
-  else if(fnum<100){
+  else if(h<100){
     strcpy(nav, "00");
     strcat(nav, fnum);
   }
-  else if(fnum<1000){
+  else if(h<1000){
     strcpy(nav, "0");
     strcat(nav, fnum);
   }
