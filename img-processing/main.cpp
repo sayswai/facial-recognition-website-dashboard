@@ -66,9 +66,8 @@ int main( int argc, const char** argv ){
   //DB connect and query info
   pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
   //strcpy(pg_vidquery, "SELECT framecount, width, height FROM (SELECT * FROM videos WHERE vid = ");
-strcpy(pg_vidquery, "SELECT framecount, width, height FROM videos WHERE vid = ");
+  strcpy(pg_vidquery, "SELECT framecount, width, height FROM videos WHERE vid = ");
   strcat(pg_vidquery, vID);
-  printf("vidquery - %s", pg_vidquery);
 
 
   //Start and test connection
@@ -119,9 +118,12 @@ strcpy(pg_vidquery, "SELECT framecount, width, height FROM videos WHERE vid = ")
     char *pg_iquery;
     strcpy(pg_ofquery, "SELECT * FROM openface WHERE framenum = ");
     strcat(pg_ofquery, fnum);
-    strcpy(pg_iquery, "SELECT rightpupilx, rightpupily, leftpupilx, leftpupily FROM (SELECT * FROM eye WHERE framenum = ");
+    strcat(pg_ofquery, " AND vid = ");
+    strcat(pg_ofquery, vID);
+    strcpy(pg_iquery, "SELECT rightpupilx, rightpupily, leftpupilx, leftpupily FROM eye WHERE framenum = ");
     strcat(pg_iquery, fnum);
-    strcat(pg_iquery, ")");
+    strcat(pg_iquery, " AND vid = ");
+    strcat(pg_iquery, vID);
 
     //Execute queries, wait up to a day if current frame not stored in either database table
     pgres = PQexec(pgconn, pg_ofquery);
