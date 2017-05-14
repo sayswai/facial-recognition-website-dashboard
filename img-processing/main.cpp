@@ -59,8 +59,11 @@ int main(int argc, char* argv[]){
   char* vID;
   char* fnum;
   if(argc>2){
+    printf("Enough arguments");
     vID = argv[1];
+    printf("First arg: %s", vID);
     fnum = argv[2];
+    printf("Second arg: %s", fnum);
   }
   else{
     std::cout << "Not enough args, needs vID and fnum";
