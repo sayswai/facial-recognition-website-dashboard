@@ -55,7 +55,7 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
   }
 }
 
-int main( int argc, const char** argv ){
+int main( int argc, char* argv[] ){
   const char *vID = argv[1];
 
   const char *pginfo;
