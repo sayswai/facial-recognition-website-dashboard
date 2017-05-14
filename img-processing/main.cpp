@@ -83,8 +83,6 @@ int main(int argc, char* argv[]){
     connection_exit(pgconn);
   }
 
-  PGresult *pgres;
-
   //Set up query for current frame number in eye and openface tables
   char *pg_ofquery;
   char *pg_iquery;
@@ -166,7 +164,7 @@ int main(int argc, char* argv[]){
   }
 
   //Draw triangles on image
-  triangles(img_original, sdiv, width, height);
+  triangles(img_original, sdiv, img_original.size().width, img_original.size().height);
 
   //Write image to new file
   char *url;
