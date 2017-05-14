@@ -64,10 +64,11 @@ int main( int argc, const char** argv ){
   PGresult *pgres;
 
   //DB connect and query info
-  pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=1";
-  strcpy(pg_vidquery, "SELECT framecount, width, height FROM (SELECT * FROM videos WHERE vid = ");
+  pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
+  //strcpy(pg_vidquery, "SELECT framecount, width, height FROM (SELECT * FROM videos WHERE vid = ");
+strcpy(pg_vidquery, "SELECT framecount, width, height FROM videos WHERE vid = ");
   strcat(pg_vidquery, vID);
-  strcat(pg_vidquery, ")");
+  printf("vidquery - %s", pg_vidquery);
 
 
   //Start and test connection
