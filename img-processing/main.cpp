@@ -60,9 +60,9 @@ int main(int argc, char* argv[]){
   char* fnum;
   if(argc>2){
     printf("Enough arguments");
-    vID = argv[1];
+    strcpy(vID, argv[1]);
     printf("First arg: %s", vID);
-    fnum = argv[2];
+    strcpy(fnum, argv[2]);
     printf("Second arg: %s", fnum);
   }
   else{
