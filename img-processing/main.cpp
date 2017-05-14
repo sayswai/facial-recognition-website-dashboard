@@ -57,7 +57,7 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 
 int main(int argc, char* argv[]){
   char* vID;
-  std::string fnum;
+  char* fnum;
   if(argc>2){
     vID = argv[1];
     fnum = argv[2];
