@@ -112,15 +112,15 @@ int main(int argc, char* argv[]){
 
   //Create padded frame number for file navigation
   char *nav;
-  if(i<10){
+  if(fnum<10){
     strcpy(nav, "000");
     strcat(nav, fnum);
   }
-  else if(i<100){
+  else if(fnum<100){
     strcpy(nav, "00");
     strcat(nav, fnum);
   }
-  else if(i < 1000){
+  else if(fnum<1000){
     strcpy(nav, "0");
     strcat(nav, fnum);
   }
