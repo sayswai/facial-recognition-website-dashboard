@@ -91,15 +91,17 @@ int main(int argc, char* argv[]){
   //Set up query for current frame number in eye and openface tables
   char* pg_ofquery;
   char* pg_iquery;
+  printf("Query vars created\n");
   strcpy(pg_ofquery, "SELECT * FROM openface WHERE vid = ");
   strcat(pg_ofquery, vID);
   strcat(pg_ofquery, " AND framenum = ");
   strcat(pg_ofquery, fnum);
+  printf("Openface query created successfully: %s\n", pg_ofquery);
   strcpy(pg_iquery, "SELECT rightpupilx, rightpupily, leftpupilx, leftpupily FROM eye WHERE vid = ");
   strcat(pg_iquery, vID);
   strcat(pg_iquery, " AND framenum = ");
   strcat(pg_iquery, fnum);
-  printf("Openface and Eye table queries created successfully\n");
+  printf("Eye query created successfully: %s\n", pg_ofquery);
 
   //Get and test result
   pgres = PQexec(pgconn, pg_ofquery);
