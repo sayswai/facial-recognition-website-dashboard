@@ -82,9 +82,22 @@ int main(int argc, char* argv[]){
   printf("Variables prepared for DB connection\n");
 
   //Start and test connection
-  while(PQstatus(pgconn) != CONNECTION_OK){
-    try{
-      pgconn = PQconnectdb(pginfo);
+  int conncount = 0;
+  try{
+    pgconn = PQconnectdb(pginfo);
+  }
+  catch(std::exception& e1){
+    sleep(1000);
+    printf("Attempt %s failed, reattempting...\n", conncount);
+    while(PQstatus(pgconn) != CONNECTION_OK || conncount > qcount){
+      try{
+        conncount++;
+        pgconn = PQconnectdb(pginfo);
+      }
+      catch(std::exception& e2){
+        sleep(1000);
+        printf("Attempt %s failed, reattempting...\n", conncount);
+      }
     }
   }
   if(PQstatus(pgconn) != CONNECTION_OK){
