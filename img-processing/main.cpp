@@ -223,7 +223,7 @@ int main(int argc, char* argv[]){
     printf("Point string manipulated\n");
     float x = std::stof(sx);
     float y = std::stof(sy);
-    printf("Floats declared\n");
+    printf("Floats declared, x: %f, y: %f\n", x, y);
     cv::Point2f p = cv::Point2f(x, y);
     printf("Point2f made\n");
     sdiv.insert(p);
