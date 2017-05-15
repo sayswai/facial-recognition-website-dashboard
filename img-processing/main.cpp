@@ -89,8 +89,8 @@ int main(int argc, char* argv[]){
   printf("DB connection successfully established\n");
 
   //Set up query for current frame number in eye and openface tables
-  char* pg_ofquery;
-  char* pg_iquery;
+  char* pg_ofquery = new char[100];
+  char* pg_iquery = new char[100];
   printf("Query vars created\n");
   strcpy(pg_ofquery, "SELECT * FROM openface WHERE vid = ");
   strcat(pg_ofquery, vID);
