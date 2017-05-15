@@ -198,7 +198,7 @@ function openCv($vID){
         }else{
             //frame is not detected, just move over file form split to finished_frame folder
             $outputName = str_replace('split_', 'output_', $splitFiles[$i]);
-            shell_exec('mv ' .$VID_DIR. 'split/' .$splitFiles[$i]. ' '.$VID_DIR.'/finished_frames/' .$outputName);
+            shell_exec('cp ' .$VID_DIR. 'split/' .$splitFiles[$i]. ' '.$VID_DIR.'/finished_frames/' .$outputName);
         }
     }
     shell_exec('> ' .$VID_DIR.'done_opencv');
