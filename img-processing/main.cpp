@@ -48,7 +48,7 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
     tripoints.push_back(cv::Point(cvRound(tri[0]), cvRound(tri[1])));
     tripoints.push_back(cv::Point(cvRound(tri[2]), cvRound(tri[3])));
     tripoints.push_back(cv::Point(cvRound(tri[4]), cvRound(tri[5])));
-    printf("Points made\n")
+    printf("Points made\n");
 
     //Ensure triangles are inside image
     if(space.contains(tripoints[0]) && space.contains(tripoints[1]) && space.contains(tripoints[2])){
