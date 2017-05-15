@@ -184,7 +184,7 @@ int main(int argc, char* argv[]){
   printf("Image URL: %s\n", imgurl);
   cv::Mat img = cv::imread(imgurl, -1);
   cv::Mat img_original;
-  cv::resize(img, img_original, Size(width, height), 0, 0, INTER_CUBIC);
+  cv::resize(img, img_original, cv::Size(width, height), 0, 0, 2);
   printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
   cv::Rect space = cv::Rect(0,0,width,height);
   printf("Opencv prep successful\n");
