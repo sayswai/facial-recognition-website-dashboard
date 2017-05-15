@@ -1,3 +1,8 @@
+/**
+ * Created by PhpStorm.
+ * User: Wai
+ * Purpose: user home page
+ */
 var operations = 3;
 
 
@@ -125,6 +130,7 @@ function progressBar (vID, progress){
 }
 
 function videoBoxInfo (vID){
+
     var data = new FormData();
     var connect = new XMLHttpRequest();
 
@@ -135,6 +141,42 @@ function videoBoxInfo (vID){
             var output = JSON.parse(connect.responseText);
             $('#'+vID+'cardTitle').html('Title: '+output['vtitle']);
             $('#'+vID+'cardText').html('FPS: '+output['fps']+'<br>Dimensions: '+output['width']+' x '+output['height']);
+            if (output['final']){
+                $('#'+vID+'showFinal').prop('disabled', false).click(function(){
+                    newS = $('#'+vID+'vidvid').find('source').attr('src').replace('vids/'+vID+'/', '');
+                    if (newS == 'main.mp4'){
+                        newS = 'vids/'+vID+'/final.mp4';
+                        $(this).html('Original Video');
+                        $('#'+vID+'vidvid').find('source').attr('src', newS);
+                        $('#'+vID+'vidvid')[0].load();
+
+                        $('.hVideo').unbind('click');
+                        $('.hVideo').click(function(){
+                            html = "<video class='video' controls width='100%' height='auto'>" +
+                                "<source src='" + newS + "' type='video/mp4'>" +
+                                "</video>"
+                            $('#videoPlayerBody').html(html);
+                            $('#videoPlayer').modal('show');
+                            $('video', $('#videoPlayer')).get(0).play()
+                        });
+                    }else{
+                        newS = 'vids/'+vID+'/main.mp4';
+                        $(this).html('Resulting Video');
+                        $('#'+vID+'vidvid').find('source').attr('src', newS);
+                        $('#'+vID+'vidvid')[0].load();
+
+                        $('.hVideo').unbind('click');
+                        $('.hVideo').click(function(){
+                            html = "<video class='video' controls width='100%' height='auto'>" +
+                                "<source src='" + newS + "' type='video/mp4'>" +
+                                "</video>"
+                            $('#videoPlayerBody').html(html);
+                            $('#videoPlayer').modal('show');
+                            $('video', $('#videoPlayer')).get(0).play()
+                        });
+                    }
+                });
+            }
         }
     };
 
@@ -239,6 +281,7 @@ $('#videoPlayer').on("hidden.bs.modal", function(e) {
 $('#videoPlayerBody').click(function(e) {
     $('video', this).get(0).paused ? $('video', this).get(0).play() : $('video', this).get(0).pause();
 });
+
 
 $(function() {
     function reposition() {

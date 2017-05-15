@@ -14,7 +14,7 @@ global $root_loc;
 
     $VID_DIR = $root_loc.'/vids/'.$videoID.'/finished_frames/';
 
-    shell_exec('sudo ffmpeg -i ' . $VID_DIR . 'output_%04d.png ' . $VID_DIR . 'out.mp4 2>&1');
+    shell_exec('sudo ffmpeg -i ' . $VID_DIR . 'output_%04d.png ' . $VID_DIR . 'final.mp4 2>&1');
 
 }
 

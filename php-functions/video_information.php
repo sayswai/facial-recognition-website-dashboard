@@ -24,6 +24,8 @@ if(isset($_POST['submit']) && isset($_POST['vID']) && isset($_SESSION['uid'])){
 
     #$arr[0]['progress'] = getProgress($vID);
     // $arr[0] ... [vtitle] [fps] [width] [height] [progress]
+    $arr[0]['final'] = (file_exists($_SERVER['DOCUMENT_ROOT'].'/vids/'.$vID.'/final.mp4')) ? true : false;
+
     $js = json_encode($arr[0]);
     echo $js;
 }elseif(isset($_POST['progress']) && isset($_POST['vID'])){
