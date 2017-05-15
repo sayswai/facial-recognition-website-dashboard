@@ -111,7 +111,9 @@ int main(int argc, char* argv[]){
   char* pg_iquery = new char[100];
   printf("Query vars created\n");
   strcpy(pg_ofquery, "SELECT * FROM openface WHERE vid = ");
+  printf("Query before add: %s\nvID before add: %s\n", pg_ofquery, vID);
   strcat(pg_ofquery, vID);
+  printf("Query after add: %s\nvID after add: %s\n", pg_ofquery, vID);
   strcat(pg_ofquery, " AND framenum = ");
   strcat(pg_ofquery, fnum);
   printf("Openface query created successfully: %s\n", pg_ofquery);
