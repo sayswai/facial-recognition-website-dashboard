@@ -44,9 +44,11 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
   //Draw every triangle
   for(int i=0; i<triangles.size(); i++){
     cv::Vec6f tri = triangles[i];
-    tripoints[0] = cv::Point(cvRound(tri[0]), cvRound(tri[1]));
-    tripoints[1] = cv::Point(cvRound(tri[2]), cvRound(tri[3]));
-    tripoints[2] = cv::Point(cvRound(tri[4]), cvRound(tri[5]));
+    printf("Triangle %i start\n", i);
+    tripoints.push_back(cv::Point(cvRound(tri[0]), cvRound(tri[1])));
+    tripoints.push_back(cv::Point(cvRound(tri[2]), cvRound(tri[3])));
+    tripoints.push_back(cv::Point(cvRound(tri[4]), cvRound(tri[5])));
+    printf("Points made\n")
 
     //Ensure triangles are inside image
     if(space.contains(tripoints[0]) && space.contains(tripoints[1]) && space.contains(tripoints[2])){
