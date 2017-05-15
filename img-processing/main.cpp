@@ -141,7 +141,7 @@ int main(int argc, char* argv[]){
   printf("Padded framenum successful\n");
 
   //Get image and define space to partition into triangles
-  char* imgurl;
+  char* imgurl = new char[100];
   strcpy(imgurl, "/var/www/html/vids/");
   strcat(imgurl, vID);
   strcat(imgurl, "/split_");
@@ -183,7 +183,7 @@ int main(int argc, char* argv[]){
   printf("Triangle draw successful\n");
 
   //Write image to new file
-  char* url;
+  char* url = new char[100];
   strcpy(url, "/var/www/html/vids/");
   strcat(url, vID);
   strcat(url, "/detected_frames/");
