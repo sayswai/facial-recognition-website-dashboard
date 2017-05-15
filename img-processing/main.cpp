@@ -197,11 +197,11 @@ int main(int argc, char* argv[]){
   std::vector<cv::Point2f> points;
   for(int j=0; j<PQnfields(pgres); j++){
     printf("PQvalue: %s", PQgetvalue(pgres, 0, j));
-    cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j)[0], PQgetvalue(pgres, 0, j)[1]);
-    sdiv.insert(p);
-    dot(img_original, p);
+    //cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j)[0], PQgetvalue(pgres, 0, j)[1]);
+    //sdiv.insert(p);
+    //dot(img_original, p);
   }
-  printf("Opencv table point extraction and dot draw successful\n");
+  /*printf("Opencv table point extraction and dot draw successful\n");
 
   //Draw triangles on image
   triangles(img_original, sdiv, img_original.size().width, img_original.size().height);
@@ -214,7 +214,7 @@ int main(int argc, char* argv[]){
   strcat(url, "/detected_frames/");
   strcat(url, fnum);
   strcat(url, ".png");
-  cv::imwrite(url, img_original);
+  cv::imwrite(url, img_original);*/
   PQfinish(pgconn);
-  printf("Image write and dbfinish successful\n");
+  printf("Image write and dbfinish successful: end\n");
 }
