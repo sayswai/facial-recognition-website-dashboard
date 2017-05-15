@@ -74,17 +74,17 @@ int main(int argc, char* argv[]){
   //Vars for db access
   printf("Prior to pginfo\n");
   const char *pginfo;
-  pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
+  pginfo = "host=localhost port=5432 dbname=CS160 user=postgres password=umyserver";
   printf("PGinfo retrieved: %s\n", pginfo);
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
-  printf("Undeclared vars good\n");
+  printf("Variables prepared for DB connection\n");
 
   //Start and test connection
-  pgconn = PQconnectdb(pginfo);
+  pgconn = PQconnectdb("host=localhost port=5432 dbname=CS160 user=postgres password=umyserver");
   if(PQstatus(pgconn) != CONNECTION_OK){
-    fprintf(stderr, "Connection to postgres failed: %s", PQerrorMessage(pgconn));
+    printf("Connection to postgres failed: %s\n", PQerrorMessage(pgconn));
     connection_exit(pgconn);
   }
   printf("DB connection successfully established\n");
@@ -107,16 +107,22 @@ int main(int argc, char* argv[]){
   //Get and test result
   pgres = PQexec(pgconn, pg_ofquery);
   if(PQresultStatus(pgres) != PGRES_TUPLES_OK){
-    fprintf(stderr, "Query on database connection failed: %s", PQerrorMessage(pgconn));
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
     PQclear(pgres);
+    connection_exit(pgconn);
+  } else if (PQntuples(pgres) == 0){
+    printf("No OpenFace Points\n");
     connection_exit(pgconn);
   }
   printf("Openface query successful\n");
 
   pgres2 = PQexec(pgconn, pg_iquery);
   if(PQresultStatus(pgres2) != PGRES_TUPLES_OK){
-    fprintf(stderr, "Query on database connection failed: %s", PQerrorMessage(pgconn));
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
     PQclear(pgres2);
+    connection_exit(pgconn);
+  } else if (PQntuples(pgres2) == 0){
+    printf("No Eye Points\n");
     connection_exit(pgconn);
   }
   printf("Eye query successful\n");
@@ -173,7 +179,8 @@ int main(int argc, char* argv[]){
   //Extract points from result of openface Query and store in sdiv. Draw dot on image for each point
   std::vector<cv::Point2f> points;
   for(int j=0; j<PQnfields(pgres); j++){
-    cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j));
+    printf("PQvalue: %s", PQgetvalue(pgres, 0, j));
+    cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j)[0], PQgetvalue(pgres, 0, j)[1]);
     sdiv.insert(p);
     dot(img_original, p);
   }
