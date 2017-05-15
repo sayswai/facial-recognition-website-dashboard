@@ -79,6 +79,7 @@ int main(int argc, char* argv[]){
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
+  PGresult *pgres3;
   printf("Variables prepared for DB connection\n");
 
   //Start and test connection
@@ -106,9 +107,10 @@ int main(int argc, char* argv[]){
   }
   printf("DB connection successfully established\n");
 
-  //Set up query for current frame number in eye and openface tables
+  //Set up query for current frame number in eye and openface tables, and video width and height retrieval
   char* pg_ofquery = new char[100];
   char* pg_iquery = new char[100];
+  char* pg_vquery = new char[100];
   strcpy(pg_ofquery, "SELECT * FROM openface WHERE vid = ");
   strcat(pg_ofquery, vID);
   strcat(pg_ofquery, " AND framenum = ");
@@ -119,6 +121,8 @@ int main(int argc, char* argv[]){
   strcat(pg_iquery, " AND framenum = ");
   strcat(pg_iquery, fnum);
   printf("Eye query created successfully: %s\n", pg_ofquery);
+  strcpy(pg_vquery, "SELECT width, height FROM video WHERE vid = ");
+  strcat(pg_vquery, vID);
 
   //Get and test result
   pgres = PQexec(pgconn, pg_ofquery);
@@ -142,6 +146,19 @@ int main(int argc, char* argv[]){
     connection_exit(pgconn);
   }
   printf("Eye query successful\n");
+
+  pgres3 = PQexec(pgconn, pg_vquery);
+  if(PQresultStatus(pgres3) != PGRES_TUPLES_OK){
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
+    PQclear(pgres3);
+    connection_exit(pgconn);
+  } else if (PQntuples(pgres3) == 0){
+    printf("Didn't get width, height from video in db\n");
+    connection_exit(pgconn);
+  }
+  printf("Video query successful\n");
+  const int width = PQgetvalue(pgres3, 0, 0);
+  const int height = PQgetvalue(pgres3, 0, 1);
 
   //Create padded frame number for file navigation
   char* nav = new char[10];
@@ -171,9 +188,9 @@ int main(int argc, char* argv[]){
   strcat(imgurl, nav);
   strcat(imgurl, ".png");
   cv::Mat img_original = cv::imread(imgurl);
-  cv::Rect space = cv::Rect(0,0,img_original.cols,img_original.rows);
+  cv::Rect space = cv::Rect(0,0,width,height);
   printf("Opencv prep successful\n");
-  printf("Width: %i\nHeight: %i", img_original.cols,img_original.rows);
+  printf("Width: %i\nHeight: %i", width,height);
 
   //Get pupil x and y, and draw dots on them
   std::string rnx(PQgetvalue(pgres2, 0, 0));
