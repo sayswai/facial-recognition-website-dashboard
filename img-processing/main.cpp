@@ -56,13 +56,13 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 }
 
 int main(int argc, char* argv[]){
-  char* vID[20];
-  char* fnum[5];
+  char* vID;
+  char* fnum;
   if(argc>2){
     printf("Enough arguments");
     strcpy(vID, argv[1]);
     printf("First arg: %s", vID);
-    strcpy(fnum, argv[2]);
+    strcpy(fnum, argv[2];
     printf("Second arg: %s", fnum);
   }
   else{
