@@ -122,7 +122,7 @@ int main(int argc, char* argv[]){
     PQclear(pgres2);
     connection_exit(pgconn);
   } else if (PQntuples(pgres2) == 0){
-    fprintf("No Eye Points\n");
+    printf("No Eye Points\n");
     connection_exit(pgconn);
   }
   printf("Eye query successful\n");
