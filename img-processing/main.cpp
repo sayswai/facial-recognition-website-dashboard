@@ -36,12 +36,12 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 
   //Get list of triangles to draw from sdiv into triangles, and define workspace
   std::vector<cv::Vec6f> triangles;
-  std::vector<cv::Point> tripoints;
   sdiv.getTriangleList(triangles);
   cv::Rect space = cv::Rect(0,0,width,height);
 
   //Draw every triangle
   for(int i=0; i<triangles.size(); i++){
+    std::vector<cv::Point> tripoints;
     cv::Vec6f tri = triangles[i];
     printf("Triangle %i start\n", i);
     tripoints.push_back(cv::Point(cvRound(tri[0]), cvRound(tri[1])));
@@ -50,12 +50,12 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
     printf("Points made\n");
 
     //Ensure triangles are inside image
-    //if(space.contains(tripoints[0]) && space.contains(tripoints[1]) && space.contains(tripoints[2])){
+    if(space.contains(tripoints[0]) && space.contains(tripoints[1]) && space.contains(tripoints[2])){
       cv::line(image, tripoints[0], tripoints[1], color, 1, CV_AA, 0);
       cv::line(image, tripoints[1], tripoints[2], color, 1, CV_AA, 0);
       cv::line(image, tripoints[2], tripoints[0], color, 1, CV_AA, 0);
       printf("Lines for triangle drawn\n");
-    //}
+    }
   }
 }
 
