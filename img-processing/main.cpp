@@ -230,9 +230,9 @@ int main(int argc, char* argv[]){
     printf("Point2f made\n");
     sdiv.insert(p);
     printf("Point %i inserted\n", j);
-    //dot(img_original, p);
+    dot(img_original, p);
   }
-  /*printf("Opencv table point extraction and dot draw successful\n");
+  printf("Opencv table point extraction and dot draw successful\n");
 
   //Draw triangles on image
   triangles(img_original, sdiv, img_original.size().width, img_original.size().height);
@@ -245,7 +245,7 @@ int main(int argc, char* argv[]){
   strcat(url, "/detected_frames/");
   strcat(url, fnum);
   strcat(url, ".png");
-  cv::imwrite(url, img_original);*/
+  cv::imwrite(url, img_original);
   PQfinish(pgconn);
   printf("Image write and dbfinish successful: end\n");
 }
