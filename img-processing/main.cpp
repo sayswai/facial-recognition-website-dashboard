@@ -197,13 +197,17 @@ int main(int argc, char* argv[]){
   std::vector<cv::Point2f> points;
   for(int j=0; j<PQnfields(pgres); j++){
     std::string point(PQgetvalue(pgres, 0, j));
+    printf("Point string created\n");
     int delim = point.find(',');
     int last = point.find(')');
     std::string sx(point.substr(1, delim-1));
     std::string sy(point.substr(delim+1, last-1));
+    printf("Point string manipulated\n");
     float x = std::stof(sx);
     float y = std::stof(sy);
+    printf("Floats declared\n");
     cv::Point2f p = cv::Point2f(x, y);
+    printf("Point2f made\n");
     sdiv.insert(p);
     printf("Point %i inserted\n", j);
     //dot(img_original, p);
