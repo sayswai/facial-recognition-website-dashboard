@@ -108,6 +108,8 @@ int main(int argc, char* argv[]){
   }
   printf("DB connection successfully established\n");
   printf("vID after connect test: %s\n", vID);
+  char* testID = vID;
+  printf("testID: %s\n", testID);
   //Set up query for current frame number in eye and openface tables
   char* pg_ofquery = new char[100];
   char* pg_iquery = new char[100];
