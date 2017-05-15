@@ -44,7 +44,7 @@ function getProgress($vID){
     $progress = glob($VID_DIR . 'done_*');
     if ($progress != false){
         $progress = count($progress);
-        if ($progress == $total){
+        if ($progress >= $total){
             return 100;
         }
     }
