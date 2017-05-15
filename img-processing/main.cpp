@@ -88,7 +88,7 @@ int main(int argc, char* argv[]){
     connection_exit(pgconn);
   }
   printf("DB connection successfully established\n");
-  printf("Buffer?\n")
+  printf("Buffer?\n");
 
   //Set up query for current frame number in eye and openface tables
   char* pg_ofquery = new char[100];
