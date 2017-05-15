@@ -63,6 +63,7 @@ int main(int argc, char* argv[]){
     strcpy(vID, argv[1]);
     strcpy(fnum, argv[2]);
     printf("Begin processing frame %s from video %s \n", fnum, vID);
+    printf("\n");
   }
   else{
     printf("Not enough args, needs ./output vID fnum\n");
