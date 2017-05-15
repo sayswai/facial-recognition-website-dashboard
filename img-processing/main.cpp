@@ -139,17 +139,6 @@ int main(int argc, char* argv[]){
   const int height = std::atoi(PQgetvalue(pgres3, 0, 1));
   printf("Width: %i\nHeight: %i", width,height);
 
-  pgres = PQexec(pgconn, pg_ofquery);
-  if(PQresultStatus(pgres) != PGRES_TUPLES_OK){
-    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
-    PQclear(pgres);
-    connection_exit(pgconn);
-  } else if (PQntuples(pgres) == 0){
-    printf("No OpenFace Points\n");
-    connection_exit(pgconn);
-  }
-  printf("Openface query successful\n");
-
   pgres2 = PQexec(pgconn, pg_iquery);
   if(PQresultStatus(pgres2) != PGRES_TUPLES_OK){
     printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
@@ -211,17 +200,28 @@ int main(int argc, char* argv[]){
   cv::Subdiv2D sdiv = cv::Subdiv2D(space);
   printf("Subdiv2D successfully constructed\n");
 
+  pgres = PQexec(pgconn, pg_ofquery);
+  if(PQresultStatus(pgres) != PGRES_TUPLES_OK){
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
+    PQclear(pgres);
+    connection_exit(pgconn);
+  } else if (PQntuples(pgres) == 0){
+    printf("No OpenFace Points\n");
+    connection_exit(pgconn);
+  }
+  printf("Openface query successful\n");
+
   //Extract points from result of openface Query and store in sdiv. Draw dot on image for each point
   std::vector<cv::Point2f> points;
   for(int j=0; j<PQnfields(pgres); j++){
     char* point = new char[50];
     strcpy(point, PQgetvalue(pgres, 0, j));
     printf("Point string created: %s vs PQget: %s\n", point, PQgetvalue(pgres, 0, j));
-    std::string copy(point);
-    int delim = copy.find(',');
-    int last = copy.find(')');
-    std::string sx(copy.substr(1, delim-1));
-    std::string sy(copy.substr(delim+1, last-1));
+    std::string cp(point);
+    int delim = cp.find(',');
+    int last = cp.find(')');
+    std::string sx(cp.substr(1, delim-1));
+    std::string sy(cp.substr(delim+1, last-1));
     printf("Point string manipulated\n");
     float x = std::stof(sx);
     float y = std::stof(sy);
