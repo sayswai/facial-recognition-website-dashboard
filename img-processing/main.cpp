@@ -144,7 +144,7 @@ int main(int argc, char* argv[]){
   strcat(imgurl, ".png");
   cv::Mat img_original = cv::imread(imgurl);
   cv::Rect space = cv::Rect(0,0,img_original.size().width,img_original.size().height);
-  printf("Opencv prep (imgurl, imread, rect space) successful\n")
+  printf("Opencv prep (imgurl, imread, rect space) successful\n");
 
   //Get pupil x and y, and draw dots on them
   std::string rnx(PQgetvalue(pgres2, 0, 0));
