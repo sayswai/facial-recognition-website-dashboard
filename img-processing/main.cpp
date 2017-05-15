@@ -144,7 +144,7 @@ int main(int argc, char* argv[]){
   printf("Eye query successful\n");
 
   //Create padded frame number for file navigation
-  char* nav;
+  char* nav = char[10];
   int h = std::atoi(fnum);
   if(h<10){
     strcpy(nav, "000");
