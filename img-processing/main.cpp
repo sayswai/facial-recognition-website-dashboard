@@ -85,6 +85,7 @@ int main(int argc, char* argv[]){
   for(int l=0; l<qcount ;l++){
     try{
       pgconn = PQconnectdb(pginfo);
+      break;
     }
     catch(ExceptionName e){
       sleep(1000);
