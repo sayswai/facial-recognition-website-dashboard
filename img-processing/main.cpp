@@ -248,7 +248,7 @@ int main(int argc, char* argv[]){
   strcat(url, "/detected_frames/");
   strcat(url, fnum);
   strcat(url, ".png");
-  cv::imwrite(url, img_original);
+  cv::imwrite(url, img_original, CV_IMWRITE_PNG_COMPRESSION);
   PQfinish(pgconn);
   printf("Image write and dbfinish successful: end\n");
 }
