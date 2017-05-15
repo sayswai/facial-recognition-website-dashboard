@@ -31,13 +31,14 @@ static void dot(cv::Mat& image, cv::Point2f ref){
 
 //Util: Draw all triangles
 static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height){
+  printf("Triangles start\n");
   cv::Scalar color = cv::Scalar(223, 61, 130);
 
   //Get list of triangles to draw from sdiv into triangles, and define workspace
   std::vector<cv::Vec6f> triangles;
   std::vector<cv::Point> tripoints;
   sdiv.getTriangleList(triangles);
-  printf("Triangle List size: %i", triangles.size());
+  printf("Triangle List size: %i\n", triangles.size());
   cv::Rect space = cv::Rect(0,0,width,height);
 
   //Draw every triangle
