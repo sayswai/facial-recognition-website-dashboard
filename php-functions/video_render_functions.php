@@ -193,7 +193,7 @@ function openCv($vID){
         $frame = $i-1;
         if($arr[$det_frame-1]['framenum'] == $frame && $eyeArr[$det_frame-1]['framenum'] == $frame){
             //frame is detected in both openface and eyelike
-            shell_exec($openCvCommand.' '.$vID.' '.$frame);
+            shell_exec('sudo '.$openCvCommand.' '.$vID.' '.$frame);
             $det_frame++;
         }else{
             //frame is not detected, just move over file form split to finished_frame folder
