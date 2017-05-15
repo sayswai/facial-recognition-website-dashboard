@@ -204,9 +204,9 @@ int main(int argc, char* argv[]){
     std::string sy(point.substr(delim+1, last-1));
     float x = std::stof(sx);
     float y = std::stof(sy);
-    cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j));
+    cv::Point2f p = cv::Point2f(x, y);
     sdiv.insert(p);
-    dot(img_original, p);
+    //dot(img_original, p);
   }
   /*printf("Opencv table point extraction and dot draw successful\n");
 
