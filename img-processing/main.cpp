@@ -250,7 +250,7 @@ int main(int argc, char* argv[]){
   strcat(url, ".png");
   std::vector<int> params;
   params.push_back(CV_IMWRITE_PNG_COMPRESSION);
-  printf("Width: %i, Height: %i", img_original.cols, img_original.rows);
+  printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
   cv::imwrite(url, img_original, params);
   PQfinish(pgconn);
   printf("Image write and dbfinish successful: end\n");
