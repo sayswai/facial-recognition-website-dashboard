@@ -215,6 +215,7 @@ int main(int argc, char* argv[]){
   std::vector<cv::Point2f> points;
   for(int j=0; j<PQnfields(pgres); j++){
     std::string point(PQgetvalue(pgres, 0, j));
+    printf(point);
     printf("Point string created\n");
     int delim = point.find(',');
     int last = point.find(')');
