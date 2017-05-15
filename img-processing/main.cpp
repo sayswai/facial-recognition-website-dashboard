@@ -54,6 +54,7 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
       cv::line(image, tripoints[0], tripoints[1], color, 1, CV_AA, 0);
       cv::line(image, tripoints[1], tripoints[2], color, 1, CV_AA, 0);
       cv::line(image, tripoints[2], tripoints[0], color, 1, CV_AA, 0);
+      printf("Lines for triangle drawn\n");
     }
   }
 }
@@ -182,7 +183,7 @@ int main(int argc, char* argv[]){
   strcat(imgurl, nav);
   strcat(imgurl, ".png");
   printf("Image URL: %s\n", imgurl);
-  //cv::Mat img; 
+  //cv::Mat img;
   cv::Mat img_original = cv::imread(imgurl, -1);
   //cv::resize(img, img_original, cv::Size(width, height), 0, 0, 2);
   printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
