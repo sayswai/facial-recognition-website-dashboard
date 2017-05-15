@@ -37,6 +37,7 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
   std::vector<cv::Vec6f> triangles;
   std::vector<cv::Point> tripoints;
   sdiv.getTriangleList(triangles);
+  printf("Triangle List size: %i", triangles.size());
   cv::Rect space = cv::Rect(0,0,width,height);
 
   //Draw every triangle
@@ -235,7 +236,7 @@ int main(int argc, char* argv[]){
   printf("Opencv table point extraction and dot draw successful\n");
 
   //Draw triangles on image
-  triangles(img_original, sdiv, img_original.size().width, img_original.size().height);
+  triangles(img_original, sdiv, width, height);
   printf("Triangle draw successful\n");
 
   //Write image to new file
