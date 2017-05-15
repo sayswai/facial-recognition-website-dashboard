@@ -5,7 +5,7 @@ include "../configs/Config.php";
 include 'queries.php';
 /**
  * Created by PhpStorm.
- * Functions created by Ben
+ * Functions created by Ben & Wai
  * Date: 5/12/2017
  * Time: 2:32 AM
  */
@@ -178,17 +178,21 @@ function openCv($vID){
     $query = "SELECT * FROM openface WHERE vid = " .$vID;
     $result = pg_query($query);
     $arr = pg_fetch_all($result);
+    $query = "SELECT * FROM eye WHERE vid =" .$vID;
+    $result = pg_query($query);
+    $eyeArr = pg_fetch_all($result);
     pg_close($connection);
 
 
     $splitFiles = scandir($root_loc . '/vids/' . $vID . '/split/');
     $det_frame = 1;
-    shell_exec('mkdir '.$VID_DIR.'finished_frames/');
+    shell_exec('mkdir -p'.$VID_DIR.'finished_frames/');
+
     for($i = 2; $i < sizeof($splitFiles); $i++) {
         $frame = $i-1;
-        if($arr[$det_frame-1]['framenum'] == $frame){
-            //frame is detected
-            #shell_exec('sudo '.$openCvCommand.' '.$vID.' '.$frame);
+        if($arr[$det_frame-1]['framenum'] == $frame && $eyeArr[$det_frame-1]['framenum'] == $frame){
+            //frame is detected in both openface and eyelike
+            shell_exec('sudo '.$openCvCommand.' '.$vID.' '.$frame);
             $det_frame++;
         }else{
             //frame is not detected, just move over file form split to finished_frame folder
