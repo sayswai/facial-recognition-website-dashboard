@@ -199,7 +199,6 @@ int main(int argc, char* argv[]){
     std::string point(PQgetvalue(pgres, 0, j));
     int delim = point.find(',');
     int last = point.find(')');
-    printf("PQvalue: %s", point);
     std::string sx(point.substr(1, delim-1));
     std::string sy(point.substr(delim+1, last-1));
     float x = std::stof(sx);
