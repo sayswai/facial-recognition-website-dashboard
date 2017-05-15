@@ -205,6 +205,7 @@ int main(int argc, char* argv[]){
     float y = std::stof(sy);
     cv::Point2f p = cv::Point2f(x, y);
     sdiv.insert(p);
+    printf("Point %i inserted\n", j);
     //dot(img_original, p);
   }
   /*printf("Opencv table point extraction and dot draw successful\n");
