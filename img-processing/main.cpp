@@ -75,7 +75,7 @@ int main(int argc, char* argv[]){
   printf("Prior to pginfo\n");
   const char *pginfo;
   pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
-  printf("PGinfo retrieved: %s,\n", pginfo);
+  printf("PGinfo retrieved: %s\n", pginfo);
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
@@ -173,7 +173,7 @@ int main(int argc, char* argv[]){
   //Extract points from result of openface Query and store in sdiv. Draw dot on image for each point
   std::vector<cv::Point2f> points;
   for(int j=0; j<PQnfields(pgres); j++){
-    cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j)[0], PQgetvalue(pgres, 0, j)[1]);
+    cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j));
     sdiv.insert(p);
     dot(img_original, p);
   }
