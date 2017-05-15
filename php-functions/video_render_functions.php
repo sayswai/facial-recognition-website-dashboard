@@ -13,6 +13,7 @@ include 'queries.php';
 /* VARIABLES */
 $eyeTrackCommand = \cmdEyeLike;
 $openFaceCommand = \cmdOpenFace;
+$openCvCommand = \openCv;
 $pa = \clP;
 $root_loc = \cliR;
 
@@ -165,6 +166,36 @@ function parsePointFilesAndInsert($videoID){
 }
 /* OPENFACE END */
 
+/* OPENCV START */
+function opencv($vID){
+    global $root_loc, $openCvCommand;
+    $VID_DIR = $root_loc . '/vids/' .$vID. '/';
+
+    $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
+    $query = "SELECT * FROM openface WHERE vid = " .$vID;
+    $result = pg_query($query);
+    $arr = pg_fetch_all($result);
+    pg_close($connection);
+
+
+    $splitFiles = scandir($root_loc . '/vids/' . $vID . '/split/');
+    $det_frame = 1;
+    shell_exec('mkdir '.$VID_DIR.'finished_frames/');
+    for($i = 2; $i < sizeof($splitFiles); $i++) {
+        $frame = $i-1;
+        if($arr[$det_frame-1]['framenum'] == $frame){
+            //frame is detected
+            #shell_exec('sudo '.$openCvCommand.' '.$vID.' '.$frame);
+            $det_frame++;
+        }else{
+            //frame is not detected, just move over file form split to finished_frame folder
+            $outputName = str_replace('split_', 'output_', $splitFiles[$i]);
+            shell_exec('mv ' .$VID_DIR. 'split/' .$splitFiles[$i]. ' '.$VID_DIR.'/finished_frames/' .$outputName);
+        }
+        echo '<br>';
+    }
+}
+/* OPENCV END */
 
 /* FFMPEG RECOMPILE START */
 function imagesToVideo($videoID){
