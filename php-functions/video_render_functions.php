@@ -187,7 +187,7 @@ function openCv($vID){
     $splitFiles = scandir($root_loc . '/vids/' . $vID . '/split/');
     $det_frame = 1;
     shell_exec('sudo chown -R www-data:www-data ' .$VID_DIR. '');
-    shell_exec('sudo mkdir -p'.$VID_DIR.'finished_frames/');
+    shell_exec('sudo mkdir -p '.$VID_DIR.'finished_frames/');
 
     for($i = 2; $i < sizeof($splitFiles); $i++) {
         $frame = $i-1;
