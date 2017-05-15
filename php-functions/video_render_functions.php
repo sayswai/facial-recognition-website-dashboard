@@ -164,4 +164,18 @@ function parsePointFilesAndInsert($videoID){
 
 }
 /* OPENFACE END */
+
+
+/* FFMPEG RECOMPILE START */
+function imagesToVideo($videoID){
+
+    global $root_loc;
+
+    $VID_DIR = $root_loc.'/vids/'.$videoID.'/';
+    $FINISHED_DIR = $VID_DIR.'finished_frames/';
+
+    shell_exec('sudo ffmpeg -i ' . $FINISHED_DIR . 'output_%04d.png ' . $VID_DIR . 'final-nosound.mp4 2>&1 && sudo ffmpeg -i ' . $VID_DIR. 'final-nosound.mp4 -i ' . $VID_DIR . 'audio.mp3 -c:v copy -c:a aac -strict experimental ' .$VID_DIR. 'final.mp4 && >' .$VID_DIR. 'done_final');
+
+}
+/* FFMPEG RECOMPILE END */
 ?>
