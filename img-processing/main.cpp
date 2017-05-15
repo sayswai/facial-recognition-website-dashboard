@@ -50,12 +50,12 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
     printf("Points made\n");
 
     //Ensure triangles are inside image
-    if(space.contains(tripoints[0]) && space.contains(tripoints[1]) && space.contains(tripoints[2])){
+    //if(space.contains(tripoints[0]) && space.contains(tripoints[1]) && space.contains(tripoints[2])){
       cv::line(image, tripoints[0], tripoints[1], color, 1, CV_AA, 0);
       cv::line(image, tripoints[1], tripoints[2], color, 1, CV_AA, 0);
       cv::line(image, tripoints[2], tripoints[0], color, 1, CV_AA, 0);
       printf("Lines for triangle drawn\n");
-    }
+    //}
   }
 }
 
