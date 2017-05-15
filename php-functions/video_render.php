@@ -29,9 +29,9 @@ if($pa == $argv[2]){
         eyeTrack($vID);
     }else{
         openFace($vID);
-        openCv($vID);
-        imagesToVideo($vID);
     }
+    openCv($vID);
+    imagesToVideo($vID);
 
 }else{
     error_log('video_render.php accessed without post');
