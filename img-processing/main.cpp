@@ -74,7 +74,7 @@ int main(int argc, char* argv[]){
   //Vars for db access
   printf("Prior to pginfo\n");
   const char *pginfo;
-  pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
+  pginfo = "host=localhost port=5432 dbname=CS160 user=postgres password=umyserver";
   printf("PGinfo retrieved: %s\n", pginfo);
   PGconn *pgconn;
   PGresult *pgres;
