@@ -181,7 +181,7 @@ int main(int argc, char* argv[]){
   strcat(imgurl, nav);
   strcat(imgurl, ".png");
   printf("Image URL: %s\n", imgurl);
-  cv::IplImage* img = cv::cvLoadImage(imgurl, -1);
+  IplImage* img = cvLoadImage(imgurl, -1);
   cv::Mat img_original(img);
   printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
   cv::Rect space = cv::Rect(0,0,width,height);
