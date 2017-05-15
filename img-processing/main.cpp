@@ -217,10 +217,11 @@ int main(int argc, char* argv[]){
     char* point = new char[50];
     strcpy(point, PQgetvalue(pgres, 0, j));
     printf("Point string created: %s\n", point);
-    int delim = point.find(',');
-    int last = point.find(')');
-    std::string sx(point.substr(1, delim-1));
-    std::string sy(point.substr(delim+1, last-1));
+    std::string copy(point);
+    int delim = copy.find(',');
+    int last = copy.find(')');
+    std::string sx(copy.substr(1, delim-1));
+    std::string sy(copy.substr(delim+1, last-1));
     printf("Point string manipulated\n");
     float x = std::stof(sx);
     float y = std::stof(sy);
