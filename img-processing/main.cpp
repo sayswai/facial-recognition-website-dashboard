@@ -72,13 +72,10 @@ int main(int argc, char* argv[]){
   }
 
   //Vars for db access
-  const char *pginfo;
+  const char* pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
-
-  //DB connect info
-  pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
 
   //Start and test connection
   pgconn = PQconnectdb(pginfo);
@@ -88,8 +85,8 @@ int main(int argc, char* argv[]){
   }
 
   //Set up query for current frame number in eye and openface tables
-  char *pg_ofquery;
-  char *pg_iquery;
+  char* pg_ofquery;
+  char* pg_iquery;
   strcpy(pg_ofquery, "SELECT * FROM openface WHERE vid = ");
   strcat(pg_ofquery, vID);
   strcat(pg_ofquery, " AND framenum = ");
@@ -115,7 +112,7 @@ int main(int argc, char* argv[]){
   }
 
   //Create padded frame number for file navigation
-  char *nav;
+  char* nav;
   int h = std::atoi(fnum);
   if(h<10){
     strcpy(nav, "000");
@@ -134,7 +131,7 @@ int main(int argc, char* argv[]){
   }
 
   //Get image and define space to partition into triangles
-  char *imgurl;
+  char* imgurl;
   strcpy(imgurl, "/var/www/html/vids/");
   strcat(imgurl, vID);
   strcat(imgurl, "/split_");
@@ -172,7 +169,7 @@ int main(int argc, char* argv[]){
   triangles(img_original, sdiv, img_original.size().width, img_original.size().height);
 
   //Write image to new file
-  char *url;
+  char* url;
   strcpy(url, "/var/www/html/vids/");
   strcat(url, vID);
   strcat(url, "/detected_frames/");
