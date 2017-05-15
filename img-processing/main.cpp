@@ -62,7 +62,7 @@ int main(int argc, char* argv[]){
     printf("Enough arguments");
     strcpy(vID, argv[1]);
     printf("First arg: %s", vID);
-    strcpy(fnum, argv[2];
+    strcpy(fnum, argv[2]);
     printf("Second arg: %s", fnum);
   }
   else{
