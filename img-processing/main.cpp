@@ -120,7 +120,7 @@ int main(int argc, char* argv[]){
   strcat(pg_iquery, vID);
   strcat(pg_iquery, " AND framenum = ");
   strcat(pg_iquery, fnum);
-  printf("Eye query created successfully: %s\n", pg_ofquery);
+  printf("Eye query created successfully: %s\n", pg_iquery);
   strcpy(pg_vquery, "SELECT width, height FROM videos WHERE vid = ");
   strcat(pg_vquery, vID);
 
