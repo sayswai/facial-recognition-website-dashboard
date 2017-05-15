@@ -56,6 +56,7 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 }
 
 int main(int argc, char* argv[]){
+  printf("Started");
   char* vID;
   char* fnum;
   if(argc>2){
