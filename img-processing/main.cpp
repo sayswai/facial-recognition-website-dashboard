@@ -180,6 +180,7 @@ int main(int argc, char* argv[]){
   strcat(imgurl, "/split_");
   strcat(imgurl, nav);
   strcat(imgurl, ".png");
+  printf("Image URL: %s\n", imgurl);
   cv::Mat img_original = cv::imread(imgurl, 1);
   cv::Rect space = cv::Rect(0,0,width,height);
   printf("Opencv prep successful\n");
