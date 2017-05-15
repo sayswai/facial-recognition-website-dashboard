@@ -82,7 +82,15 @@ int main(int argc, char* argv[]){
   printf("Variables prepared for DB connection\n");
 
   //Start and test connection
-  pgconn = PQconnectdb("host=localhost port=5432 dbname=CS160 user=postgres password=umyserver");
+  for(int l=0; l<qcount ;l++){
+    try{
+      pgconn = PQconnectdb(pginfo);
+    }
+    catch(ExceptionName e){
+      sleep(1000);
+      printf("Reattempting...");
+    }
+  }
   if(PQstatus(pgconn) != CONNECTION_OK){
     printf("Connection to postgres failed: %s\n", PQerrorMessage(pgconn));
     connection_exit(pgconn);
