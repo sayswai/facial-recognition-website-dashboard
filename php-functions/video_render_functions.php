@@ -22,11 +22,13 @@ function vsplit($vid, $fps) {
     global $root_loc;
     $VID_DIR = $root_loc.'/vids/'.$vid.'/';
     $VID_SPLIT_DIR = $VID_DIR.'split/';
-    $V = $VID_DIR.'main.*';
+    $V = $VID_DIR.'main.mp4';
 
     mkdir($VID_SPLIT_DIR);
     #shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'split_%04d.png </dev/null >/dev/null 2>&1 &');
+    while(!file_exists($VID_DIR.'/done_mp4')){sleep(1);};//wait for mp4 conversion to finish
     shell_exec('ffmpeg -i ' .$V. ' -r ' .$fps. ' ' .$VID_SPLIT_DIR.'split_%04d.png </dev/null >/dev/null 2>&1 && > '.$VID_DIR.'done_split &');
+    shell_exec('ffmpeg -i ' .$V. ' -vn -ab 256 ' .$VID_DIR. 'audio.mp3');
 
     $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
     $query = "UPDATE videos SET split = 1 WHERE vid = " . $vid . ";";

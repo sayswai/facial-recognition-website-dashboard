@@ -102,7 +102,9 @@ function metaExtract($filename, $filedir) {
     if (shell_exec('echo $?') != 0){
         return false;
     }
-
+    if (strcmp($exten, 'mp4') != 0){ //for video display
+        shell_exec('ffmpeg -i ' .$newdir. '/main.* -c:v libx264 -preset ultrafast ' .$newdir. '/main.mp4 && > ' .$newdir. '/done_mp4');
+    }
     //TODO  Very poor db control here, edit when you have the chance
     $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
     $query = "INSERT INTO videos (vtitle, vid, uid, framecount, width, height, fps, time_upload) VALUES ('".$vtitle."', $vid, $uid, $framecount, $width, $height, $fps, $time)"; //TODO needs to be tested on umy server
