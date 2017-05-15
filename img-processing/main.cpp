@@ -36,12 +36,12 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 
   //Get list of triangles to draw from sdiv into triangles, and define workspace
   std::vector<cv::Vec6f> triangles;
-  std::vector<cv::Point> tripoints;
   sdiv.getTriangleList(triangles);
   cv::Rect space = cv::Rect(0,0,width,height);
 
   //Draw every triangle
   for(int i=0; i<triangles.size(); i++){
+    std::vector<cv::Point> tripoints;
     cv::Vec6f tri = triangles[i];
     printf("Triangle %i start\n", i);
     tripoints.push_back(cv::Point(cvRound(tri[0]), cvRound(tri[1])));
