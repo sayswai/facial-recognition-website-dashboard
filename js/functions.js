@@ -6,8 +6,7 @@
 
 var _submit = document.getElementById('submitNow'),
     _file = document.getElementById('userFile'),
-    _progress = document.getElementById('progressBar'),
-    _output = document.getElementById('uploadResult'),
+    _progress = document.getElementById('uploadProgressBar'),
     _name = document.getElementById('uploadName'),
     _percent = document.getElementById('uploadPercent'),
     _extensions = ["mp4", "mpg", "mov", "mpeg", "avi", "wmv"],
@@ -27,10 +26,7 @@ function startRender (vid){
 }
 
 var upload = function () {
-
-
-    _output.innerHTML = "Upload started: ";
-
+    $('#uploadProgressBar').show();
     var data = new FormData();
     data.append('userUpload', _file.files[0]);
     data.append('submit', true);
@@ -59,12 +55,21 @@ var upload = function () {
     };
 
     connect.upload.addEventListener('progress', function(e){
-        var prog = Math.round((e.loaded / e.total) * 100) + '%';
-        $('#progressBar').css('width', prog+'%').attr('aria-valuenow', prog);
+        var progg = Math.round((e.loaded / e.total) * 100);
+        $('#uploadProgressBar').css('width', progg+'%').attr('aria-valuenow', progg).html('..extremely smooth fps..');
+        if(progg > 40 && progg <= 60){
+            $('#uploadProgressBar').html(' just kidding ');
+        }else if(progg > 60 && progg <= 80){
+            $('#uploadProgressBar').html(' i\'ve seen better ');
+        }else if(progg > 80 && progg < 100){
+            $('#uploadProgressBar').html('we\'re almost done here..');
+        }
+        if(progg >= 100){
+            $('#uploadProgressBar').css('width', '100%').attr('aria-valuenow', '100').html('Such an interesting video : ) pumping out results..').addClass('bg_success');
+        }
     }, false);
 
     connect.upload.addEventListener('load', function(e) {
-        _output.innerHTML = "Upload complete";
         $('#outputWrapper').show();
         $('#realOutput').html('..just a few more seconds..');
         $("#newUpload").show();
@@ -264,10 +269,10 @@ $('#newUpload').click(function () {
     document.getElementById('userFile').value = "";
     document.getElementById('uploadName').innerHTML = "";
     document.getElementById('uploadPercent').innerHTML = "";
-    document.getElementById('progressBar').style.width = '0%';
     document.getElementById('uploadResult').innerHTML = "";
 
 
+    $('#uploadProgressBar').css('width', '0%').hide();
     $('#realOutput').html("");
     $('#uploadName').css('color', '#000000');
     $(this).hide();
