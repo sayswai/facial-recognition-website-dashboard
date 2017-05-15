@@ -190,6 +190,7 @@ int main(int argc, char* argv[]){
   float ry = std::stof(rny);
   float lx = std::stof(lnx);
   float ly = std::stof(lny);
+  printf("Right X: %f, Right Y: %f\nLeft X: %f, Left Y: %f\n", rx, ry, lx, ly);
   cv::Point2f pupilRight = cv::Point2f(rx, ry);
   cv::Point2f pupilLeft = cv::Point2f(lx, ly);
   dot(img_original, pupilRight);
