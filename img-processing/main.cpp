@@ -181,7 +181,8 @@ int main(int argc, char* argv[]){
   strcat(imgurl, nav);
   strcat(imgurl, ".png");
   printf("Image URL: %s\n", imgurl);
-  cv::Mat img_original = cv::imread(imgurl, 1);
+  cv::Mat img_original = cv::imread(imgurl, -1);
+  printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
   cv::Rect space = cv::Rect(0,0,width,height);
   printf("Opencv prep successful\n");
 
@@ -246,8 +247,8 @@ int main(int argc, char* argv[]){
   char* url = new char[100];
   strcpy(url, "/var/www/html/vids/");
   strcat(url, vID);
-  strcat(url, "/detected_frames/");
-  strcat(url, fnum);
+  strcat(url, "/finished_frames/output_");
+  strcat(url, nav);
   strcat(url, ".png");
   std::vector<int> params;
   params.push_back(CV_IMWRITE_PNG_COMPRESSION);
