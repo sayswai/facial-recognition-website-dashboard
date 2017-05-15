@@ -213,9 +213,8 @@ int main(int argc, char* argv[]){
   printf("Openface query successful\n");
 
   //Extract points from result of openface Query and store in sdiv. Draw dot on image for each point
-  std::vector<cv::Point2f> points;
-  for(int j=0; j<PQnfields(pgres); j++){
-    char* point = new char[50];
+  char* point = new char[50];
+  for(int j=2; j<PQnfields(pgres); j++){
     strcpy(point, PQgetvalue(pgres, 0, j));
     printf("Point string created: %s vs PQget: %s\n", point, PQgetvalue(pgres, 0, j));
     std::string cp(point);
