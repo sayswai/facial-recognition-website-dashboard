@@ -75,9 +75,13 @@ int main(int argc, char* argv[]){
   printf("Prior to pginfo\n");
   const char* pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
   printf("Const info good\n");
+  PGconn *pgconn;
+  PGresult *pgres;
+  PGresult *pgres2;
+  printf("Undeclared vars good\n");
 
   //Start and test connection
-  PGconn pgconn = PQconnectdb(pginfo);
+  pgconn = PQconnectdb(pginfo);
   printf("PGconnect attempted\n");
   if(PQstatus(pgconn) != CONNECTION_OK){
     fprintf(stderr, "Connection to postgres failed: %s", PQerrorMessage(pgconn));
@@ -101,7 +105,7 @@ int main(int argc, char* argv[]){
   printf("Eye query created successfully: %s\n", pg_ofquery);
 
   //Get and test result
-  PGresult pgres = PQexec(pgconn, pg_ofquery);
+  pgres = PQexec(pgconn, pg_ofquery);
   if(PQresultStatus(pgres) != PGRES_TUPLES_OK){
     fprintf(stderr, "Query on database connection failed: %s", PQerrorMessage(pgconn));
     PQclear(pgres);
@@ -109,7 +113,7 @@ int main(int argc, char* argv[]){
   }
   printf("Openface query successful\n");
 
-  PGresult pgres2 = PQexec(pgconn, pg_iquery);
+  pgres2 = PQexec(pgconn, pg_iquery);
   if(PQresultStatus(pgres2) != PGRES_TUPLES_OK){
     fprintf(stderr, "Query on database connection failed: %s", PQerrorMessage(pgconn));
     PQclear(pgres2);
