@@ -79,7 +79,7 @@ int main(int argc, char* argv[]){
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
-  printf("Undeclared vars good\n");
+  printf("Variables prepared for DB connection\n");
 
   //Start and test connection
   pgconn = PQconnectdb(pginfo);
