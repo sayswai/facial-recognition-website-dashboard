@@ -56,28 +56,26 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 }
 
 int main(int argc, char* argv[]){
+  printf("Started \n");
   char* vID;
   char* fnum;
   if(argc>2){
-    printf("Enough arguments");
     strcpy(vID, argv[1]);
-    printf("First arg: %s", vID);
     strcpy(fnum, argv[2]);
-    printf("Second arg: %s", fnum);
+    printf("Begin processing frame %s from video %s\n", fnum, vID);
   }
   else{
-    std::cout << "Not enough args, needs vID and fnum";
+    printf("Not enough args, needs ./output vID fnum\n");
     exit(1);
   }
 
   //Vars for db access
-  const char *pginfo;
+  const char* pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
+  printf("Const info good\n");
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
-
-  //DB connect info
-  pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
+  printf("Undeclared vars good\n");
 
   //Start and test connection
   pgconn = PQconnectdb(pginfo);
@@ -85,10 +83,11 @@ int main(int argc, char* argv[]){
     fprintf(stderr, "Connection to postgres failed: %s", PQerrorMessage(pgconn));
     connection_exit(pgconn);
   }
+  printf("DB connection successfully established\n");
 
   //Set up query for current frame number in eye and openface tables
-  char *pg_ofquery;
-  char *pg_iquery;
+  char* pg_ofquery;
+  char* pg_iquery;
   strcpy(pg_ofquery, "SELECT * FROM openface WHERE vid = ");
   strcat(pg_ofquery, vID);
   strcat(pg_ofquery, " AND framenum = ");
@@ -97,6 +96,7 @@ int main(int argc, char* argv[]){
   strcat(pg_iquery, vID);
   strcat(pg_iquery, " AND framenum = ");
   strcat(pg_iquery, fnum);
+  printf("Openface and Eye table queries created successfully\n");
 
   //Get and test result
   pgres = PQexec(pgconn, pg_ofquery);
@@ -105,6 +105,7 @@ int main(int argc, char* argv[]){
     PQclear(pgres);
     connection_exit(pgconn);
   }
+  printf("Openface query successful\n");
 
   pgres2 = PQexec(pgconn, pg_iquery);
   if(PQresultStatus(pgres2) != PGRES_TUPLES_OK){
@@ -112,9 +113,10 @@ int main(int argc, char* argv[]){
     PQclear(pgres2);
     connection_exit(pgconn);
   }
+  printf("Eye query successful\n");
 
   //Create padded frame number for file navigation
-  char *nav;
+  char* nav;
   int h = std::atoi(fnum);
   if(h<10){
     strcpy(nav, "000");
@@ -131,9 +133,10 @@ int main(int argc, char* argv[]){
   else {
     strcpy(nav, fnum);
   }
+  printf("Padded framenum successful\n");
 
   //Get image and define space to partition into triangles
-  char *imgurl;
+  char* imgurl;
   strcpy(imgurl, "/var/www/html/vids/");
   strcat(imgurl, vID);
   strcat(imgurl, "/split_");
@@ -141,6 +144,7 @@ int main(int argc, char* argv[]){
   strcat(imgurl, ".png");
   cv::Mat img_original = cv::imread(imgurl);
   cv::Rect space = cv::Rect(0,0,img_original.size().width,img_original.size().height);
+  printf("Opencv prep (imgurl, imread, rect space) successful\n");
 
   //Get pupil x and y, and draw dots on them
   std::string rnx(PQgetvalue(pgres2, 0, 0));
@@ -155,6 +159,7 @@ int main(int argc, char* argv[]){
   cv::Point2f pupilLeft = cv::Point2f(lx, ly);
   dot(img_original, pupilRight);
   dot(img_original, pupilLeft);
+  printf("Eye prep and pupil dots successful\n");
 
   //Create subdiv2d with area defined above
   cv::Subdiv2D sdiv = cv::Subdiv2D(space);
@@ -166,18 +171,20 @@ int main(int argc, char* argv[]){
     sdiv.insert(p);
     dot(img_original, p);
   }
+  printf("Opencv table point extraction and dot draw successful\n");
 
   //Draw triangles on image
   triangles(img_original, sdiv, img_original.size().width, img_original.size().height);
+  printf("Triangle draw successful\n");
 
   //Write image to new file
-  char *url;
+  char* url;
   strcpy(url, "/var/www/html/vids/");
   strcat(url, vID);
   strcat(url, "/detected_frames/");
   strcat(url, fnum);
   strcat(url, ".png");
   cv::imwrite(url, img_original);
-
   PQfinish(pgconn);
+  printf("Image write and dbfinish successful\n");
 }
