@@ -197,9 +197,9 @@ int main(int argc, char* argv[]){
   std::vector<cv::Point2f> points;
   for(int j=0; j<PQnfields(pgres); j++){
     printf("PQvalue: %s", PQgetvalue(pgres, 0, j));
-    //cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j)[0], PQgetvalue(pgres, 0, j)[1]);
-    //sdiv.insert(p);
-    //dot(img_original, p);
+    cv::Point2f p = cv::Point2f(PQgetvalue(pgres, 0, j));
+    sdiv.insert(p);
+    dot(img_original, p);
   }
   /*printf("Opencv table point extraction and dot draw successful\n");
 
