@@ -83,6 +83,7 @@ int main(int argc, char* argv[]){
 
   //Start and test connection
   int conncount = 0;
+  printf("vID before connect: %s\n", vID);
   try{
     pgconn = PQconnectdb(pginfo);
   }
@@ -100,6 +101,7 @@ int main(int argc, char* argv[]){
       }
     }
   }
+  printf("vID after connect: %s\n", vID);
   if(PQstatus(pgconn) != CONNECTION_OK){
     printf("Connection to postgres failed: %s\n", PQerrorMessage(pgconn));
     connection_exit(pgconn);
