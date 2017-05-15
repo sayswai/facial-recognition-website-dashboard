@@ -57,8 +57,8 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
 
 int main(int argc, char* argv[]){
   printf("Started \n");
-  char* vID;
-  char* fnum;
+  char* vID = new char[100];
+  char* fnum = new char[20];
   if(argc>2){
     strcpy(vID, argv[1]);
     printf("Video containing image: %s\n", vID);
@@ -83,7 +83,6 @@ int main(int argc, char* argv[]){
 
   //Start and test connection
   int conncount = 0;
-  printf("vID before connect: %s\n", vID);
   try{
     pgconn = PQconnectdb(pginfo);
   }
@@ -101,24 +100,17 @@ int main(int argc, char* argv[]){
       }
     }
   }
-  printf("vID after connect: %s\n", vID);
   if(PQstatus(pgconn) != CONNECTION_OK){
     printf("Connection to postgres failed: %s\n", PQerrorMessage(pgconn));
     connection_exit(pgconn);
   }
   printf("DB connection successfully established\n");
-  printf("vID after connect test: %s\n", vID);
-  char* testID = vID;
-  printf("testID: %s\n", testID);
+
   //Set up query for current frame number in eye and openface tables
   char* pg_ofquery = new char[100];
   char* pg_iquery = new char[100];
-  printf("vID after query init: %s\n", vID);
-  printf("Query vars created\n");
   strcpy(pg_ofquery, "SELECT * FROM openface WHERE vid = ");
-  printf("Query before add: %s\nvID before add: %s\n", pg_ofquery, vID);
   strcat(pg_ofquery, vID);
-  printf("Query after add: %s\nvID after add: %s\n", pg_ofquery, vID);
   strcat(pg_ofquery, " AND framenum = ");
   strcat(pg_ofquery, fnum);
   printf("Openface query created successfully: %s\n", pg_ofquery);
