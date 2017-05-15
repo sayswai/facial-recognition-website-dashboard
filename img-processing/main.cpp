@@ -60,22 +60,22 @@ int main(int argc, char* argv[]){
   char* vID;
   char* fnum;
   if(argc>2){
-    printf("Enough arguments \n");
     strcpy(vID, argv[1]);
-    printf("First arg: %s \n", vID);
     strcpy(fnum, argv[2]);
-    printf("Second arg: %s \n", fnum);
+    printf("Begin processing frame %s from video %s\n", fnum, vID);
   }
   else{
-    printf("Not enough args, needs vID and fnum\n");
+    printf("Not enough args, needs ./output vID fnum\n");
     exit(1);
   }
 
   //Vars for db access
   const char* pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
+  printf("Const info good\n");
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
+  printf("Undeclared vars good\n");
 
   //Start and test connection
   pgconn = PQconnectdb(pginfo);
