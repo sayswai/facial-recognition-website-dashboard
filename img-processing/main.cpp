@@ -125,6 +125,20 @@ int main(int argc, char* argv[]){
   strcat(pg_vquery, vID);
 
   //Get and test result
+  pgres3 = PQexec(pgconn, pg_vquery);
+  if(PQresultStatus(pgres3) != PGRES_TUPLES_OK){
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
+    PQclear(pgres3);
+    connection_exit(pgconn);
+  } else if (PQntuples(pgres3) == 0){
+    printf("Didn't get width, height from video in db\n");
+    connection_exit(pgconn);
+  }
+  printf("Video query successful\n");
+  const int width = std::atoi(PQgetvalue(pgres3, 0, 0));
+  const int height = std::atoi(PQgetvalue(pgres3, 0, 1));
+  printf("Width: %i\nHeight: %i", width,height);
+
   pgres = PQexec(pgconn, pg_ofquery);
   if(PQresultStatus(pgres) != PGRES_TUPLES_OK){
     printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
@@ -146,19 +160,6 @@ int main(int argc, char* argv[]){
     connection_exit(pgconn);
   }
   printf("Eye query successful\n");
-
-  pgres3 = PQexec(pgconn, pg_vquery);
-  if(PQresultStatus(pgres3) != PGRES_TUPLES_OK){
-    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
-    PQclear(pgres3);
-    connection_exit(pgconn);
-  } else if (PQntuples(pgres3) == 0){
-    printf("Didn't get width, height from video in db\n");
-    connection_exit(pgconn);
-  }
-  printf("Video query successful\n");
-  const int width = std::atoi(PQgetvalue(pgres3, 0, 0));
-  const int height = std::atoi(PQgetvalue(pgres3, 0, 1));
 
   //Create padded frame number for file navigation
   char* nav = new char[10];
@@ -190,7 +191,6 @@ int main(int argc, char* argv[]){
   cv::Mat img_original = cv::imread(imgurl);
   cv::Rect space = cv::Rect(0,0,width,height);
   printf("Opencv prep successful\n");
-  printf("Width: %i\nHeight: %i", width,height);
 
   //Get pupil x and y, and draw dots on them
   std::string rnx(PQgetvalue(pgres2, 0, 0));
