@@ -88,7 +88,7 @@ int main(int argc, char* argv[]){
   }
   catch(std::exception& e1){
     sleep(1000);
-    printf("Attempt %s failed, reattempting...\n", conncount);
+    printf("Attempt %i failed, reattempting...\n", conncount);
     while(PQstatus(pgconn) != CONNECTION_OK || conncount > qcount){
       try{
         conncount++;
@@ -96,7 +96,7 @@ int main(int argc, char* argv[]){
       }
       catch(std::exception& e2){
         sleep(1000);
-        printf("Attempt %s failed, reattempting...\n", conncount);
+        printf("Attempt %i failed, reattempting...\n", conncount);
       }
     }
   }
