@@ -171,7 +171,7 @@ int main(int argc, char* argv[]){
   strcat(imgurl, nav);
   strcat(imgurl, ".png");
   cv::Mat img_original = cv::imread(imgurl);
-  cv::Rect space = cv::Rect(0,0,img_original.size().width,img_original.size().height);
+  cv::Rect space = cv::Rect(0,0,img_original.size().width-1,img_original.size().height-1);
   printf("Opencv prep (imgurl, imread, rect space) successful\n");
 
   //Get pupil x and y, and draw dots on them
@@ -191,6 +191,7 @@ int main(int argc, char* argv[]){
 
   //Create subdiv2d with area defined above
   cv::Subdiv2D sdiv = cv::Subdiv2D(space);
+  printf();
 
   //Extract points from result of openface Query and store in sdiv. Draw dot on image for each point
   std::vector<cv::Point2f> points;
