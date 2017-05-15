@@ -73,7 +73,8 @@ int main(int argc, char* argv[]){
 
   //Vars for db access
   printf("Prior to pginfo\n");
-  const char* pginfo = "dbname=CS160";// host=localhost port=5432 user=postgres password=umyserver";
+  const char *pginfo;
+  pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
   printf("Const info good\n");
   PGconn *pgconn;
   PGresult *pgres;
@@ -82,7 +83,6 @@ int main(int argc, char* argv[]){
 
   //Start and test connection
   pgconn = PQconnectdb(pginfo);
-  printf("PGconnect attempted\n");
   if(PQstatus(pgconn) != CONNECTION_OK){
     fprintf(stderr, "Connection to postgres failed: %s", PQerrorMessage(pgconn));
     connection_exit(pgconn);
