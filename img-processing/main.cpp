@@ -216,7 +216,7 @@ int main(int argc, char* argv[]){
   for(int j=0; j<PQnfields(pgres); j++){
     char* point = new char[50];
     strcpy(point, PQgetvalue(pgres, 0, j));
-    printf("Point string created: %s\n", point);
+    printf("Point string created: %s vs PQget: %s\n", point, PQgetvalue(pgres, 0, j));
     std::string copy(point);
     int delim = copy.find(',');
     int last = copy.find(')');
