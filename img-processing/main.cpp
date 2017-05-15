@@ -157,8 +157,8 @@ int main(int argc, char* argv[]){
     connection_exit(pgconn);
   }
   printf("Video query successful\n");
-  const int width = PQgetvalue(pgres3, 0, 0);
-  const int height = PQgetvalue(pgres3, 0, 1);
+  const int width = std::atoi(PQgetvalue(pgres3, 0, 0));
+  const int height = std::atoi(PQgetvalue(pgres3, 0, 1));
 
   //Create padded frame number for file navigation
   char* nav = new char[10];
