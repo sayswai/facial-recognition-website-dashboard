@@ -38,7 +38,6 @@ static void triangles(cv::Mat& image, cv::Subdiv2D& sdiv, int width, int height)
   std::vector<cv::Vec6f> triangles;
   std::vector<cv::Point> tripoints;
   sdiv.getTriangleList(triangles);
-  printf("Triangle List size: %i\n", triangles.size());
   cv::Rect space = cv::Rect(0,0,width,height);
 
   //Draw every triangle
