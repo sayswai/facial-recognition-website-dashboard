@@ -82,7 +82,11 @@ int main(int argc, char* argv[]){
   printf("Variables prepared for DB connection\n");
 
   //Start and test connection
-  pgconn = PQconnectdb(pginfo);
+  while(PQstatus(pgconn) != CONNECTION_OK){
+    try{
+      pgconn = PQconnectdb(pginfo);
+    }
+  }
   if(PQstatus(pgconn) != CONNECTION_OK){
     printf("Connection to postgres failed: %s\n", PQerrorMessage(pgconn));
     connection_exit(pgconn);
