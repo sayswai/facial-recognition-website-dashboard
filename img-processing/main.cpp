@@ -75,7 +75,7 @@ int main(int argc, char* argv[]){
   printf("Prior to pginfo\n");
   const char *pginfo;
   pginfo = "dbname=CS160 host=localhost port=5432 user=postgres password=umyserver";
-  printf("Const info good\n");
+  printf("PGinfo retrieved: %s,\n", pginfo);
   PGconn *pgconn;
   PGresult *pgres;
   PGresult *pgres2;
@@ -88,7 +88,6 @@ int main(int argc, char* argv[]){
     connection_exit(pgconn);
   }
   printf("DB connection successfully established\n");
-  printf("Buffer?\n");
 
   //Set up query for current frame number in eye and openface tables
   char* pg_ofquery = new char[100];
