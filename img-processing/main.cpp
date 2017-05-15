@@ -82,6 +82,7 @@ int main(int argc, char* argv[]){
 
   //Start and test connection
   pgconn = PQconnectdb(pginfo);
+  printf("PGconnect attempted\n");
   if(PQstatus(pgconn) != CONNECTION_OK){
     fprintf(stderr, "Connection to postgres failed: %s", PQerrorMessage(pgconn));
     connection_exit(pgconn);
