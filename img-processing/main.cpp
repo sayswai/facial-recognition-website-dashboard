@@ -110,6 +110,9 @@ int main(int argc, char* argv[]){
     fprintf(stderr, "Query on database connection failed: %s\n", PQerrorMessage(pgconn));
     PQclear(pgres);
     connection_exit(pgconn);
+  } else if (PQntuples(pgres) == 0){
+    fprintf("No OpenFace Points\n");
+    connection_exit(pgconn);
   }
   printf("Openface query successful\n");
 
@@ -117,6 +120,9 @@ int main(int argc, char* argv[]){
   if(PQresultStatus(pgres2) != PGRES_TUPLES_OK){
     fprintf(stderr, "Query on database connection failed: %s\n", PQerrorMessage(pgconn));
     PQclear(pgres2);
+    connection_exit(pgconn);
+  } else if (PQntuples(pgres2) == 0){
+    fprintf("No Eye Points\n");
     connection_exit(pgconn);
   }
   printf("Eye query successful\n");
