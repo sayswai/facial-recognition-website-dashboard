@@ -119,12 +119,21 @@ function pushVideos(vID) {
 }
 
 function progressBar (vID, progress){
-    if (progress == 100){
-        $('#'+vID+'progressBar').css('width', '100%').attr('aria-valuenow', '100').html('Video Facial Recognition Render: Complete').addClass('bg-success');
-        $('#'+vID+'dell').prop('disabled', false);
-        $('#'+vID+'cardTextPB').html();
+    if (progress == 100) {
+        $('#' + vID + 'progressBar').css('width', '100%').attr('aria-valuenow', '100').html('Video Facial Recognition Render: Complete').addClass('bg-success');
+        $('#' + vID + 'dell').prop('disabled', false);
+        $('#' + vID + 'cardTextPB').html();
+    }else if (progress < 100 && progress >=70){
+        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('opencv time.. '+progress+'%');
+        $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
+    }else if (progress < 70 && progress >=30){
+        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('openface time.. '+progress+'%');
+        $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
+    }else if (progress < 30 && progress >=10){
+        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('starting .. '+progress+'%');
+        $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
     }else{
-        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('Video Facial Recognition Render: '+progress+'%');
+        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('starting... '+progress+'%');
         $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
     }
 }
