@@ -126,6 +126,7 @@ int main(int argc, char* argv[]){
   printf("Eye query created successfully: %s\n", pg_iquery);
   strcpy(pg_vquery, "SELECT width, height FROM videos WHERE vid = ");
   strcat(pg_vquery, vID);
+  printf("Video query created successfully: %s\n", pg_vquery);
 
   //Get and test result
   pgres3 = PQexec(pgconn, pg_vquery);
@@ -177,11 +178,13 @@ int main(int argc, char* argv[]){
   char* imgurl = new char[100];
   strcpy(imgurl, "/var/www/html/vids/");
   strcat(imgurl, vID);
-  strcat(imgurl, "/split_");
+  strcat(imgurl, "/split/split_");
   strcat(imgurl, nav);
   strcat(imgurl, ".png");
   printf("Image URL: %s\n", imgurl);
+  //cv::Mat img; 
   cv::Mat img_original = cv::imread(imgurl, -1);
+  //cv::resize(img, img_original, cv::Size(width, height), 0, 0, 2);
   printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
   cv::Rect space = cv::Rect(0,0,width,height);
   printf("Opencv prep successful\n");
