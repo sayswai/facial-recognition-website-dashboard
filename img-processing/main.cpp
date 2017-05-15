@@ -126,6 +126,7 @@ int main(int argc, char* argv[]){
   printf("Eye query created successfully: %s\n", pg_iquery);
   strcpy(pg_vquery, "SELECT width, height FROM videos WHERE vid = ");
   strcat(pg_vquery, vID);
+  printf("Video query created successfully: %s\n", pg_vquery);
 
   //Get and test result
   pgres3 = PQexec(pgconn, pg_vquery);
