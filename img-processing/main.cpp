@@ -87,7 +87,7 @@ int main(int argc, char* argv[]){
       pgconn = PQconnectdb(pginfo);
       break;
     }
-    catch(ExceptionName e){
+    catch(std::exception e){
       sleep(1000);
       printf("Reattempting...");
     }
