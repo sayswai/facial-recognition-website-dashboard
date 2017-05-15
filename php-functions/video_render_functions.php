@@ -200,6 +200,7 @@ function openCv($vID){
             shell_exec('mv ' .$VID_DIR. 'split/' .$splitFiles[$i]. ' '.$VID_DIR.'/finished_frames/' .$outputName);
         }
     }
+    shell_exec('> ' .$VID_DIR.'done_opencv');
 }
 /* OPENCV END */
 
@@ -208,8 +209,11 @@ function imagesToVideo($videoID){
 
     global $root_loc;
 
+
     $VID_DIR = $root_loc.'/vids/'.$videoID.'/';
     $FINISHED_DIR = $VID_DIR.'finished_frames/';
+    while(!file_exists($VID_DIR.'done_opencv')){sleep(1);};
+
 
     shell_exec('sudo ffmpeg -i ' . $FINISHED_DIR . 'output_%04d.png ' . $VID_DIR . 'final-nosound.mp4 2>&1 && sudo ffmpeg -i ' . $VID_DIR. 'final-nosound.mp4 -i ' . $VID_DIR . 'audio.mp3 -c:v copy -c:a aac -strict experimental ' .$VID_DIR. 'final.mp4 && >' .$VID_DIR. 'done_final');
 

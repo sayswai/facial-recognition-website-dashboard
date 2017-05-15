@@ -30,6 +30,7 @@ if($pa == $argv[2]){
     }else{
         openFace($vID);
         openCv($vID);
+        imagesToVideo($vID);
     }
 
 }else{
