@@ -84,7 +84,7 @@ int main(int argc, char* argv[]){
   //Start and test connection
   pgconn = PQconnectdb(pginfo);
   if(PQstatus(pgconn) != CONNECTION_OK){
-    fprintf(stderr, "Connection to postgres failed: %s\n", PQerrorMessage(pgconn));
+    printf("Connection to postgres failed: %s\n", PQerrorMessage(pgconn));
     connection_exit(pgconn);
   }
   printf("DB connection successfully established\n");
@@ -107,18 +107,18 @@ int main(int argc, char* argv[]){
   //Get and test result
   pgres = PQexec(pgconn, pg_ofquery);
   if(PQresultStatus(pgres) != PGRES_TUPLES_OK){
-    fprintf(stderr, "Query on database connection failed: %s\n", PQerrorMessage(pgconn));
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
     PQclear(pgres);
     connection_exit(pgconn);
   } else if (PQntuples(pgres) == 0){
-    fprintf("No OpenFace Points\n");
+    printf("No OpenFace Points\n");
     connection_exit(pgconn);
   }
   printf("Openface query successful\n");
 
   pgres2 = PQexec(pgconn, pg_iquery);
   if(PQresultStatus(pgres2) != PGRES_TUPLES_OK){
-    fprintf(stderr, "Query on database connection failed: %s\n", PQerrorMessage(pgconn));
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
     PQclear(pgres2);
     connection_exit(pgconn);
   } else if (PQntuples(pgres2) == 0){
