@@ -161,15 +161,18 @@ function parsePointFilesAndInsert($videoID){
 
     }
     pg_close($conn1);
+    shell_exec('> '.$VID_DIR.'done_openfacelog');
     return true;
 
 }
 /* OPENFACE END */
 
 /* OPENCV START */
-function opencv($vID){
+function openCv($vID){
     global $root_loc, $openCvCommand;
     $VID_DIR = $root_loc . '/vids/' .$vID. '/';
+
+    while(!file_exists($VID_DIR.'done_openfacelog')){sleep(2);};//wait for split to finish
 
     $connection = connect_db(\dbUsername, \dbPassword, \dbDBname);
     $query = "SELECT * FROM openface WHERE vid = " .$vID;
@@ -192,7 +195,6 @@ function opencv($vID){
             $outputName = str_replace('split_', 'output_', $splitFiles[$i]);
             shell_exec('mv ' .$VID_DIR. 'split/' .$splitFiles[$i]. ' '.$VID_DIR.'/finished_frames/' .$outputName);
         }
-        echo '<br>';
     }
 }
 /* OPENCV END */

@@ -29,6 +29,7 @@ if($pa == $argv[2]){
         eyeTrack($vID);
     }else{
         openFace($vID);
+        openCv($vID);
     }
 
 }else{
