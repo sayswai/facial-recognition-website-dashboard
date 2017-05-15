@@ -191,7 +191,7 @@ int main(int argc, char* argv[]){
 
   //Create subdiv2d with area defined above
   cv::Subdiv2D sdiv = cv::Subdiv2D(space);
-  printf();
+  printf("Subdiv2D successfully constructed\n");
 
   //Extract points from result of openface Query and store in sdiv. Draw dot on image for each point
   std::vector<cv::Point2f> points;
