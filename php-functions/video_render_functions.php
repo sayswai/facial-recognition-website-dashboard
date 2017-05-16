@@ -191,7 +191,7 @@ function openCv($vID){
 
     for($i = 2; $i < sizeof($splitFiles); $i++) {
         $frame = $i-1;
-        if($arr[$det_frame-1]['framenum'] == $frame){
+        if($arr[$det_frame-1]['framenum'] == $frame && ($det_frame - 1) < count($arr)){
             //frame is detected in both openface and eyelike
             shell_exec('sudo '.$openCvCommand.' '.$vID.' '.$frame);
             $det_frame++;
