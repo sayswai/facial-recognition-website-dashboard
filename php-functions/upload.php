@@ -82,6 +82,9 @@ function metaExtract($filename, $filedir) {
     if ($fps > 100)  {
         $fps = (int)(trim(shell_exec('ffprobe "'.$filedir.'"  2>&1 | grep -oP "s, \K.*(?=fps,)"')));
     }
+    if ($fps <= 100) {
+      $fps = 29; 
+    }
     $vtitle = $filename;
     $duration = $output["format"]["duration"];
     $size = $output["format"]["size"];
