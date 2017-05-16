@@ -127,7 +127,22 @@ int main(int argc, char* argv[]){
   printf("Eye query created successfully: %s\n", pg_iquery);
   strcpy(pg_vquery, "SELECT width, height FROM videos WHERE vid = ");
   strcat(pg_vquery, vID);
-  printf("Video query created successfully: %s\n", pg_vquery);
+  printf("Video query created successfully: %s\n", pg_vquery);\
+
+  //Get image and define space to partition into triangles
+  char* imgurl = new char[100];
+  strcpy(imgurl, "/var/www/html/vids/");
+  strcat(imgurl, vID);
+  strcat(imgurl, "/split/split_");
+  strcat(imgurl, nav);
+  strcat(imgurl, ".png");
+  printf("Image URL: %s\n", imgurl);
+  //cv::Mat img;
+  cv::Mat img_original = cv::imread(imgurl, -1);
+  //cv::resize(img, img_original, cv::Size(width, height), 0, 0, 2);
+  printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
+  cv::Rect space = cv::Rect(0,0,width,height);
+  printf("Opencv prep successful\n");
 
   //Get and test result
   pgres3 = PQexec(pgconn, pg_vquery);
@@ -151,7 +166,23 @@ int main(int argc, char* argv[]){
     connection_exit(pgconn);
   } else if (PQntuples(pgres2) == 0){
     printf("No Eye Points\n");
-    connection_exit(pgconn);
+    //connection_exit(pgconn);
+  } else {
+    //Get pupil x and y, and draw dots on them
+    std::string rnx(PQgetvalue(pgres2, 0, 0));
+    std::string rny(PQgetvalue(pgres2, 0, 1));
+    std::string lnx(PQgetvalue(pgres2, 0, 2));
+    std::string lny(PQgetvalue(pgres2, 0, 3));
+    float rx = std::stof(rnx);
+    float ry = std::stof(rny);
+    float lx = std::stof(lnx);
+    float ly = std::stof(lny);
+    printf("Right X: %f, Right Y: %f\nLeft X: %f, Left Y: %f\n", rx, ry, lx, ly);
+    cv::Point2f pupilRight = cv::Point2f(rx, ry);
+    cv::Point2f pupilLeft = cv::Point2f(lx, ly);
+    dot(img_original, pupilRight);
+    dot(img_original, pupilLeft);
+    printf("Eye prep and pupil dots successful\n");
   }
   printf("Eye query successful\n");
 
@@ -174,37 +205,6 @@ int main(int argc, char* argv[]){
     strcpy(nav, fnum);
   }
   printf("Padded framenum successful\n");
-
-  //Get image and define space to partition into triangles
-  char* imgurl = new char[100];
-  strcpy(imgurl, "/var/www/html/vids/");
-  strcat(imgurl, vID);
-  strcat(imgurl, "/split/split_");
-  strcat(imgurl, nav);
-  strcat(imgurl, ".png");
-  printf("Image URL: %s\n", imgurl);
-  //cv::Mat img;
-  cv::Mat img_original = cv::imread(imgurl, -1);
-  //cv::resize(img, img_original, cv::Size(width, height), 0, 0, 2);
-  printf("Width: %i, Height: %i\n", img_original.cols, img_original.rows);
-  cv::Rect space = cv::Rect(0,0,width,height);
-  printf("Opencv prep successful\n");
-
-  //Get pupil x and y, and draw dots on them
-  std::string rnx(PQgetvalue(pgres2, 0, 0));
-  std::string rny(PQgetvalue(pgres2, 0, 1));
-  std::string lnx(PQgetvalue(pgres2, 0, 2));
-  std::string lny(PQgetvalue(pgres2, 0, 3));
-  float rx = std::stof(rnx);
-  float ry = std::stof(rny);
-  float lx = std::stof(lnx);
-  float ly = std::stof(lny);
-  printf("Right X: %f, Right Y: %f\nLeft X: %f, Left Y: %f\n", rx, ry, lx, ly);
-  cv::Point2f pupilRight = cv::Point2f(rx, ry);
-  cv::Point2f pupilLeft = cv::Point2f(lx, ly);
-  dot(img_original, pupilRight);
-  dot(img_original, pupilLeft);
-  printf("Eye prep and pupil dots successful\n");
 
   //Create subdiv2d with area defined above
   cv::Subdiv2D sdiv = cv::Subdiv2D(space);
