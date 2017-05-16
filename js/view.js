@@ -127,10 +127,10 @@ function progressBar (vID, progress){
     }else if (progress < 100 && progress >=70){
         $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('opencv time.. '+progress+'%');
         $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
-    }else if (progress < 70 && progress >=30){
+    }else if (progress < 70 && progress >=15){
         $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('openface time.. '+progress+'%');
         $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
-    }else if (progress < 30 && progress >=10){
+    }else if (progress < 15 && progress >=5){
         $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('where are the eyes .. '+progress+'%');
         $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
     }else{
