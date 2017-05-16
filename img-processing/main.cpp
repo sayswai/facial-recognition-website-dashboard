@@ -127,7 +127,42 @@ int main(int argc, char* argv[]){
   printf("Eye query created successfully: %s\n", pg_iquery);
   strcpy(pg_vquery, "SELECT width, height FROM videos WHERE vid = ");
   strcat(pg_vquery, vID);
-  printf("Video query created successfully: %s\n", pg_vquery);\
+  printf("Video query created successfully: %s\n", pg_vquery);
+
+  //Execute Video Query
+  pgres3 = PQexec(pgconn, pg_vquery);
+  if(PQresultStatus(pgres3) != PGRES_TUPLES_OK){
+    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
+    PQclear(pgres3);
+    connection_exit(pgconn);
+  } else if (PQntuples(pgres3) == 0){
+    printf("Didn't get width, height from video in db\n");
+    connection_exit(pgconn);
+  }
+  printf("Video query successful\n");
+  const int width = std::atoi(PQgetvalue(pgres3, 0, 0));
+  const int height = std::atoi(PQgetvalue(pgres3, 0, 1));
+  printf("Width: %i\nHeight: %i", width,height);
+
+  //Create padded frame number for file navigation
+  char* nav = new char[10];
+  int h = std::atoi(fnum);
+  if(h<10){
+    strcpy(nav, "000");
+    strcat(nav, fnum);
+  }
+  else if(h<100){
+    strcpy(nav, "00");
+    strcat(nav, fnum);
+  }
+  else if(h<1000){
+    strcpy(nav, "0");
+    strcat(nav, fnum);
+  }
+  else {
+    strcpy(nav, fnum);
+  }
+  printf("Padded framenum successful\n");
 
   //Get image and define space to partition into triangles
   char* imgurl = new char[100];
@@ -145,20 +180,6 @@ int main(int argc, char* argv[]){
   printf("Opencv prep successful\n");
 
   //Get and test result
-  pgres3 = PQexec(pgconn, pg_vquery);
-  if(PQresultStatus(pgres3) != PGRES_TUPLES_OK){
-    printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
-    PQclear(pgres3);
-    connection_exit(pgconn);
-  } else if (PQntuples(pgres3) == 0){
-    printf("Didn't get width, height from video in db\n");
-    connection_exit(pgconn);
-  }
-  printf("Video query successful\n");
-  const int width = std::atoi(PQgetvalue(pgres3, 0, 0));
-  const int height = std::atoi(PQgetvalue(pgres3, 0, 1));
-  printf("Width: %i\nHeight: %i", width,height);
-
   pgres2 = PQexec(pgconn, pg_iquery);
   if(PQresultStatus(pgres2) != PGRES_TUPLES_OK){
     printf("Query on database connection failed: %s\n", PQerrorMessage(pgconn));
@@ -185,26 +206,6 @@ int main(int argc, char* argv[]){
     printf("Eye prep and pupil dots successful\n");
   }
   printf("Eye query successful\n");
-
-  //Create padded frame number for file navigation
-  char* nav = new char[10];
-  int h = std::atoi(fnum);
-  if(h<10){
-    strcpy(nav, "000");
-    strcat(nav, fnum);
-  }
-  else if(h<100){
-    strcpy(nav, "00");
-    strcat(nav, fnum);
-  }
-  else if(h<1000){
-    strcpy(nav, "0");
-    strcat(nav, fnum);
-  }
-  else {
-    strcpy(nav, fnum);
-  }
-  printf("Padded framenum successful\n");
 
   //Create subdiv2d with area defined above
   cv::Subdiv2D sdiv = cv::Subdiv2D(space);
