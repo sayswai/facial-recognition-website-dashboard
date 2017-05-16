@@ -178,9 +178,9 @@ function openCv($vID){
     $query = "SELECT * FROM openface WHERE vid = " .$vID;
     $result = pg_query($query);
     $arr = pg_fetch_all($result);
-    $query = "SELECT * FROM eye WHERE vid =" .$vID;
-    $result = pg_query($query);
-    $eyeArr = pg_fetch_all($result);
+    #$query = "SELECT * FROM eye WHERE vid =" .$vID;
+    #$result = pg_query($query);
+   # $eyeArr = pg_fetch_all($result);
     pg_close($connection);
 
 
@@ -191,7 +191,7 @@ function openCv($vID){
 
     for($i = 2; $i < sizeof($splitFiles); $i++) {
         $frame = $i-1;
-        if($arr[$det_frame-1]['framenum'] == $frame && $eyeArr[$det_frame-1]['framenum'] == $frame){
+        if($arr[$det_frame-1]['framenum'] == $frame){
             //frame is detected in both openface and eyelike
             shell_exec('sudo '.$openCvCommand.' '.$vID.' '.$frame);
             $det_frame++;
