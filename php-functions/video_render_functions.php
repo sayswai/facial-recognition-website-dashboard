@@ -188,7 +188,7 @@ function openCv($vID){
 	$det_frame = 1;
 	shell_exec('sudo chown -R www-data:www-data ' .$VID_DIR. '');
 	shell_exec('sudo mkdir -p '.$VID_DIR.'finished_frames/');
-	echo 'count - '.count($arr).'<br>';
+
 	for($i = 2; $i < sizeof($splitFiles); $i++) {
 		$frame = $i-1;
 		if($arr[($det_frame-1)]['framenum'] == $frame && (($det_frame - 1) < (count($arr)-1))){
