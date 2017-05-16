@@ -119,6 +119,7 @@ function pushVideos(vID) {
 }
 
 function progressBar (vID, progress){
+    progress = Math.floor(progress);
     if (progress == 100) {
         $('#' + vID + 'progressBar').css('width', '100%').attr('aria-valuenow', '100').html('Video Facial Recognition Render: Complete').addClass('bg-success');
         $('#' + vID + 'dell').prop('disabled', false);
@@ -130,7 +131,7 @@ function progressBar (vID, progress){
         $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('openface time.. '+progress+'%');
         $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
     }else if (progress < 30 && progress >=10){
-        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('starting .. '+progress+'%');
+        $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('where are the eyes .. '+progress+'%');
         $('#'+vID+'cardTextPB').html('<br>Delete will enable after video is done processing.');
     }else{
         $('#'+vID+'progressBar').css('width', progress+'%').attr('aria-valuenow', progress).html('starting... '+progress+'%');

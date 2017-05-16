@@ -51,22 +51,15 @@ function getProgress($vID){
         }
     }
 
-    if (file_exists($VID_DIR.'done_split')){
+    if (file_exists($VID_DIR.'done_openfacelog')){
         $splitFrames = glob($VID_DIR . 'split/*.png');//get # of split frames
         $splitFrames = count($splitFrames);
         $total += $splitFrames;
-
-        $detFrames = glob($VID_DIR . 'detected_frames/*.pts');//get # of done detected_frames
-        if ($detFrames != false){
-            $detFrames = count($detFrames);
-            $progress += $detFrames;
-        }
 
         $finishedFrames = glob($VID_DIR . 'finished_frames/*.png');//get # of finished frames
         if ($finishedFrames != false){
             $finishedFrames = count($finishedFrames);
             $progress += $finishedFrames;
-            $total += $splitFrames;
         }
     }
 
