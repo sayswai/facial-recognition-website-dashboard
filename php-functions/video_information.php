@@ -51,7 +51,7 @@ function getProgress($vID){
         }
     }
 
-    if (file_exists($VID_DIR.'done_openfacelog')){
+    if (file_exists($VID_DIR.'done_split')){
         $splitFrames = glob($VID_DIR . 'split/*.png');//get # of split frames
         $splitFrames = count($splitFrames);
         $total += ($splitFrames * 2);
