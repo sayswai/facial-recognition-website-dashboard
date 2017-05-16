@@ -30,6 +30,7 @@ if($pa == $argv[2]){
     }else{
         openFace($vID);
     }
+#	parsePointFilesAndInsert($vID);
     openCv($vID);
     imagesToVideo($vID);
 

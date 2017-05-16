@@ -14,6 +14,7 @@ if(isset($_POST['submit']) && isset($_SESSION['uid']) && isset($_POST['vID'])){
     $vID = $_POST['vID'];
     $p = \clP;
     shell_exec('cd ' .$pfFolder. ' && ' .$cmd. ' ' .$vID. ' ' .$p. " > /dev/null 2>/dev/null &");
+
 }else{
     error_log('call_v.php accessed without post');
     ?>
