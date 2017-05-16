@@ -103,7 +103,7 @@ function metaExtract($filename, $filedir) {
         return false;
     }
     if (strcmp($exten, 'mp4') != 0){ //for video display
-        shell_exec('ffmpeg -i ' .$newdir. '/main.* -c:v libx264 -preset ultrafast ' .$newdir. '/main.mp4 && > ' .$newdir. '/done_mp4');
+        shell_exec('ffmpeg -i ' .$newdir. '/main.* -strict -2 -c:v libx264 -preset ultrafast ' .$newdir. '/main.mp4 && > ' .$newdir. '/done_mp4');
     }else{
         shell_exec(' > ' .$newdir. '/done_mp4');
     }
