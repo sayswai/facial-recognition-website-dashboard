@@ -17,7 +17,7 @@ https://www.youtube.com/watch?v=x_2lEoLs9bM
 Program was built and tested on Ubuntu and Apache
 
 
-Names of Contributors (in no specific order):
+### Name of Contributors (In no certain order):
 -Wai Myint
 -Nicholas Boyd
 -San Singh
